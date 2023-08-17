@@ -1,30 +1,36 @@
 import { createContext, useState } from "react";
-import styles from "./App.module.scss";
-import Logincard from "./components/layouts/logincard/logincard";
+import styled from 'styled-components'
+import Searchbar from "./components/searchbar";
 
-const TitleContext = createContext("Project");
+const Frame = styled.div`
+  height: inherit;
+  width: inherit;
 
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useLocation,
-} from "react-router-dom";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: "<App />",
-  },
-  {
-    path: "/",
-    element: "<App />",
-  },
-]);
+  display: flex;
+  flex-direction: column;
+
+  jusitfy-content: center;
+  align-items: center;
+`
+
+const PhoneFrame = styled.div`
+  flex: 1 1 auto;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 10px;
+`
+
 
 function App() {
   return (
-    <div>
-      <RouterProvider router={router}></RouterProvider>
-    </div>
+    <Frame>
+      <PhoneFrame>
+        Test
+        <Searchbar/>
+      </PhoneFrame>
+    </Frame>
   );
 }
 
