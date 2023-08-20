@@ -12,8 +12,6 @@ const Border = styled.div`
 
 const SearchInput = styled.input`
     all: unset;
-
-
 `
 
 

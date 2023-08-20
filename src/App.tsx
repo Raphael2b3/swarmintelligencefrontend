@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import styled from 'styled-components'
 import Searchbar from "./components/searchbar";
+import Statement from "./components/statement";
 
 const Frame = styled.div`
   height: inherit;
@@ -15,6 +16,8 @@ const Frame = styled.div`
 
 const PhoneFrame = styled.div`
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   max-width: 400px;
   width: 100%;
   border: 1px solid grey;
@@ -22,13 +25,22 @@ const PhoneFrame = styled.div`
   margin: 10px;
 `
 
+const StatementFrame = styled.div`
+  flex: 1 1 auto;
+
+`
+
+
 
 function App() {
   return (
     <Frame>
       <PhoneFrame>
-        Test
+        
         <Searchbar/>
+        <StatementFrame>
+          <Statement/>
+        </StatementFrame>
       </PhoneFrame>
     </Frame>
   );
