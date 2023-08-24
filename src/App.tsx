@@ -1,49 +1,40 @@
-import { createContext, useState } from "react";
+import { useState, useRef } from "react";
 import styled from 'styled-components'
-import Searchbar from "./components/searchbar";
-import Statement from "./components/statement";
-
-const Frame = styled.div`
-  height: inherit;
-  width: inherit;
-
-  display: flex;
-  flex-direction: column;
-
-  jusitfy-content: center;
-  align-items: center;
-`
-
-const PhoneFrame = styled.div`
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  width: 100%;
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin: 10px;
-`
-
-const StatementFrame = styled.div`
-  flex: 1 1 auto;
-
-`
+import AppProvider, { AppContext, AppContextData } from "./context/appContext";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import Login from "./pages/loginPage";
+import Home from "./pages/homePage";
 
 
 
 function App() {
+
+  const appCtxRef = useRef<AppContextData>({
+    root: 'http://127.0.0.1:5555/',
+  })
+
+
+  const router = createBrowserRouter([
+    {
+      path: 'login',
+      element: <Login/>
+    },
+    {
+      path: '/',
+      element: <Home/>,
+    }
+  ])
+
+
   return (
-    <Frame>
-      <PhoneFrame>
-        
-        <Searchbar/>
-        <StatementFrame>
-          <Statement/>
-        </StatementFrame>
-      </PhoneFrame>
-    </Frame>
+    <AppProvider ctx = {appCtxRef.current}>
+      <RouterProvider router = {router} />
+    </AppProvider>
+    
   );
+
+
+
 }
 
 export default App;

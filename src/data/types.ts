@@ -13,6 +13,8 @@ export interface Statement {
 
 
 
+
+
 export interface Connection {
     id: string,
     supports: boolean,
