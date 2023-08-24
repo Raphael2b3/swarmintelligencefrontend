@@ -1,17 +1,30 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import Icon from '../Icon'
 
 const Frame = styled.div`
     width: inherit;
 `
 
 const Border = styled.div`
-    border: solid 1px blue;
+    border: solid 1px grey;
     border-radius: 100px;
+    padding: 3px 6px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 `
 
 const SearchInput = styled.input`
     all: unset;
+    flex: 1 1 auto;
+    margin-left: 5px;
+`
+
+const IconButton = styled(Icon)`
+
 `
 
 
@@ -23,12 +36,12 @@ export default function Searchbar(){
     return(
         <Frame>
             <Border>
+                <IconButton>search</IconButton>
                 <SearchInput 
                     onChange = {(e) => {handleInput(e)}} 
                     value = {searchString}
                 />
-
-                {searchString}
+                <IconButton>more_horiz</IconButton>
             </Border>
         </Frame>        
     )
