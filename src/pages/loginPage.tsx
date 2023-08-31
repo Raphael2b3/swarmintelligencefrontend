@@ -227,26 +227,26 @@ export default function Login() {
 
         return new Promise<UserCreateResponse>(
     
-          (resolve, reject): void => {
-    
-            const request: UserCreateRequest = {
-              username: username,
-              password: password,
+            (resolve, reject): void => {
+        
+                const request: UserCreateRequest = {
+                    username: username,
+                    password: password,
+                }
+        
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(request)
+                }
+        
+                fetch(AppCtx.root + 'user/create', requestOptions)
+                    .then( response => resolve(response.json()) )
+                    .catch( message => reject(message) )
+        
             }
-    
-            const requestOptions = {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(request)
-            }
-    
-            fetch(AppCtx.root + 'user/create', requestOptions)
-              .then( response => resolve(response.json()) )
-              .catch( message => reject(message) )
-    
-          }
         )
     
-      }
+    }
 
 }

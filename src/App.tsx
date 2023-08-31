@@ -4,6 +4,7 @@ import AppProvider, { AppContext, AppContextData } from "./context/appContext";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import Login from "./pages/loginPage";
 import Home from "./pages/homePage";
+import StatementPage from "./pages/statementPage";
 
 
 
@@ -22,6 +23,10 @@ function App() {
     {
       path: '/',
       element: <Home/>,
+    },
+    {
+      path: '/statement/:statemendID',
+      element: <StatementPage/>
     }
   ])
 

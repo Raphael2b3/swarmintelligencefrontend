@@ -2,13 +2,13 @@
 
 export interface Statement {
     id: string,
-    value: string,
-    user_vote: number, // -1, 0, 1
-    user_is_author: boolean,
-    
-    loaded: boolean,
-    arg_ids: string[],
-    parent_ids: string[],
+    truth: number,
+    arg_connection_ids: string[],
+    parent_connection_ids: string[],
+    tags: string[],
+
+    user_created: boolean,
+    user_voted: number, // -1, 0, 1
 }
 
 
@@ -17,8 +17,10 @@ export interface Statement {
 
 export interface Connection {
     id: string,
-    supports: boolean,
     stm_parent_id: string,
     stm_child_id: string,
+    supports: boolean,
+    user_created: boolean,
+    user_voted: number,
 } 
 
