@@ -1,5 +1,5 @@
 de
-#Idee
+# Idee
 Die App speichert Aussagen von Nutzern. Nutzer können Aussagen für wahr oder falsch deklarieren. Es können Aussagen als Pro/Kontra Argument zu anderen Aussagen deklariert werden. 
 Politiker, Führungskräfter oder bestimmte Leute in Personen Gruppen, bekommen angezeig für wie Wahr bestimmte Aussagen gehalten werden. Ziel ist eine Plattform zu schaffen die sich Schwarmintelligenz zu Nutze macht und Schwarmintelligenz unterstützt.
 
