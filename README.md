@@ -32,6 +32,19 @@ Nachdem er seine Meinung abgegeben hat, durchsucht Maximilian die Plattform nach
 Maximilian schätzt die Möglichkeit, auf einer Plattform wie dieser branchenspezifische Ansichten zu diskutieren und einen Beitrag zur Schwarmintelligenz beizutragen. Sein Ziel ist es, durch den Austausch von Ideen und Argumenten zu einer fundierten und kollektiven Meinungsbildung in wirtschaftlichen Angelegenheiten beizutragen.
 
 
+## Wanda Wissenschaftler 
+Wanda ist ein Wissenschaflter und wünscht sich das Politische Entscheidungen mehr auf basis von Fakten getroffen sieht. Sie sieht aber auch dass Manche Entscheidungen auf basis von Fakten getroffen wurden. Dennoch gibt es Gruppen von Menschen die sich über diese Entscheidungen aufregen. Sie hat von der App gehört und Sucht Aussagen die sich gegen die Entscheidung der Politik richten und Erstellt Aussagen und Argumente die die Politische Entscheidung begründen aber auch Kritisieren.
+So können Leute leichter die Entscheidung nachvollziehen.
+
+## Fabian Fan
+Fabian ist Fan von der App aber da er sich Bewusst ist das es duplikate von Aussagen gibt und Aussagen gibt die noch zu wenige Votes haben und es Argumente gibt die nicht viel mit der darüber liegenden Aussage zutun haben, öffnet er die App und geht auf die Seite auf der er vorschläge für duplikate Bekommt oder Aussagen die noch gevoted werden müssen oder Argumente die mit Einem Anderen Argument verknüpft sind um, zu all den Sachen einen Vote abzugeben ob zwei Aussagen die glechen sind oder Ob eine Aussage Wahr oder Falsch ist oder wie sehr das Argument einer Aussage mit der Aussage zu tun hat.
+
+
+## Klara Kritikerin
+Klara durchstöbert die App nach Aussagen und findet zwei Identische Aussagen, sie sitzt zuhause und scrollt grade durch. Sie klickt auf eine Aussage und wählt den Button "Melde Duplikat" und wählt die Andere Aussage aus die gleich ist.
+
+## Daniel Datenanalysist
+Daniel möchte sich ein Bild davon machen wie die Menschen sich zu aktuellen Themen positionieren und für wie Wahr die Aussagen gehalten werden. Er öffnet die Suchmachine sucht dann nach Aussagen. Er sieht den Errechnetten Wahrheitswert der Aussagen und kann die Ergebnisse nach Wahresten und Unwahresten Aussagen sortieren. Um kontroverse Themen zu finden da diese meistens am interessantesten sind, sucht er nach aussagen die sich dem Wahrheitswert 0 annähern. Er sieht wo sich die Nutzer noch nicht einnig sind und weiß wo mehr geforscht werden sollte zur Einigkeit zu kommen.  
 
 # React + TypeScript + Vite
 
