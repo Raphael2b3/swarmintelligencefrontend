@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+	<head> </head>
+	<body data-sveltekit-preload-data="hover">
+		<style>
+			/***** Chrome, Safari, Opera, and Edge Chromium *****/
+			input[type='range']::-webkit-slider-runnable-track {
+				background: #135f05;
+				height: 0.5rem;
+			}
+
+			/******** Firefox ********/
+			input[type='range']::-moz-range-track {
+				background: #72e080;
+				height: 0.5rem;
+			}
+		</style>
+
+		<input type="range" min="0" max="100" readonly />
+	</body>
+</html>

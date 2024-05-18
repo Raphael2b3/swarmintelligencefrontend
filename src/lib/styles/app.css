@@ -1,0 +1,37 @@
+.horizontal {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.true-button {
+	background-color: #4caf50; /* Green */
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 3rem;
+}
+.false-button {
+	background-color: #f44336; /* Red */
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 3rem;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type='range']::-webkit-slider-runnable-track {
+	background: var(--slider-color);
+	border-color: var(--slider-color);
+	border-radius: 3rem;
+}
+
+/******** Firefox ********/
+input[type='range']::-moz-range-track {
+	background: var(--slider-color);
+	border-color: var(--slider-color);
+	border-radius: 3rem;
+}
