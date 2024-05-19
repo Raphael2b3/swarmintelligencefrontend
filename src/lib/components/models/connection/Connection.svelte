@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { IConnection } from '$lib/interfaces';
-	import Container from '../base/Container.svelte';
-	import Progressbar from '../base/Progressbar.svelte';
-	import Statement from './Statement.svelte';
+	import Container from '$lib/components/base/Container.svelte';
+	import Progressbar from '$lib/components/base/Progressbar.svelte';
+	import Statement from '$lib/components/models/statement/Statement.svelte';
 	let { connection }: { connection: IConnection } = $props();
 </script>
 

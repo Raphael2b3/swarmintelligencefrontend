@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { searchForStatement } from '$lib/database';
+	import { searchForEntities } from '$lib/database';
 
-	let { onResult, isEmpty }: { onResult: (data: any[]) => void; isEmpty: boolean } = $props();
+	let { results = $bindable(), isEmpty = $bindable() }: { results: any[]; isEmpty: boolean } =
+		$props();
 	let searchTerm = $state('Suchen ja');
 
 	$effect(() => {
@@ -11,7 +12,7 @@
 		console.log(`Searching for: ${searchTerm}`);
 		// Implement your search logic here
 
-		onResult(searchForStatement(searchTerm));
+		results = searchForEntities(searchTerm);
 	}
 </script>
 

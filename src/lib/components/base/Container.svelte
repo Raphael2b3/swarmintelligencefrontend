@@ -1,4 +1,12 @@
-<div class="container">
+<script>
+	import { quintOut } from 'svelte/easing';
+	import { slide } from 'svelte/transition';
+</script>
+
+<div
+	class="container"
+	transition:slide={{ delay: 250, duration: 300, easing: quintOut, axis: 'x' }}
+>
 	<slot />
 </div>
 

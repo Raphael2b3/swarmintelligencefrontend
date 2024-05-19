@@ -51,3 +51,5 @@ export function isIDuplicationMarker(object: any): object is IDuplicationMarker 
 		'isDuplicateVotes' in object
 	);
 }
+
+export type IEntity = IStatement | IConnection | IDuplicationMarker;

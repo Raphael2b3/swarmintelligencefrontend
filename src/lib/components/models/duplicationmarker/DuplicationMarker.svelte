@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { IDuplicationMarker } from '$lib/interfaces';
-	import Container from '../base/Container.svelte';
-	import Statement from './Statement.svelte';
+	import Container from '$lib/components/base/Container.svelte';
+	import Statement from '../statement/Statement.svelte';
+
 	let { duplicationMarker }: { duplicationMarker: IDuplicationMarker } = $props();
 </script>
 

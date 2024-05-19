@@ -1,4 +1,4 @@
-import type { IConnection, IDuplicationMarker, IStatement } from '$lib/interfaces';
+import type { IConnection, IDuplicationMarker, IEntity, IStatement } from '$lib/interfaces';
 
 const randomIndex = (length: number) => Math.floor(Math.random() * length);
 
@@ -526,13 +526,13 @@ export function getRecommendation() {
 		}
 	];
 
-	const recommendations = [...connections, ...duplactonMarkers, ...statements];
+	const recommendations: IEntity[] = [...connections, ...duplactonMarkers, ...statements];
 	//shuffle array
 
 	return recommendations.sort(() => Math.random() - 0.5);
 }
 
-export function searchForStatement(searchTerm: string) {
+export function searchForEntities(searchTerm: string) {
 	const statements: IStatement[] = [
 		{
 			text: 'The earth is flat',
