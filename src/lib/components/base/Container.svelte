@@ -1,11 +1,18 @@
 <script>
 	import { quintOut } from 'svelte/easing';
-	import { slide } from 'svelte/transition';
+	import { fly, slide } from 'svelte/transition';
 </script>
 
 <div
 	class="container"
-	transition:slide={{ delay: 250, duration: 300, easing: quintOut, axis: 'x' }}
+	transition:fly|global={{
+		delay: 250,
+		duration: 300,
+		x: -100,
+		y: 200,
+		opacity: 0.3,
+		easing: quintOut
+	}}
 >
 	<slot />
 </div>
