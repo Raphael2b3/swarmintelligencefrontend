@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { searchForStatement } from '$lib/database';
 
+	let { onResult, isEmpty }: { onResult: (data: any[]) => void; isEmpty: boolean } = $props();
 	let searchTerm = $state('Suchen ja');
-	let { onResult }: { onResult: (data: any[]) => void } = $props();
+
+	$effect(() => {
+		isEmpty = searchTerm === '';
+	});
 	function search() {
 		console.log(`Searching for: ${searchTerm}`);
 		// Implement your search logic here
