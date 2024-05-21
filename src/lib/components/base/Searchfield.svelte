@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { searchForEntities } from '$lib/database';
+	import type { IFilterOptions } from '$lib/interfaces';
+	import FilterOptions from '../views/FilterOptions.svelte';
 
 	let { results = $bindable(), isEmpty = $bindable() }: { results: any[]; isEmpty: boolean } =
 		$props();
 	let searchTerm = $state('Suchen ja');
-
+	//let filteroption: IFilterOptions = $state({});
+	let expanded = $state(false);
+	let filteroptions: IFilterOptions = $state({});
 	$effect(() => {
 		isEmpty = searchTerm === '';
 	});
+
 	function search() {
 		console.log(`Searching for: ${searchTerm}`);
 		// Implement your search logic here
@@ -20,6 +25,14 @@
 	<input class="search-input" type="text" bind:value={searchTerm} placeholder="Search..." />
 	<button class="search-button" onclick={search}>Search</button>
 </div>
+<button
+	onclick={() => {
+		expanded = !expanded;
+	}}>Expand</button
+>
+{#if expanded}
+	<FilterOptions options={filteroptions} />
+{/if}
 
 <style>
 	.search-container {

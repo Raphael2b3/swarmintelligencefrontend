@@ -10,7 +10,7 @@
 	import Searchfield from '$lib/components/base/Searchfield.svelte';
 	import Entity from '$lib/components/models/Entity.svelte';
 	import StatementDetail from '$lib/components/models/statement/StatementDetail.svelte';
-	let { results = [] }: { results: IEntity[] } = $props();
+	let { results = $bindable([]) }: { results: IEntity[] } = $props();
 </script>
 
 <Container>

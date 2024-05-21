@@ -53,3 +53,12 @@ export function isIDuplicationMarker(object: any): object is IDuplicationMarker 
 }
 
 export type IEntity = IStatement | IConnection | IDuplicationMarker;
+
+
+export interface IFilterOptions {
+	sortByTruth?: 'asc' | 'desc';
+	sortByVotes?: 'asc' | 'desc';
+	controversial?: boolean;
+	entitytype?: ('statement' | 'connection' | 'duplication')[];
+	tags?: string[];
+}
