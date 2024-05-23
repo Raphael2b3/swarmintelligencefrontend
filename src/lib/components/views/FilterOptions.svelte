@@ -1,7 +1,17 @@
 <script lang="ts">
 	import type { IFilterOptions } from '$lib/interfaces';
 
-	let { options = $bindable() }: { options: IFilterOptions } = $props();
+	function defaultOptions() {
+		const defopt: IFilterOptions = $state({
+			controversial: false,
+			sortByTruth: 'asc',
+			sortByVotes: 'asc',
+			tags: [],
+			entitytype: []
+		});
+		return defopt;
+	}
+	let { options = $bindable(defaultOptions()) }: { options: IFilterOptions } = $props();
 
 	let tagsstring: string = $state('');
 	$effect(() => {
@@ -12,7 +22,7 @@
 
 <div>
 	<h3>Filter Options</h3>
-	<button>Clear all</button>
+	<button onclick={() => (options = defaultOptions())}>Clear all</button>
 	<h4>Controversal Only</h4>
 	<input type="checkbox" bind:checked={options.controversial} />
 	<h4>Entities</h4>

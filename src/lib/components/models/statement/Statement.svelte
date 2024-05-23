@@ -12,3 +12,13 @@
 		<button class="false-button">Thats False</button>
 	</div>
 </Container>
+
+<style>
+	.true-button {
+		background-color: green;
+	}
+
+	.false-button {
+		background-color: red;
+	}
+</style>

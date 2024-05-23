@@ -5,7 +5,7 @@
 	import ConnectionPreview from './connection/ConnectionPreview.svelte';
 	import DuplicationMarker from './duplicationmarker/DuplicationMarker.svelte';
 	import DuplicationMarkerDetail from './duplicationmarker/DuplicationMarkerDetail.svelte';
-	import DuplicationMarkerPreviewcopy from './duplicationmarker/DuplicationMarkerPreview copy.svelte';
+	import DuplicationMarkerPreview from './duplicationmarker/DuplicationMarkerPreview.svelte';
 	import Statement from './statement/Statement.svelte';
 	import StatementDetail from './statement/StatementDetail.svelte';
 	import StatementPreview from './statement/StatementPreview.svelte';
@@ -24,16 +24,16 @@
 	let DuplicationMarkerElement:
 		| typeof DuplicationMarker
 		| typeof DuplicationMarkerDetail
-		| typeof DuplicationMarkerPreviewcopy = $state(DuplicationMarker);
+		| typeof DuplicationMarkerPreview = $state(DuplicationMarker);
 
 	if (mode === 'preview') {
 		ConnectionElement = ConnectionPreview;
-		StatementElement = Statement;
+		StatementElement = StatementPreview;
 		DuplicationMarkerElement = DuplicationMarker;
 	} else if (mode === 'detail') {
 		ConnectionElement = ConnectionDetail;
-		StatementElement = Statement;
-		DuplicationMarkerElement = DuplicationMarker;
+		StatementElement = StatementDetail;
+		DuplicationMarkerElement = DuplicationMarkerPreview;
 	}
 </script>
 

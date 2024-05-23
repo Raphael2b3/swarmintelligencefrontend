@@ -6,11 +6,22 @@
 </script>
 
 <Container>
-	<h2>Statement Detail</h2>
+	<div style="display: flex; ">
+		<h2>Statement Preview</h2>
+		<button>Open Details</button>
+	</div>
 	<p>{statement.text}</p>
 	Votes: {statement.numberOfVotes} <br />
-	Truth: {statement.voteRatio}%
-	<Progressbar value={statement.lastSeasonTruth}></Progressbar>
+	{#if statement.voteRatio}
+		Truth: {statement.voteRatio * 100}%
+
+		<Progressbar value={statement.voteRatio} disabled></Progressbar>
+	{/if}
+	{#if statement.voteRatio}
+		Last Season Truth: {statement.lastSeasonTruth * 100}%
+
+		<Progressbar value={statement.lastSeasonTruth} disabled></Progressbar>
+	{/if}
 	<div class="horizontal">
 		<button class="true-button">Thats True</button>
 		<button class="false-button">Thats False</button>
