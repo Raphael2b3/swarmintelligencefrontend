@@ -1,46 +1,76 @@
 <script lang="ts">
 	import type { IFilterOptions } from '$lib/interfaces';
+	import { Card, Button, Checkbox, Label, Select, Input } from 'flowbite-svelte';
 
-	function defaultOptions() {
-		const defopt: IFilterOptions = $state({
-			controversial: false,
-			sortByTruth: 'asc',
-			sortByVotes: 'asc',
-			tags: [],
-			entitytype: []
-		});
-		return defopt;
+	const defopt: IFilterOptions = {
+		controversial: false,
+		sortByTruth: 'asc',
+		sortByVotes: 'asc',
+		tags: [],
+		entitytype: []
+	};
+
+	function setDefaultOptions() {
+		options['controversial'] = false;
+		options['sortByTruth'] = 'asc';
+		options['sortByVotes'] = 'asc';
+		options['tags'] = [];
+		options['entitytype'] = [];
 	}
-	let { options = $bindable(defaultOptions()) }: { options: IFilterOptions } = $props();
+
+	const sortdirection = [
+		{ value: 'asc', name: 'Ascending' },
+		{ value: 'desc', name: 'Descending' }
+	];
+	let {
+		options = $bindable(),
+		filterActive = $bindable()
+	}: { options: IFilterOptions; filterActive: boolean } = $props();
+	$effect(() => {
+		filterActive = options == defopt;
+		console.log('filterActive', options);
+	});
 
 	let tagsstring: string = $state('');
 	$effect(() => {
 		options.tags = tagsstring.split(' ');
-		console.log('test');
 	});
 </script>
 
-<div>
-	<h3>Filter Options</h3>
-	<button onclick={() => (options = defaultOptions())}>Clear all</button>
-	<h4>Controversal Only</h4>
-	<input type="checkbox" bind:checked={options.controversial} />
-	<h4>Entities</h4>
-	<input type="checkbox" bind:group={options.entitytype} value="statement" /> Statements
-	<input type="checkbox" bind:group={options.entitytype} value="connection" /> Connections
-	<input type="checkbox" bind:group={options.entitytype} value="duplication" /> Duplicatoins
-	<h4>Sort By truth</h4>
-	<select bind:value={options.sortByTruth}>
-		<option value="asc">Ascending</option>
-		<option value="desc">Descending</option>
-	</select>
-	<h4>Sort By votes</h4>
-	<select bind:value={options.sortByVotes}>
-		<option value="asc">Ascending</option>
-		<option value="desc">Descending</option>
-	</select>
-	<h4>Tags</h4>
-	<input bind:value={tagsstring} />
+<Card>
+	{filterActive}
 
-	options: {JSON.stringify(options)}
-</div>
+	<Button onclick={setDefaultOptions}>Clear All</Button>
+
+	<Checkbox class="p-3" bind:checked={options.controversial}>Controversal Only</Checkbox>
+
+	<p class="mb-4 font-semibold text-gray-900 dark:text-white">Entities</p>
+	<ul
+		class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600"
+	>
+		<li>
+			<Checkbox class="p-3" bind:group={options.entitytype} value="statement">Statements</Checkbox>
+		</li>
+		<li>
+			<Checkbox class="p-3" bind:group={options.entitytype} value="connection">Connections</Checkbox
+			>
+		</li>
+		<li>
+			<Checkbox class="p-3" bind:group={options.entitytype} value="duplication"
+				>Duplications</Checkbox
+			>
+		</li>
+	</ul>
+
+	<Label>
+		Sort By Truth
+		<Select class="mt-2" items={sortdirection} bind:value={options.sortByTruth} />
+	</Label>
+
+	<Label>
+		Sort By Votes
+		<Select class="mt-2" items={sortdirection} bind:value={options.sortByVotes} />
+	</Label>
+
+	<Input type="text" id="first_name" placeholder="Tags" bind:value={tagsstring} />
+</Card>

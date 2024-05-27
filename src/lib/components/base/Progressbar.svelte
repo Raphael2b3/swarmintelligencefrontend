@@ -3,10 +3,7 @@
 	let valueBig = $derived(value * 100);
 	let isChrome = $state(false);
 	let style = $derived(
-		(value > 0.5 ? '--slider-color:green' : '--slider-color:red') +
-			'; --slider-value:' +
-			value +
-			';'
+		`${value > 0.5 ? '--slider-color:green' : '--slider-color:red'}; --slider-value:${value};`
 	);
 	$effect(() => {
 		isChrome = navigator.userAgent.includes('Chrome');

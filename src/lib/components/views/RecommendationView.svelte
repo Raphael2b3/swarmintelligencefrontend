@@ -5,15 +5,13 @@
 	import { recommendationManager } from '$lib/state/entities.svelte';
 </script>
 
-<Container>
-	Recommentdations
-	<div class="horizontal">
-		<button class="true-button" onclick={recommendationManager.getNext}>Next</button>
-		<button class="false-button" onclick={recommendationManager.getPrevious}>Last</button>
-	</div>
-	{#if recommendationManager.current}
-		<Entity entity={recommendationManager.current} />
-	{:else}
-		<p>No recommendations</p>
-	{/if}
-</Container>
+Recommentdations
+<div>
+	<button class="true-button" onclick={recommendationManager.getNext}>Next</button>
+	<button class="false-button" onclick={recommendationManager.getPrevious}>Last</button>
+</div>
+{#if recommendationManager.current}
+	<Entity entity={recommendationManager.current} />
+{:else}
+	<p>No recommendations</p>
+{/if}

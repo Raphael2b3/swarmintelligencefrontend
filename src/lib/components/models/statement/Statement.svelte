@@ -1,24 +1,31 @@
 <script lang="ts">
 	import { type IStatement } from '$lib/interfaces';
 	import Container from '$lib/components/base/Container.svelte';
-	let { statement }: { statement: IStatement } = $props();
+	import Progressbar from '$lib/components/base/Progressbar.svelte';
+	let { statement, showTruth }: { statement: IStatement; showTruth: boolean } = $props();
 </script>
 
-<Container>
-	<h2>Statement</h2>
-	<p>{statement.text}</p>
-	<div class="horizontal">
-		<button class="true-button">Thats True</button>
-		<button class="false-button">Thats False</button>
-	</div>
-</Container>
+<div style="display: flex; ">
+	<h2>Statement {showTruth}</h2>
+	<button>Open Details</button>
+</div>
 
-<style>
-	.true-button {
-		background-color: green;
-	}
+<p>{statement.text}</p>
 
-	.false-button {
-		background-color: red;
-	}
-</style>
+{#if showTruth}
+	Votes: {statement.numberOfVotes} <br />
+	{#if statement.voteRatio}
+		Truth: {statement.voteRatio * 100}%
+
+		<Progressbar value={statement.voteRatio} disabled></Progressbar>
+	{/if}
+	{#if statement.voteRatio}
+		Last Season Truth: {statement.lastSeasonTruth * 100}%
+
+		<Progressbar value={statement.lastSeasonTruth} disabled></Progressbar>
+	{/if}
+{/if}
+<div>
+	<button>Thats True</button>
+	<button>Thats False</button>
+</div>

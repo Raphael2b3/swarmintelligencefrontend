@@ -1,64 +1,52 @@
 <script lang="ts">
 	import { searchForEntities } from '$lib/database';
 	import type { IFilterOptions } from '$lib/interfaces';
+
+	import { Search, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
+	import { SearchOutline, ChevronDownOutline } from 'flowbite-svelte-icons';
 	import FilterOptions from '../views/FilterOptions.svelte';
 
-	let { results = $bindable(), isEmpty = $bindable() }: { results: any[]; isEmpty: boolean } =
+	let { isEmpty = $bindable(), searchFunc }: { searchFunc: (e: any) => void; isEmpty: boolean } =
 		$props();
-	let searchTerm = $state('Suchen ja');
+	let searchTerm = $state('Ist die Erde Flach?');
+	let open = $state(false);
 	//let filteroption: IFilterOptions = $state({});
-	let expanded = $state(false);
+
 	let filteroptions: IFilterOptions = $state({});
+	$effect(() => {
+		console.log('filteroptions', filteroptions);
+
+		console.log('filteroptionsdsdgvdff');
+	});
+
 	$effect(() => {
 		isEmpty = searchTerm === '';
 	});
-
-	function search() {
-		console.log(`Searching for: ${searchTerm}`);
-		// Implement your search logic here
-
-		results = searchForEntities(searchTerm);
-	}
+	let filterActive = $state(false);
 </script>
 
-<div class="search-container">
-	<input class="search-input" type="text" bind:value={searchTerm} placeholder="Search..." />
-	<button class="search-button" onclick={search}>Search</button>
-</div>
-<button
-	onclick={() => {
-		expanded = !expanded;
-	}}>Expand</button
->
-{#if expanded}
-	<FilterOptions options={filteroptions} />
-{/if}
-
-<style>
-	.search-container {
-		display: flex;
-		justify-content: center;
-		padding: 20px;
-	}
-
-	.search-input {
-		flex-grow: 1;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-	}
-
-	.search-button {
-		margin-left: 10px;
-		padding: 10px 20px;
-		background-color: #007bff;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-	}
-
-	.search-button:hover {
-		background-color: #0056b3;
-	}
-</style>
+<form class="flex">
+	<div class="relative">
+		<Button
+			onclick={() => (open = !open)}
+			class="rounded-e-none whitespace-nowrap border border-e-0 border-primary-700"
+		>
+			{filterActive ? 'Filter Active' : 'Filter'}
+			<ChevronDownOutline class="w-2.5 h-2.5 ms-2.5" />
+		</Button>
+		<Dropdown {open}>
+			<DropdownItem>
+				<FilterOptions bind:options={filteroptions} {filterActive} />
+			</DropdownItem>
+		</Dropdown>
+	</div>
+	<Search
+		bind:value={searchTerm}
+		size="md"
+		class="rounded-none py-2.5"
+		placeholder="Search Mockups, Logos, Design Templates..."
+	/>
+	<Button class="!p-2.5 rounded-s-none">
+		<SearchOutline class="w-6 h-6" />
+	</Button>
+</form>
