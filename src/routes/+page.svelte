@@ -8,11 +8,9 @@
 	let results: IEntity[] = $state([]);
 </script>
 
-<Searchfield bind:isEmpty searchFunc={() => {}}></Searchfield>
+<Searchfield bind:isEmpty bind:results></Searchfield>
 {#if isEmpty}
-	test
 	<RecommendationView />
 {:else}
 	<DiscoverView {results} />
-	taa
 {/if}

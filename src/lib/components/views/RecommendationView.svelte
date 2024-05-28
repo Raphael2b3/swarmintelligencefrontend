@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Entity from '$lib/components/models/Entity.svelte';
-	import { recommendationManager } from '$lib/state/entities.svelte';
+	import { recommendationManager } from '$lib/state/recommendation.svelte';
 </script>
 
 Recommentdations

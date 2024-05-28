@@ -1,8 +1,10 @@
 <script>
 	import { page } from '$app/stores';
+	import { RefreshOutline } from 'flowbite-svelte-icons';
 	import '../app.css';
-	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
-
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button } from 'flowbite-svelte';
+	import { clearCache } from '$lib/state/entities.svelte';
+	let { children } = $props();
 	let activeUrl = $derived($page.url.pathname);
 </script>
 
@@ -19,6 +21,12 @@
 		<NavLi href="/help">About</NavLi>
 		<NavLi href="/help">Navbar</NavLi>
 	</NavUl>
+	<Button>
+		Clear Cache
+		<RefreshOutline onclick={clearCache}></RefreshOutline>
+	</Button>
 </Navbar>
 
-<slot />
+<div class="m-5">
+	{@render children()}
+</div>

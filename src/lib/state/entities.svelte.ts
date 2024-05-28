@@ -1,20 +1,32 @@
-import { getRecommendation } from '$lib/database';
+import { findStatementInDatabase, getRecommendation } from '$lib/database';
+import type { IConnection, IDuplicationMarker, IStatement } from '$lib/interfaces';
+const fallbackStatement: IStatement = {
+	author: 'unknown',
+	id: 'fallback',
+	lastSeasonTruth: 0,
+	numberOfVotes: 0,
+	text: 'The Statement was not found',
+	voteRatio: 0
+}
+let statementsCache: Record<string, IStatement> = {};
+let connectionCache: Record<string, IConnection> = {};
+let duplicationCache: Record<string, IDuplicationMarker> = {};
 
 let recommendationsPool = getRecommendation();
-let index = $state(0);
-class RecommendationManager {
-	_current = $derived(recommendationsPool ? recommendationsPool[index] : undefined);
-	get current() {
-		return this._current;
+
+export function getStatement(id: string) {
+	let stm = statementsCache[id];
+	if (!stm) {
+		stm = findStatementInDatabase(id);
+		if (!stm) return fallbackStatement;
+		statementsCache[stm.id] = stm;
 	}
-	getNext() {
-		console.log('getNext');
-		index = index + 1;
-		console.log(index);
-	}
-	getPrevious() {
-		index = (index - 1) % recommendationsPool.length;
-	}
+	return stm;
 }
 
-export const recommendationManager = new RecommendationManager();
+export function clearCache() {
+	console.log('clearCache');
+	statementsCache = {};
+	connectionCache = {};
+	duplicationCache = {};
+}

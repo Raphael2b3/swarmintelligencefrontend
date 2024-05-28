@@ -1,4 +1,5 @@
 export interface IStatement {
+	id: string;
 	text: string;
 	lastSeasonTruth: number; // der letzten season
 	numberOfVotes: number | undefined;
@@ -7,6 +8,7 @@ export interface IStatement {
 }
 export function isIStatement(object: any): object is IStatement {
 	return (
+		`id` in object &&
 		'text' in object &&
 		'lastSeasonTruth' in object &&
 		'numberOfVotes' in object &&
@@ -16,8 +18,9 @@ export function isIStatement(object: any): object is IStatement {
 }
 
 export interface IConnection {
-	thesis: IStatement;
-	argument: IStatement;
+	id: string;
+	thesis: string;
+	argument: string;
 	isProArgument: boolean;
 	weight: number;
 	numberOfVotes: number;
@@ -26,6 +29,7 @@ export interface IConnection {
 }
 export function isIConnection(object: any): object is IConnection {
 	return (
+		"id" in object &&
 		'thesis' in object &&
 		'argument' in object &&
 		'isProArgument' in object &&
@@ -37,14 +41,16 @@ export function isIConnection(object: any): object is IConnection {
 }
 
 export interface IDuplicationMarker {
-	statementA: IStatement;
-	statementB: IStatement;
+	id: string;
+	statementA: string;
+	statementB: string;
 	numberOfVotes: number;
 	isDuplicateVotes: number;
 }
 
 export function isIDuplicationMarker(object: any): object is IDuplicationMarker {
 	return (
+		"id" in object &&
 		'statementA' in object &&
 		'statementB' in object &&
 		'numberOfVotes' in object &&
@@ -62,4 +68,11 @@ export interface IFilterOptions {
 	entitytype: ('statement' | 'connection' | 'duplication')[];
 	tags?: string[];
 	_tagstring?: string;
+}
+
+
+export enum ELoadingState {
+	LOADING = 'loading',
+	LOADED = 'loaded',
+	FAILED = 'failed',
 }

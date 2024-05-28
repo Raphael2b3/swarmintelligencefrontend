@@ -1,12 +1,20 @@
 <script lang="ts">
-	import { type IEntity } from '$lib/interfaces';
+	import { ELoadingState, type IEntity } from '$lib/interfaces';
 
 	import Entity from '$lib/components/models/Entity.svelte';
-	let { results = $bindable([]) }: { results: IEntity[] } = $props();
+	let {
+		results = $bindable([]),
+		loadingState = ELoadingState.LOADING
+	}: { results: IEntity[]; loadingState?: ELoadingState } = $props();
 </script>
 
 {#each results as result}
 	<Entity entity={result} mode="preview" />
 {:else}
-	<p>No statements found</p>
+	<!-- else if content here -->
+	{#if loadingState === ELoadingState.FAILED}
+		<p>There was an error loading the statements</p>
+	{:else}
+		<p>Loading...</p>
+	{/if}
 {/each}

@@ -2,9 +2,21 @@ import type { IConnection, IDuplicationMarker, IEntity, IStatement } from '$lib/
 
 const randomIndex = (length: number) => Math.floor(Math.random() * length);
 
+export function findStatementInDatabase(id: string): IStatement {
+	return {
+		id: "1",
+		text: 'The earth is flat',
+		lastSeasonTruth: 0.1,
+		numberOfVotes: 100,
+		voteRatio: 0.5,
+		author: 'John Doe'
+	}
+}
+
 export function getRecommendation() {
 	const statements: IStatement[] = [
 		{
+			id: "1",
 			text: 'The earth is flat',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -12,6 +24,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is round',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -19,6 +32,7 @@ export function getRecommendation() {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a cube',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -26,6 +40,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a pyramid',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -33,6 +48,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a sphere',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -40,6 +56,7 @@ export function getRecommendation() {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a cylinder',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -47,6 +64,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a cone',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -54,6 +72,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a dodecahedron',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -61,6 +80,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a tetrahedron',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -68,6 +88,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a octahedron',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -75,6 +96,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is an oblate spheroid',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -82,6 +104,7 @@ export function getRecommendation() {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is hollow',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -89,6 +112,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a torus',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -96,6 +120,7 @@ export function getRecommendation() {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is an ellipsoid',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -103,6 +128,7 @@ export function getRecommendation() {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a geoid',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -110,6 +136,7 @@ export function getRecommendation() {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The sun is a star',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -117,6 +144,7 @@ export function getRecommendation() {
 			author: 'Alice Smith'
 		},
 		{
+			id: "1",
 			text: 'Water boils at 100 degrees Celsius',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -124,6 +152,7 @@ export function getRecommendation() {
 			author: 'Bob Johnson'
 		},
 		{
+			id: "1",
 			text: 'The moon is made of cheese',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -131,6 +160,7 @@ export function getRecommendation() {
 			author: 'Charlie Brown'
 		},
 		{
+			id: "1",
 			text: 'Humans can breathe underwater without equipment',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -138,6 +168,7 @@ export function getRecommendation() {
 			author: 'David Williams'
 		},
 		{
+			id: "1",
 			text: 'Light travels faster than sound',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -145,6 +176,7 @@ export function getRecommendation() {
 			author: 'Eve Thompson'
 		},
 		{
+			id: "1",
 			text: 'The Great Wall of China is visible from space',
 			lastSeasonTruth: 0.2,
 			numberOfVotes: 100,
@@ -152,6 +184,7 @@ export function getRecommendation() {
 			author: 'Frank Clark'
 		},
 		{
+			id: "1",
 			text: 'The speed of light is approximately 300,000 km/s',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -159,6 +192,7 @@ export function getRecommendation() {
 			author: 'Grace Lee'
 		},
 		{
+			id: "1",
 			text: 'Bananas are berries',
 			lastSeasonTruth: 0.8,
 			numberOfVotes: 100,
@@ -166,6 +200,7 @@ export function getRecommendation() {
 			author: 'Henry Adams'
 		},
 		{
+			id: "1",
 			text: 'Sharks are mammals',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -173,6 +208,7 @@ export function getRecommendation() {
 			author: 'Isabella Martinez'
 		},
 		{
+			id: "1",
 			text: 'A year on Venus is shorter than a day on Venus',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -180,6 +216,7 @@ export function getRecommendation() {
 			author: 'Jack Davis'
 		},
 		{
+			id: "1",
 			text: 'Goldfish have a memory span of three seconds',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -187,6 +224,7 @@ export function getRecommendation() {
 			author: 'Karen Wilson'
 		},
 		{
+			id: "1",
 			text: 'Honey never spoils',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -194,6 +232,7 @@ export function getRecommendation() {
 			author: 'Linda Scott'
 		},
 		{
+			id: "1",
 			text: 'Humans have more than five senses',
 			lastSeasonTruth: 0.8,
 			numberOfVotes: 100,
@@ -201,6 +240,7 @@ export function getRecommendation() {
 			author: 'Michael Young'
 		},
 		{
+			id: "1",
 			text: 'Tomatoes are vegetables',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -210,8 +250,9 @@ export function getRecommendation() {
 	];
 	const connections: IConnection[] = [
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -219,8 +260,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -228,8 +270,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -237,8 +280,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -246,8 +290,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -255,8 +300,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -264,8 +310,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -273,8 +320,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -282,8 +330,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -291,8 +340,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -300,8 +350,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.7,
 			numberOfVotes: 100,
@@ -309,8 +360,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -318,8 +370,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.6,
 			numberOfVotes: 100,
@@ -327,8 +380,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -336,8 +390,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.75,
 			numberOfVotes: 100,
@@ -345,8 +400,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -354,8 +410,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.65,
 			numberOfVotes: 100,
@@ -363,8 +420,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -372,8 +430,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.7,
 			numberOfVotes: 100,
@@ -381,8 +440,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -390,8 +450,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.6,
 			numberOfVotes: 100,
@@ -399,8 +460,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -408,8 +470,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: false,
 			weight: 0.75,
 			numberOfVotes: 100,
@@ -417,8 +480,9 @@ export function getRecommendation() {
 			creator: 'Oscar Brown'
 		},
 		{
-			thesis: statements[randomIndex(statements.length)],
-			argument: statements[randomIndex(statements.length)],
+			id: "1",
+			thesis: "1",
+			argument: "1",
 			isProArgument: true,
 			weight: 0.8,
 			numberOfVotes: 100,
@@ -429,98 +493,114 @@ export function getRecommendation() {
 
 	const duplactonMarkers: IDuplicationMarker[] = [
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 80
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 80
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 75
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 70
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 85
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 90
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 65
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 78
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 82
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 88
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 77
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 85
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 80
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 90
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 75
 		},
 		{
-			statementA: statements[randomIndex(statements.length)],
-			statementB: statements[randomIndex(statements.length)],
+			id: "1",
+			statementA: "1",
+			statementB: "1",
 			numberOfVotes: 100,
 			isDuplicateVotes: 70
 		}
@@ -535,6 +615,7 @@ export function getRecommendation() {
 export function searchForEntities(searchTerm: string) {
 	const statements: IStatement[] = [
 		{
+			id: "1",
 			text: 'The earth is flat',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -542,6 +623,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is round',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -549,6 +631,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a cube',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -556,6 +639,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a pyramid',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -563,6 +647,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a sphere',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -570,6 +655,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a cylinder',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -577,6 +663,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a cone',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -584,6 +671,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a dodecahedron',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -591,6 +679,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a tetrahedron',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -598,6 +687,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a octahedron',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -605,6 +695,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is an oblate spheroid',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -612,6 +703,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is hollow',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -619,6 +711,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a torus',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -626,6 +719,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'John Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is an ellipsoid',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -633,6 +727,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The earth is a geoid',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -640,6 +735,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Jane Doe'
 		},
 		{
+			id: "1",
 			text: 'The sun is a star',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -647,6 +743,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Alice Smith'
 		},
 		{
+			id: "1",
 			text: 'Water boils at 100 degrees Celsius',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -654,6 +751,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Bob Johnson'
 		},
 		{
+			id: "1",
 			text: 'The moon is made of cheese',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -661,6 +759,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Charlie Brown'
 		},
 		{
+			id: "1",
 			text: 'Humans can breathe underwater without equipment',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -668,6 +767,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'David Williams'
 		},
 		{
+			id: "1",
 			text: 'Light travels faster than sound',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -675,6 +775,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Eve Thompson'
 		},
 		{
+			id: "1",
 			text: 'The Great Wall of China is visible from space',
 			lastSeasonTruth: 0.2,
 			numberOfVotes: 100,
@@ -682,6 +783,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Frank Clark'
 		},
 		{
+			id: "1",
 			text: 'The speed of light is approximately 300,000 km/s',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -689,6 +791,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Grace Lee'
 		},
 		{
+			id: "1",
 			text: 'Bananas are berries',
 			lastSeasonTruth: 0.8,
 			numberOfVotes: 100,
@@ -696,6 +799,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Henry Adams'
 		},
 		{
+			id: "1",
 			text: 'Sharks are mammals',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -703,6 +807,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Isabella Martinez'
 		},
 		{
+			id: "1",
 			text: 'A year on Venus is shorter than a day on Venus',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -710,6 +815,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Jack Davis'
 		},
 		{
+			id: "1",
 			text: 'Goldfish have a memory span of three seconds',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
@@ -717,6 +823,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Karen Wilson'
 		},
 		{
+			id: "1",
 			text: 'Honey never spoils',
 			lastSeasonTruth: 0.9,
 			numberOfVotes: 100,
@@ -724,6 +831,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Linda Scott'
 		},
 		{
+			id: "1",
 			text: 'Humans have more than five senses',
 			lastSeasonTruth: 0.8,
 			numberOfVotes: 100,
@@ -731,6 +839,7 @@ export function searchForEntities(searchTerm: string) {
 			author: 'Michael Young'
 		},
 		{
+			id: "1",
 			text: 'Tomatoes are vegetables',
 			lastSeasonTruth: 0.1,
 			numberOfVotes: 100,
