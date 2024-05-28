@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { type IStatement } from '$lib/interfaces';
-	import Container from '$lib/components/base/Container.svelte';
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
-	let { statement, showTruth }: { statement: IStatement; showTruth: boolean } = $props();
+	let { statement, showTruth = false }: { statement: IStatement; showTruth?: boolean } = $props();
 </script>
 
 <div style="display: flex; ">

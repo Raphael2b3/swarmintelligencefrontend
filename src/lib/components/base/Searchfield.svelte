@@ -12,7 +12,7 @@
 	let open = $state(false);
 	//let filteroption: IFilterOptions = $state({});
 
-	let filteroptions: IFilterOptions = $state({});
+	let filteroptions: IFilterOptions = $state({ entitytype: [] });
 	$effect(() => {
 		console.log('filteroptions', filteroptions);
 

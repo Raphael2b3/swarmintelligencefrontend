@@ -59,6 +59,7 @@ export interface IFilterOptions {
 	sortByTruth?: 'asc' | 'desc';
 	sortByVotes?: 'asc' | 'desc';
 	controversial?: boolean;
-	entitytype?: ('statement' | 'connection' | 'duplication')[];
+	entitytype: ('statement' | 'connection' | 'duplication')[];
 	tags?: string[];
+	_tagstring?: string;
 }

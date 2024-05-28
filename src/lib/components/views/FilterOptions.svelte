@@ -7,7 +7,8 @@
 		sortByTruth: 'asc',
 		sortByVotes: 'asc',
 		tags: [],
-		entitytype: []
+		entitytype: [],
+		_tagstring: ''
 	};
 
 	function setDefaultOptions() {
@@ -16,9 +17,10 @@
 		options['sortByVotes'] = 'asc';
 		options['tags'] = [];
 		options['entitytype'] = [];
+		options['_tagstring'] = '';
 	}
 
-	const sortdirection = [
+	const sortdirections = [
 		{ value: 'asc', name: 'Ascending' },
 		{ value: 'desc', name: 'Descending' }
 	];
@@ -26,14 +28,14 @@
 		options = $bindable(),
 		filterActive = $bindable()
 	}: { options: IFilterOptions; filterActive: boolean } = $props();
+
 	$effect(() => {
 		filterActive = options == defopt;
 		console.log('filterActive', options);
 	});
 
-	let tagsstring: string = $state('');
 	$effect(() => {
-		options.tags = tagsstring.split(' ');
+		options.tags = options._tagstring?.split(' ');
 	});
 </script>
 
@@ -45,32 +47,34 @@
 	<Checkbox class="p-3" bind:checked={options.controversial}>Controversal Only</Checkbox>
 
 	<p class="mb-4 font-semibold text-gray-900 dark:text-white">Entities</p>
-	<ul
-		class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600"
-	>
-		<li>
-			<Checkbox class="p-3" bind:group={options.entitytype} value="statement">Statements</Checkbox>
-		</li>
-		<li>
-			<Checkbox class="p-3" bind:group={options.entitytype} value="connection">Connections</Checkbox
-			>
-		</li>
-		<li>
-			<Checkbox class="p-3" bind:group={options.entitytype} value="duplication"
-				>Duplications</Checkbox
-			>
-		</li>
-	</ul>
 
+	<Checkbox
+		class="p-3"
+		bind:group={options.entitytype}
+		value="statement"
+		checked={'statement' in options.entitytype}>Statements</Checkbox
+	>
+	<Checkbox
+		class="p-3"
+		bind:group={options.entitytype}
+		value="connection"
+		checked={'connection' in options.entitytype}>Connections</Checkbox
+	>
+	<Checkbox
+		class="p-3"
+		bind:group={options.entitytype}
+		value="duplication"
+		checked={'duplication' in options.entitytype}>Duplications</Checkbox
+	>
 	<Label>
 		Sort By Truth
-		<Select class="mt-2" items={sortdirection} bind:value={options.sortByTruth} />
+		<Select class="mt-2" items={sortdirections} bind:value={options.sortByTruth} />
 	</Label>
 
 	<Label>
 		Sort By Votes
-		<Select class="mt-2" items={sortdirection} bind:value={options.sortByVotes} />
+		<Select class="mt-2" items={sortdirections} bind:value={options.sortByVotes} />
 	</Label>
 
-	<Input type="text" id="first_name" placeholder="Tags" bind:value={tagsstring} />
+	<Input type="text" id="first_name" placeholder="Tags" bind:value={options._tagstring} />
 </Card>

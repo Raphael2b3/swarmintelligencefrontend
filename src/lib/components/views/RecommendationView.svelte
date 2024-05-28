@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { type IConnection, type IDuplicationMarker, type IStatement } from '$lib/interfaces';
 	import Entity from '$lib/components/models/Entity.svelte';
-	import Container from '$lib/components/base/Container.svelte';
 	import { recommendationManager } from '$lib/state/entities.svelte';
 </script>
 

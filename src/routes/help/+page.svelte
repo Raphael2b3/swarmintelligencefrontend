@@ -1,25 +1,18 @@
-<script>
-	// You can include any script logic needed for your help page here
+<script lang="ts">
+	import { Button } from 'flowbite-svelte';
+	import Checkbox from '$lib/components/base/Checkbox.svelte';
+
+	let group: any[] = $state([1, 2]);
 </script>
 
-<div class="help-page">
-	<h1 class="help-title">Help Page</h1>
-	<p class="help-content">
-		This is a placeholder for your help content. You can replace this text with the actual content.
-	</p>
+<div class="flex gap-2">
+	<Checkbox bind:group value={1}>One</Checkbox>
+	<Checkbox bind:group value={2}>Two</Checkbox>
+	<Checkbox bind:group value={3}>Three</Checkbox>
 </div>
-
-<style>
-	.help-page {
-		padding: 20px;
-	}
-
-	.help-title {
-		font-size: 2em;
-		margin-bottom: 20px;
-	}
-
-	.help-content {
-		line-height: 1.5;
-	}
-</style>
+<div
+	class="my-2 border border-gray-200 dark:border-gray-700 rounded-lg p-2 w-44 dark:text-gray-400"
+>
+	Group: {group}
+</div>
+<Button onclick={() => (group.length = 0)}>Clear</Button>
