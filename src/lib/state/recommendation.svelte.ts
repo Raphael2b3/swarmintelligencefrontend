@@ -5,8 +5,7 @@ let recommendationsPool: string[] = [];
 
 class RecommendationManager {
 	constructor() {
-		recommendationsPool = getRecommendation()
-		this.current_entity = getStatement(recommendationsPool[0]);
+		this.refresh();
 	}
 	index = 0;
 	current_entity = $state();

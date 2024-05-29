@@ -3,7 +3,7 @@
 
 	import Entity from '$lib/components/models/Entity.svelte';
 	let {
-		results = $bindable([]),
+		results,
 		loadingState = ELoadingState.LOADING
 	}: { results: IEntity[]; loadingState?: ELoadingState } = $props();
 </script>

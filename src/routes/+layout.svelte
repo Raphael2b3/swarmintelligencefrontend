@@ -18,6 +18,7 @@
 	<NavHamburger />
 	<NavUl {activeUrl}>
 		<NavLi href="/" active={true}>Home</NavLi>
+		<NavLi href="/history">History</NavLi>
 		<NavLi href="/help">About</NavLi>
 		<NavLi href="/help">Navbar</NavLi>
 	</NavUl>

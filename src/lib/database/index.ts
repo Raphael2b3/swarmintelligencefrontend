@@ -614,6 +614,11 @@ export function getRecommendation() {
 	return ["id1", "id2", "id3", "id4"];
 }
 
+export function getHistory(skip?: number, limit?: number) {
+	return ["1", "1", "1", "1"];
+}
+
+
 export function searchForEntities(searchTerm: string) {
 	return statements.sort(() => Math.random() - 0.5);
 }

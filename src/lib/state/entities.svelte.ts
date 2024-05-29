@@ -1,6 +1,7 @@
 
 import { findEntityInDatabaseFor, getStatementFromDatabase } from '$lib/database';
 import type { IEntity, IStatement } from '$lib/interfaces';
+import { historyManager } from './history.svelte';
 
 const fallbackStatement: IStatement = {
 	author: 'unknown',
@@ -13,13 +14,17 @@ const fallbackStatement: IStatement = {
 const entityCache: Record<string, Record<string, IEntity>> = { "statement": {}, "connection": {}, "duplication": {} }
 const statementToEntity: Record<string, Record<string, string[]>> = { "argument": {}, "thesis": {}, "duplication": {} }
 
+
 export function getStatement(id: string) {
+	console.log("Get statement");
 	let stm = entityCache["statement"][id];
 	if (!stm) {
 		stm = getStatementFromDatabase(id);
 		if (!stm) return fallbackStatement;
 		entityCache["statement"][stm.id] = stm;
 	}
+
+	historyManager.watch(stm.id);
 	return stm;
 }
 
@@ -30,6 +35,7 @@ function getEntityFromCache(id: string, entity: "argument" | "thesis" | "duplica
 	for (const key in except) {
 		const _entity = entityCache[entity][key]
 		out.push(_entity);
+		historyManager.watch(_entity.id);
 	}
 	return out;
 
@@ -52,6 +58,7 @@ export function getEntityFor(id: string, entity: "argument" | "thesis" | "duplic
 		statementToEntity[entity][id].push(db_entity.id);
 		entityCache[entity][db_entity.id] = db_entity;
 		out.push(db_entity);
+		historyManager.watch(db_entity.id);
 	}
 	return out
 
