@@ -29,7 +29,7 @@ export interface IConnection {
 }
 export function isIConnection(object: any): object is IConnection {
 	return (
-		"id" in object &&
+		'id' in object &&
 		'thesis' in object &&
 		'argument' in object &&
 		'isProArgument' in object &&
@@ -50,7 +50,7 @@ export interface IDuplicationMarker {
 
 export function isIDuplicationMarker(object: any): object is IDuplicationMarker {
 	return (
-		"id" in object &&
+		'id' in object &&
 		'statementA' in object &&
 		'statementB' in object &&
 		'numberOfVotes' in object &&
@@ -59,7 +59,6 @@ export function isIDuplicationMarker(object: any): object is IDuplicationMarker 
 }
 
 export type IEntity = IStatement | IConnection | IDuplicationMarker;
-
 
 export interface IFilterOptions {
 	sortByTruth?: 'asc' | 'desc';
@@ -70,9 +69,19 @@ export interface IFilterOptions {
 	_tagstring?: string;
 }
 
-
 export enum ELoadingState {
 	LOADING = 'loading',
 	LOADED = 'loaded',
-	FAILED = 'failed',
+	FAILED = 'failed'
+}
+
+export interface IStatementToConnective {
+	argument: Record<string, string[]>;
+	thesis: Record<string, string[]>;
+	duplication: Record<string, string[]>;
+}
+export interface IEntityCache {
+	statement: Record<string, IStatement>;
+	connection: Record<string, IConnection>;
+	duplication: Record<string, IConnection>;
 }

@@ -1,4 +1,5 @@
 import { getRecommendation } from '$lib/database';
+import type { IEntity } from '$lib/interfaces';
 import { getStatement } from './entities.svelte';
 
 let recommendationsPool: string[] = [];
@@ -8,7 +9,7 @@ class RecommendationManager {
 		this.refresh();
 	}
 	index = 0;
-	current_entity = $state();
+	current_entity?: IEntity = $state();
 	refresh() {
 		recommendationsPool = getRecommendation();
 		this.current_entity = getStatement(recommendationsPool[0]);
@@ -19,7 +20,6 @@ class RecommendationManager {
 	getNext() {
 		const id = recommendationsPool[(this.index + 1) % recommendationsPool.length];
 		this.current_entity = getStatement(id);
-
 	}
 	getPrevious() {
 		const id = recommendationsPool[(this.index - 1) % recommendationsPool.length];

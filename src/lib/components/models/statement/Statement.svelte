@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type IStatement } from '$lib/interfaces';
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
-	import { Card } from 'flowbite-svelte';
+	import { Button, Card } from 'flowbite-svelte';
 	let { statement, showTruth = false }: { statement: IStatement; showTruth?: boolean } = $props();
 </script>
 
@@ -11,7 +11,7 @@
 		<button>Open Details</button>
 	</div>
 
-	<p>{statement.text}</p>
+	{statement.text}
 
 	{#if showTruth}
 		Votes: {statement.numberOfVotes} <br />
@@ -27,7 +27,7 @@
 		{/if}
 	{/if}
 	<div>
-		<button>Thats True</button>
-		<button>Thats False</button>
+		<Button>Thats True</Button>
+		<Button>Thats False</Button>
 	</div>
 </Card>

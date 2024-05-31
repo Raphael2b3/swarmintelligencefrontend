@@ -6,20 +6,18 @@ const PAGE_SIZE = 10;
 let history: string[] = $state([]);
 
 function current_entities(_history: string[], index: number) {
-
 	let start = PAGE_SIZE * index;
-	if (start >= history.length)
-		return [];
+	if (start >= history.length) return [];
 
 	const end = PAGE_SIZE * (index + 1) <= history.length ? PAGE_SIZE * (index + 1) : history.length;
 
-	return history.slice(start, end).map(getStatement)
+	return history.slice(start, end).map(getStatement);
 }
 
 class HistoryManager {
-
+	_bypass = false;
 	constructor() {
-		//this.refresh();
+		this.refresh();
 	}
 
 	index = $state(0);
@@ -43,11 +41,20 @@ class HistoryManager {
 	}
 
 	watch(id: string) {
+		if (this._bypass) return;
 		const index = history.indexOf(id, 0);
 		if (index > -1) {
 			history.splice(index, 1);
 		}
 		history = [id, ...history];
+	}
+
+	get bypass() {
+		return this._bypass;
+	}
+
+	set bypass(bypass: boolean) {
+		this._bypass = bypass;
 	}
 }
 export const historyManager = new HistoryManager();
