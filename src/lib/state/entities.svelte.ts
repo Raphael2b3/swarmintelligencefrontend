@@ -1,14 +1,49 @@
-import { findEntityInDatabaseFor, getStatementFromDatabase } from '$lib/database';
-import type { IEntity, IEntityCache, IStatement, IStatementToConnective } from '$lib/interfaces';
+import { findConnectiveInDatabaseFor, getEntityFromDatabase } from '$lib/database';
+import type {
+	IConnection,
+	IDuplicationMarker,
+	IEntity,
+	IEntityCache,
+	IStatement,
+	IStatementToConnective
+} from '$lib/interfaces';
 import { historyManager } from './history.svelte';
-const fallbackStatement: IStatement = {
-	author: 'unknown',
-	id: 'fallback',
-	lastSeasonTruth: 0,
-	numberOfVotes: 0,
-	text: 'The Statement was not found',
-	voteRatio: 0
-};
+
+function getFallbackEntity(entityType: 'connection' | 'duplication' | 'statement') {
+	switch (entityType) {
+		case 'connection':
+			return {
+				id: 'fallback',
+				thesis: 'fallback',
+				argument: 'fallback',
+				isProArgument: false,
+				weight: 0,
+				numberOfVotes: 0,
+				isTrueVotes: 0,
+				creator: 'fallback'
+			} as IConnection;
+
+		case 'duplication': // is equal to duplicationmarker
+			return {
+				// return Iduplicationmarker
+				id: 'fallback',
+				statementA: 'fallback',
+				statementB: 'fallback',
+				numberOfVotes: 0,
+				isDuplicateVotes: 0
+			} as IDuplicationMarker;
+
+		case 'statement': // is equal to IStatement
+			return {
+				id: 'fallback',
+				text: 'fallback',
+				lastSeasonTruth: 0,
+				numberOfVotes: 0,
+				voteRatio: 0,
+				author: 'fallback'
+			} as IStatement;
+	}
+}
 
 const entityCache: IEntityCache = {
 	statement: {},
@@ -22,18 +57,12 @@ const statementToConnective: IStatementToConnective = {
 	duplication: {}
 };
 
-export function getStatement(id: string) {
-	console.log('Get statement');
-	let stm = entityCache['statement'][id];
-	if (!stm) {
-		stm = getStatementFromDatabase(id);
-		if (!stm) return fallbackStatement;
-		entityCache['statement'][stm.id] = stm;
+function cacheEntities(entities: IEntity[], entity: 'connection' | 'duplication' | 'statement') {
+	for (const _entity of entities) {
+		entityCache[entity][_entity.id] = _entity as any;
 	}
-
-	historyManager.watch(stm.id);
-	return stm;
 }
+
 function getEntityInstancesFromCache(
 	keys: string[],
 	entity: 'connection' | 'duplication' | 'statement'
@@ -42,20 +71,19 @@ function getEntityInstancesFromCache(
 	for (const key in keys || []) {
 		const _entity = entityCache[entity][key];
 		out.push(_entity);
-		historyManager.watch(_entity.id);
 	}
 	return out;
 }
-
-function cacheEntities(entities: IEntity[]) {}
-function getConnectiveFromCacheFor(
-	id: string,
-	connectiveType: 'argument' | 'thesis' | 'duplication'
-) {
-	//connections from cache
-	const entityType = connectiveType !== 'duplication' ? 'connection' : 'duplication';
-
-	return getEntityInstancesFromCache(statementToConnective[connectiveType][id], entityType);
+export function getEntity(id: string, entityType: 'connection' | 'duplication' | 'statement') {
+	try {
+		let stm = getEntityInstancesFromCache([id], entityType);
+		return stm[0];
+	} catch (e) {
+		let stm = getEntityFromDatabase(id, entityType);
+		if (!stm) return getFallbackEntity(entityType);
+		cacheEntities([stm], entityType);
+		return stm;
+	}
 }
 
 export function getConnectiveFor(
@@ -63,19 +91,20 @@ export function getConnectiveFor(
 	connectiveType: 'argument' | 'thesis' | 'duplication',
 	useCache = true
 ) {
+	const entityType = connectiveType !== 'duplication' ? 'connection' : 'duplication';
+
 	let out: IEntity[] = []; // init
 	if (useCache) {
-		out = getConnectiveFromCacheFor(id, connectiveType);
 		//connections from cache
+		out = getEntityInstancesFromCache(statementToConnective[connectiveType][id], entityType);
 	}
 
-	const db_entities = findEntityInDatabaseFor(
+	const db_entities = findConnectiveInDatabaseFor(
 		id,
 		connectiveType,
 		statementToConnective[connectiveType][id]
 	); // grab new connections
-
-	getEntityInstancesFromCache(db_entities, entity);
+	cacheEntities(db_entities, entityType);
 	return out;
 }
 
