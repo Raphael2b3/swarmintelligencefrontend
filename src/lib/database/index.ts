@@ -622,12 +622,15 @@ export function findConnectiveInDatabaseFor(
 	}
 }
 
-export function getRecommendation() {
-	return ['id1', 'id2', 'id3', 'id4'];
+export function getRecommendation(): Record<string, 'statement' | 'connection' | 'duplication'> {
+	return { id1: 'statement', id2: 'connection', id3: 'duplication' };
 }
 
-export function getHistory(skip?: number, limit?: number) {
-	return ['1', '1', '1', '1'];
+export function getHistory(
+	skip?: number,
+	limit?: number
+): Record<string, 'statement' | 'connection' | 'duplication'> {
+	return { id1: 'statement', id2: 'connection', id3: 'duplication' };
 }
 
 export function searchForEntities(searchTerm: string) {

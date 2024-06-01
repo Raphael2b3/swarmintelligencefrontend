@@ -1,8 +1,8 @@
 import { getRecommendation } from '$lib/database';
 import type { IEntity } from '$lib/interfaces';
-import { getStatement } from './entities.svelte';
+import { getEntity } from './entities.svelte';
 
-let recommendationsPool: string[] = [];
+let recommendationsPool: Record<string, 'statement' | 'connection' | 'duplication'> = {};
 
 class RecommendationManager {
 	constructor() {
@@ -12,7 +12,8 @@ class RecommendationManager {
 	current_entity?: IEntity = $state();
 	refresh() {
 		recommendationsPool = getRecommendation();
-		this.current_entity = getStatement(recommendationsPool[0]);
+		const id = Object.keys(recommendationsPool)[0];
+		this.current_entity = getEntity(id, recommendationsPool[id]);
 	}
 	get current() {
 		return this.current_entity;
