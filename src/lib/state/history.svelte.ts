@@ -13,7 +13,7 @@ function current_entities(_history: string[], index: number) {
 
 	const end = PAGE_SIZE * (index + 1) <= history.length ? PAGE_SIZE * (index + 1) : history.length;
 
-	return history.slice(start, end).map(getStatement)
+	return history.slice(start, end).map((id) => getStatement(id))
 }
 
 class HistoryManager {

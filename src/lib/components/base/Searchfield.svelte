@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { searchForEntities } from '$lib/database';
 	import type { IEntity, IFilterOptions } from '$lib/interfaces';
 
 	import { Search, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { SearchOutline, ChevronDownOutline, FilterOutline } from 'flowbite-svelte-icons';
 	import FilterOptions from '../views/FilterOptions.svelte';
+	import { searchEntity } from '$lib/state/entities.svelte';
 
 	let { isEmpty = $bindable(), results = $bindable() }: { results: IEntity[]; isEmpty: boolean } =
 		$props();
@@ -18,7 +18,7 @@
 	});
 
 	function search() {
-		results = searchForEntities(searchTerm);
+		results = searchEntity(searchTerm, filteroptions);
 	}
 </script>
 

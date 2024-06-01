@@ -2,9 +2,10 @@ export interface IStatement {
 	id: string;
 	text: string;
 	lastSeasonTruth: number; // der letzten season
-	numberOfVotes: number | undefined;
-	voteRatio: number | undefined;
-	author: string | undefined;
+	numberOfVotes: number;
+	voteRatio: number;
+	author: string;
+	tags?: string[];
 }
 export function isIStatement(object: any): object is IStatement {
 	return (

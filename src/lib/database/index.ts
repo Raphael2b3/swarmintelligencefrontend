@@ -1,4 +1,4 @@
-import type { IConnection, IDuplicationMarker, IEntity, IStatement } from '$lib/interfaces';
+import type { IConnection, IDuplicationMarker, IEntity, IFilterOptions, IStatement } from '$lib/interfaces';
 const statements: IStatement[] = [
 	{
 		id: "1",
@@ -596,7 +596,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 export function getStatementFromDatabase(id: string) {
 	return statements[0]
 }
-export function findEntityInDatabaseFor(id: string, entity: "argument" | "thesis" | "duplication", except?: string[]): IConnection[] | IDuplicationMarker[] {
+export function searchRelationInDatabaseFor(id: string, entity: "argument" | "thesis" | "duplication", except?: string[]): IConnection[] | IDuplicationMarker[] {
 	switch (entity) {
 		case "argument":
 			return connections
@@ -619,6 +619,6 @@ export function getHistory(skip?: number, limit?: number) {
 }
 
 
-export function searchForEntities(searchTerm: string) {
+export function searchForEntitiesInDatabase(searchTerm: string, filteroptions: IFilterOptions, except?: string[]): IEntity[] {
 	return statements.sort(() => Math.random() - 0.5);
 }
