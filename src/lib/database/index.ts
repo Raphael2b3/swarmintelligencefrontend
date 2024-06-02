@@ -629,10 +629,10 @@ export function getRecommendation(): Record<string, 'statement' | 'connection' |
 export function getHistory(
 	skip?: number,
 	limit?: number
-): Record<string, 'statement' | 'connection' | 'duplication'> {
-	return { id1: 'statement', id2: 'connection', id3: 'duplication' };
+) {
+	return [["id1", 'statement'], ["id2", 'connection'], ["id3", 'duplication']];
 }
 
-export function searchForEntities(searchTerm: string) {
+export function searchForEntities(searchTerm: string, filterOptions: IFilterOptions) {
 	return statements.sort(() => Math.random() - 0.5);
 }

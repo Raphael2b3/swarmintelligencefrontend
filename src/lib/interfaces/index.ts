@@ -86,3 +86,5 @@ export interface IEntityCache {
 	connection: Record<string, IConnection>;
 	duplication: Record<string, IConnection>;
 }
+
+export type entityType = "statement" | "connection" | "duplication";

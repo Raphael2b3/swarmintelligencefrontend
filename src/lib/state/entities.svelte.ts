@@ -4,8 +4,10 @@ import type {
 	IDuplicationMarker,
 	IEntity,
 	IEntityCache,
+	IFilterOptions,
 	IStatement,
-	IStatementToConnective
+	IStatementToConnective,
+	entityType
 } from '$lib/interfaces';
 import { historyManager } from './history.svelte';
 
@@ -74,6 +76,7 @@ function getEntityInstancesFromCache(
 	}
 	return out;
 }
+
 export function getEntity(id: string, entityType: 'connection' | 'duplication' | 'statement') {
 	try {
 		let stm = getEntityInstancesFromCache([id], entityType);
@@ -107,10 +110,20 @@ export function getConnectiveFor(
 	cacheEntities(db_entities, entityType);
 	return out;
 }
-
 export function clearCache() {
 	console.log('clearCache');
 	entityCache['statement'] = {};
 	entityCache['connection'] = {};
 	entityCache['duplication'] = {};
+}
+
+export function searchEntites(searchTerm: string, entityType: IFilterOptions) {
+	const entities = getEntitiesFromDatabase(searchTerm, entityType);
+	cacheEntities(entities, entityType);
+	return entities;
+}
+
+
+function searchEntities() {
+
 }

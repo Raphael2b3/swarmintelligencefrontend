@@ -4,7 +4,7 @@
 	import { Search, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { SearchOutline, ChevronDownOutline, FilterOutline } from 'flowbite-svelte-icons';
 	import FilterOptions from '../views/FilterOptions.svelte';
-	import { searchEntity } from '$lib/state/entities.svelte';
+	import { getEntity } from '$lib/state/entities.svelte';
 
 	let { isEmpty = $bindable(), results = $bindable() }: { results: IEntity[]; isEmpty: boolean } =
 		$props();
@@ -18,7 +18,7 @@
 	});
 
 	function search() {
-		results = searchEntity(searchTerm, filteroptions);
+		results = getEni(searchTerm, filteroptions);
 	}
 </script>
 
