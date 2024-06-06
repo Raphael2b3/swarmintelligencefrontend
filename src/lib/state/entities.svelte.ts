@@ -1,17 +1,18 @@
-import { findConnectiveInDatabaseFor, getEntityFromDatabase } from '$lib/database';
+import { findConnectiveForDB, getEntityDB, searchForEntitiesDB } from '$lib/database';
 import type {
 	IConnection,
-	IDuplicationMarker,
+	IDuplication,
 	IEntity,
 	IEntityCache,
 	IFilterOptions,
 	IStatement,
 	IStatementToConnective,
-	entityType
+	IEntityType,
+	IConnectiveType
 } from '$lib/interfaces';
 import { historyManager } from './history.svelte';
 
-function getFallbackEntity(entityType: 'connection' | 'duplication' | 'statement') {
+function getFallbackEntity(entityType: IEntityType) {
 	switch (entityType) {
 		case 'connection':
 			return {
@@ -33,7 +34,7 @@ function getFallbackEntity(entityType: 'connection' | 'duplication' | 'statement
 				statementB: 'fallback',
 				numberOfVotes: 0,
 				isDuplicateVotes: 0
-			} as IDuplicationMarker;
+			} as IDuplication;
 
 		case 'statement': // is equal to IStatement
 			return {
@@ -59,15 +60,15 @@ const statementToConnective: IStatementToConnective = {
 	duplication: {}
 };
 
-function cacheEntities(entities: IEntity[], entity: 'connection' | 'duplication' | 'statement') {
+function cacheEntities(entities: IEntity[]) {
 	for (const _entity of entities) {
-		entityCache[entity][_entity.id] = _entity as any;
+		entityCache[_entity.type][_entity.id] = _entity as any;
 	}
 }
 
 function getEntityInstancesFromCache(
 	keys: string[],
-	entity: 'connection' | 'duplication' | 'statement'
+	entity: IEntityType
 ) {
 	const out: IEntity[] = []; // init
 	for (const key in keys || []) {
@@ -77,21 +78,21 @@ function getEntityInstancesFromCache(
 	return out;
 }
 
-export function getEntity(id: string, entityType: 'connection' | 'duplication' | 'statement') {
+export function getEntity(id: string, entityType: IEntityType) {
 	try {
 		let stm = getEntityInstancesFromCache([id], entityType);
 		return stm[0];
 	} catch (e) {
-		let stm = getEntityFromDatabase(id, entityType);
+		let stm = getEntityDB(id, entityType);
 		if (!stm) return getFallbackEntity(entityType);
-		cacheEntities([stm], entityType);
+		cacheEntities([stm]);
 		return stm;
 	}
 }
 
 export function getConnectiveFor(
 	id: string,
-	connectiveType: 'argument' | 'thesis' | 'duplication',
+	connectiveType: IConnectiveType,
 	useCache = true
 ) {
 	const entityType = connectiveType !== 'duplication' ? 'connection' : 'duplication';
@@ -102,12 +103,12 @@ export function getConnectiveFor(
 		out = getEntityInstancesFromCache(statementToConnective[connectiveType][id], entityType);
 	}
 
-	const db_entities = findConnectiveInDatabaseFor(
+	const db_entities = findConnectiveForDB(
 		id,
 		connectiveType,
 		statementToConnective[connectiveType][id]
 	); // grab new connections
-	cacheEntities(db_entities, entityType);
+	cacheEntities(db_entities);
 	return out;
 }
 export function clearCache() {
@@ -117,13 +118,89 @@ export function clearCache() {
 	entityCache['duplication'] = {};
 }
 
-export function searchEntites(searchTerm: string, entityType: IFilterOptions) {
-	const entities = getEntitiesFromDatabase(searchTerm, entityType);
-	cacheEntities(entities, entityType);
+export function searchEntites(searchTerm: string, filterOptions: IFilterOptions, useCache = true): IEntity[] {
+	const entities: IEntity[] = []
+	if (useCache) {
+		// search in cache
+		entities.push(...searchEntitiesInCache(searchTerm, filterOptions));
+	}
+	const db_entities = searchForEntitiesDB(searchTerm, filterOptions);
+	cacheEntities(db_entities);
+	entities.push(...db_entities);
 	return entities;
 }
 
 
-function searchEntities() {
+function searchEntitiesInCache(searchTerm: string, filterOptions: IFilterOptions) {
 
+	function filterStatement(statement: IStatement, searchTerm: string, filterOptions: IFilterOptions) {
+		const searchTermCondition = (statement.text.toLowerCase() + statement.id.toLowerCase()).includes(searchTerm.toLowerCase());
+		const tagCondition = filterOptions.tags ? filterOptions.tags.every((tag) => statement.tags?.includes(tag)) : true;
+		const entityTypeCondition = !filterOptions.entitytype || filterOptions.entitytype.includes('statement');
+		const controversialCondition = filterOptions.controversial ? Math.abs(statement.lastSeasonTruth - 0.5) < 2 : true;
+		return searchTermCondition && tagCondition && entityTypeCondition && controversialCondition;
+	}
+
+	function filterConnection(connection: IConnection, searchTerm: string, filterOptions: IFilterOptions) {
+		const searchTermCondition = connection.id.toLowerCase().includes(searchTerm.toLowerCase());
+		const tagCondition = true; //filterOptions.tags ? filterOptions.tags.every((tag) => connection.tags?.includes(tag)) : true;
+		const entityTypeCondition = !filterOptions.entitytype || filterOptions.entitytype.includes('connection');
+		const controversialCondition = true;//filterOptions.controversial ? Math.abs(connection.lastSeasonTruth - 0.5) < 2 : true;
+		return searchTermCondition && tagCondition && entityTypeCondition && controversialCondition;
+	}
+
+	function filterDuplication(duplication: IDuplication, searchTerm: string, filterOptions: IFilterOptions) {
+		const searchTermCondition = duplication.id.toLowerCase().includes(searchTerm.toLowerCase());
+		const tagCondition = true; //filterOptions.tags ? filterOptions.tags.every((tag) => duplication.tags?.includes(tag)) : true;
+		const entityTypeCondition = !filterOptions.entitytype || filterOptions.entitytype.includes('duplication');
+		const controversialCondition = true;//filterOptions.controversial ? Math.abs(duplication.lastSeasonTruth - 0.5) < 2 : true;
+		return searchTermCondition && tagCondition && entityTypeCondition && controversialCondition;
+	}
+
+	function sortStatement(statementFirst: IStatement, statementSecond: IStatement, filterOptions: IFilterOptions) {
+		const lastSeasonTruthDff = statementFirst.lastSeasonTruth - statementSecond.lastSeasonTruth;
+		const numberOfVotesDff = statementFirst.numberOfVotes - statementSecond.numberOfVotes;
+		if (filterOptions.sortByTruth && lastSeasonTruthDff != 0) {
+			return filterOptions.sortByTruth == 'asc' ? lastSeasonTruthDff : -lastSeasonTruthDff;
+		}
+		if (filterOptions.sortByVotes) {
+			return filterOptions.sortByVotes == 'asc' ? numberOfVotesDff : -numberOfVotesDff;
+		}
+		return 0;
+	}
+
+	function sortConnection(connectionFirst: IConnection, connectionSecond: IConnection, filterOptions: IFilterOptions) {
+		return 0;
+	}
+	function sortDuplication(duplicationFirst: IDuplication, duplicationSecond: IDuplication, filterOptions: IFilterOptions) {
+		return 0;
+	}
+	const tags = filterOptions.entitytype || ["statement", "connection", "duplication"];
+	let out = [];
+	if (tags.includes('statement')) {
+		const keys = Object.keys(entityCache.statement);
+		const _out = keys
+			.filter((key) => filterStatement(entityCache.statement[key], searchTerm, filterOptions)).
+			map((key) => entityCache.statement[key])
+			.sort((statementFirst, statementSecond) => sortStatement(statementFirst, statementSecond, filterOptions));
+		out.push(..._out);
+	}
+
+	if (tags.includes('connection')) {
+		const keys = Object.keys(entityCache.connection);
+		const _out = keys.filter((key) => filterConnection(entityCache.connection[key], searchTerm, filterOptions)).
+			map((key) => entityCache.connection[key])
+			.sort((connectionFirst, connectionSecond) => sortConnection(connectionFirst, connectionSecond, filterOptions));
+		out.push(..._out);
+	}
+
+	if (tags.includes('duplication')) {
+		const keys = Object.keys(entityCache.duplication);
+		const _out = keys.filter((key) => filterDuplication(entityCache.duplication[key], searchTerm, filterOptions)).
+			map((key) => entityCache.duplication[key])
+			.sort((duplicationFirst, duplicationSecond) => sortDuplication(duplicationFirst, duplicationSecond, filterOptions));
+		out.push(..._out);
+
+	}
+	return out;
 }

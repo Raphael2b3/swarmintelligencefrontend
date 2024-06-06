@@ -1,7 +1,8 @@
-import type { IConnection, IDuplicationMarker, IEntity, IFilterOptions, IStatement } from '$lib/interfaces';
+import type { IConnection, IConnectiveType, IDuplication, IEntity, IEntityType, IFilterOptions, IStatement } from '$lib/interfaces';
 const statements: IStatement[] = [
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is flat',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -10,6 +11,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is round',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -18,6 +20,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a cube',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -26,6 +29,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a pyramid',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -34,6 +38,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a sphere',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -42,6 +47,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a cylinder',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -50,6 +56,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a cone',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -58,6 +65,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a dodecahedron',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -66,6 +74,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a tetrahedron',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -74,6 +83,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a octahedron',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -82,6 +92,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is an oblate spheroid',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -90,6 +101,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is hollow',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -98,6 +110,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a torus',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -106,6 +119,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is an ellipsoid',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -114,6 +128,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The earth is a geoid',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -122,6 +137,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The sun is a star',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -130,6 +146,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Water boils at 100 degrees Celsius',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -138,6 +155,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The moon is made of cheese',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -146,6 +164,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Humans can breathe underwater without equipment',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -154,6 +173,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Light travels faster than sound',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -162,6 +182,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The Great Wall of China is visible from space',
 		lastSeasonTruth: 0.2,
 		numberOfVotes: 100,
@@ -170,6 +191,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'The speed of light is approximately 300,000 km/s',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -178,6 +200,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Bananas are berries',
 		lastSeasonTruth: 0.8,
 		numberOfVotes: 100,
@@ -186,6 +209,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Sharks are mammals',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -194,6 +218,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'A year on Venus is shorter than a day on Venus',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -202,6 +227,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Goldfish have a memory span of three seconds',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -210,6 +236,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Honey never spoils',
 		lastSeasonTruth: 0.9,
 		numberOfVotes: 100,
@@ -218,6 +245,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Humans have more than five senses',
 		lastSeasonTruth: 0.8,
 		numberOfVotes: 100,
@@ -226,6 +254,7 @@ const statements: IStatement[] = [
 	},
 	{
 		id: '1',
+		type: 'statement',
 		text: 'Tomatoes are vegetables',
 		lastSeasonTruth: 0.1,
 		numberOfVotes: 100,
@@ -237,6 +266,7 @@ const statements: IStatement[] = [
 const connections: IConnection[] = [
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -247,6 +277,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -257,6 +288,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -267,6 +299,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -277,6 +310,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -287,6 +321,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -297,6 +332,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -307,6 +343,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -317,6 +354,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -327,6 +365,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -337,6 +376,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -347,6 +387,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -357,6 +398,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -367,6 +409,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -377,6 +420,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -387,6 +431,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -397,6 +442,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -407,6 +453,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -417,6 +464,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -427,6 +475,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -437,6 +486,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -447,6 +497,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -457,6 +508,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: false,
@@ -467,6 +519,7 @@ const connections: IConnection[] = [
 	},
 	{
 		id: '1',
+		type: 'connection',
 		thesis: '1',
 		argument: '1',
 		isProArgument: true,
@@ -477,9 +530,10 @@ const connections: IConnection[] = [
 	}
 ];
 
-const duplactonMarkers: IDuplicationMarker[] = [
+const duplactons: IDuplication[] = [
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -487,6 +541,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -494,6 +549,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -501,6 +557,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -508,6 +565,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -515,6 +573,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -522,6 +581,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -529,6 +589,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -536,6 +597,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -543,6 +605,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -550,6 +613,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -557,6 +621,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -564,6 +629,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -571,6 +637,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -578,6 +645,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -585,6 +653,7 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	},
 	{
 		id: '1',
+		type: 'duplication',
 		statementA: '1',
 		statementB: '1',
 		numberOfVotes: 100,
@@ -592,24 +661,24 @@ const duplactonMarkers: IDuplicationMarker[] = [
 	}
 ];
 
-export function getEntityFromDatabase(
+export function getEntityDB(
 	id: string,
-	entityType: 'connection' | 'duplication' | 'statement'
+	entityType: IEntityType
 ) {
 	switch (entityType) {
 		case 'connection':
 			return connections[0];
 		case 'duplication':
-			return duplactonMarkers[0];
+			return duplactons[0];
 		case 'statement':
 			return statements[0];
 	}
 }
-export function findConnectiveInDatabaseFor(
+export function findConnectiveForDB(
 	id: string,
-	entity: 'argument' | 'thesis' | 'duplication',
+	entity: IConnectiveType,
 	except?: string[]
-): IConnection[] | IDuplicationMarker[] {
+): IConnection[] | IDuplication[] {
 	switch (entity) {
 		case 'argument':
 			return connections;
@@ -618,21 +687,21 @@ export function findConnectiveInDatabaseFor(
 			return connections;
 
 		case 'duplication':
-			return duplactonMarkers;
+			return duplactons;
 	}
 }
 
-export function getRecommendation(): Record<string, 'statement' | 'connection' | 'duplication'> {
+export function getRecommendationDB(): Record<string, IEntityType> {
 	return { id1: 'statement', id2: 'connection', id3: 'duplication' };
 }
 
-export function getHistory(
+export function getHistoryDB(
 	skip?: number,
 	limit?: number
 ) {
-	return [["id1", 'statement'], ["id2", 'connection'], ["id3", 'duplication']];
+	return { ids: [], types: [] };
 }
 
-export function searchForEntities(searchTerm: string, filterOptions: IFilterOptions) {
+export function searchForEntitiesDB(searchTerm: string, filterOptions: IFilterOptions) {
 	return statements.sort(() => Math.random() - 0.5);
 }

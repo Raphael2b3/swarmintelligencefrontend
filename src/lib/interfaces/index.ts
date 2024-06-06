@@ -1,5 +1,6 @@
 export interface IStatement {
 	id: string;
+	type: IEntityType;
 	text: string;
 	lastSeasonTruth: number; // der letzten season
 	numberOfVotes: number;
@@ -8,18 +9,12 @@ export interface IStatement {
 	tags?: string[];
 }
 export function isIStatement(object: any): object is IStatement {
-	return (
-		`id` in object &&
-		'text' in object &&
-		'lastSeasonTruth' in object &&
-		'numberOfVotes' in object &&
-		'voteRatio' in object &&
-		'author' in object
-	);
+	return object.type == 'statement';
 }
 
 export interface IConnection {
 	id: string;
+	type: IEntityType;
 	thesis: string;
 	argument: string;
 	isProArgument: boolean;
@@ -29,43 +24,29 @@ export interface IConnection {
 	creator: string;
 }
 export function isIConnection(object: any): object is IConnection {
-	return (
-		'id' in object &&
-		'thesis' in object &&
-		'argument' in object &&
-		'isProArgument' in object &&
-		'weight' in object &&
-		'numberOfVotes' in object &&
-		'isTrueVotes' in object &&
-		'creator' in object
-	);
+	return object.type == 'connection';
 }
 
-export interface IDuplicationMarker {
+export interface IDuplication {
 	id: string;
+	type: IEntityType;
 	statementA: string;
 	statementB: string;
 	numberOfVotes: number;
 	isDuplicateVotes: number;
 }
 
-export function isIDuplicationMarker(object: any): object is IDuplicationMarker {
-	return (
-		'id' in object &&
-		'statementA' in object &&
-		'statementB' in object &&
-		'numberOfVotes' in object &&
-		'isDuplicateVotes' in object
-	);
+export function isIDuplication(object: any): object is IDuplication {
+	return object.type == 'duplication';
 }
 
-export type IEntity = IStatement | IConnection | IDuplicationMarker;
+export type IEntity = IStatement | IConnection | IDuplication;
 
 export interface IFilterOptions {
 	sortByTruth?: 'asc' | 'desc';
 	sortByVotes?: 'asc' | 'desc';
 	controversial?: boolean;
-	entitytype: ('statement' | 'connection' | 'duplication')[];
+	entitytype: IEntityType[];
 	tags?: string[];
 	_tagstring?: string;
 }
@@ -81,10 +62,11 @@ export interface IStatementToConnective {
 	thesis: Record<string, string[]>;
 	duplication: Record<string, string[]>;
 }
-export interface IEntityCache {
+export type IEntityCache = {
 	statement: Record<string, IStatement>;
 	connection: Record<string, IConnection>;
-	duplication: Record<string, IConnection>;
+	duplication: Record<string, IDuplication>;
 }
 
-export type entityType = "statement" | "connection" | "duplication";
+export type IEntityType = "statement" | "connection" | "duplication";
+export type IConnectiveType = "argument" | "thesis" | "duplication";

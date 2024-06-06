@@ -1,11 +1,11 @@
-import { getHistory } from '$lib/database';
-import type { entityType } from '$lib/interfaces';
+import { getHistoryDB } from '$lib/database';
+import type { IEntityType } from '$lib/interfaces';
 import { getEntity } from './entities.svelte';
 
 const PAGE_SIZE = 10;
 // history = [ [id,entityType],...]
 let historyKeys: string[] = $state([]);
-let entityTypes: entityType[] = ['statement', 'connection', 'duplication'];
+let entityTypes: IEntityType[] = ['statement', 'connection', 'duplication'];
 function current_entities(_history: string[], index: number) {
 	let start = PAGE_SIZE * index;
 
@@ -27,7 +27,9 @@ class HistoryManager {
 
 	refresh() {
 		this.index = 0;
-		const history_objects = getHistory();
+		const history = getHistoryDB();
+		historyKeys = history.ids;
+		entityTypes = history.types;
 	}
 
 	get current() {
