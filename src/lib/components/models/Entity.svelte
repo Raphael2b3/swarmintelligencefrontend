@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { isIConnection, isIDuplicationMarker, isIStatement, type IEntity } from '$lib/interfaces';
+	import { isIConnection, isIDuplication, isIStatement, type IEntity } from '$lib/interfaces';
 	import Connection from './connection/Connection.svelte';
-	import DuplicationMarker from './duplicationmarker/DuplicationMarker.svelte';
+	import Duplication from './duplication/Duplication.svelte';
 	import Statement from './statement/Statement.svelte';
 
 	let {
@@ -17,6 +17,6 @@
 	<Connection connection={entity} />
 {:else if isIStatement(entity)}
 	<Statement showTruth={mode !== 'default'} statement={entity} />
-{:else if isIDuplicationMarker(entity)}
-	<DuplicationMarker duplicationMarker={entity} />
+{:else if isIDuplication(entity)}
+	<Duplication duplication={entity} />
 {/if}

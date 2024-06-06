@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { type IConnection, type IDuplicationMarker, type IStatement } from '$lib/interfaces';
 	import Entity from '$lib/components/models/Entity.svelte';
 	import { recommendationManager } from '$lib/state/recommendation.svelte';
 	import { Card } from 'flowbite-svelte';

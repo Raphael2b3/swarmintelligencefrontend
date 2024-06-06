@@ -1,8 +1,8 @@
-import { getRecommendation } from '$lib/database';
-import type { IEntity } from '$lib/interfaces';
+import { getRecommendationDB } from '$lib/database';
+import type { IEntity, IEntityType } from '$lib/interfaces';
 import { getEntity } from './entities.svelte';
 
-let recommendationsPool: Record<string, 'statement' | 'connection' | 'duplication'> = {};
+let recommendationsPool: Record<string, IEntityType> = {};
 
 class RecommendationManager {
 	constructor() {
@@ -11,7 +11,7 @@ class RecommendationManager {
 	index = 0;
 	current_entity?: IEntity = $state();
 	refresh() {
-		recommendationsPool = getRecommendation();
+		recommendationsPool = getRecommendationDB();
 		const id = Object.keys(recommendationsPool)[0];
 		this.current_entity = getEntity(id, recommendationsPool[id]);
 	}
@@ -19,12 +19,13 @@ class RecommendationManager {
 		return this.current_entity;
 	}
 	getNext() {
-		const id = recommendationsPool[(this.index + 1) % recommendationsPool.length];
-		this.current_entity = getStatement(id);
+
+		const id = recommendationsPool[(this.index + 1) % Object.keys(recommendationsPool).length];
+		this.current_entity = getEntity(id, recommendationsPool[id]);
 	}
 	getPrevious() {
-		const id = recommendationsPool[(this.index - 1) % recommendationsPool.length];
-		this.current_entity = getStatement(id);
+		const id = recommendationsPool[(this.index - 1) % recommendationsPool.keys.length];
+		this.current_entity = getEntity(id, recommendationsPool[id]);
 	}
 }
 export const recommendationManager = new RecommendationManager();
