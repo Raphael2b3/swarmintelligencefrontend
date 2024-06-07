@@ -4,32 +4,32 @@ import { getEntity } from './entities.svelte';
 
 const PAGE_SIZE = 10;
 // history = [ [id,entityType],...]
-let historyKeys: string[] = $state([]);
-let entityTypes: IEntityType[] = ['statement', 'connection', 'duplication'];
-function current_entities(_history: string[], index: number) {
-	let start = PAGE_SIZE * index;
 
-	if (start >= _history.length) return [];
-
-	const end = PAGE_SIZE * (index + 1) <= _history.length ? PAGE_SIZE * (index + 1) : _history.length;
-
-	return _history.slice(start, end).map((k, index) => getEntity(k, entityTypes[index]));
-}
 
 class HistoryManager {
 	_bypass = false;
+	historyKeys: string[] = $state([]);
+	entityTypes: IEntityType[] = [];
+
+	index = $state(0);
+	current_entities = $derived(this.get_current_entities());
+
 	constructor() {
 		this.refresh();
 	}
-
-	index = $state(0);
-	current_entities = $derived(current_entities(historyKeys, this.index));
+	get_current_entities() {
+		let start = PAGE_SIZE * this.index;
+		if (start >= this.historyKeys.length) return [];
+		const end = PAGE_SIZE * (this.index + 1) <= this.historyKeys.length ? PAGE_SIZE * (this.index + 1) : this.historyKeys.length;
+		return this.historyKeys.slice(start, end).map((k, index) => getEntity(k, this.entityTypes[index]));
+	}
 
 	refresh() {
 		this.index = 0;
-		const history = getHistoryDB();
-		historyKeys = history.ids;
-		entityTypes = history.types;
+		const obj = getHistoryDB();
+		this.historyKeys = obj.ids;
+		this.entityTypes = obj.types;
+
 	}
 
 	get current() {
@@ -46,11 +46,11 @@ class HistoryManager {
 
 	watch(id: string) {
 		if (this._bypass) return;
-		const index = historyKeys.indexOf(id, 0);
+		const index = this.historyKeys.indexOf(id, 0);
 		if (index > -1) {
-			historyKeys.splice(index, 1);
+			this.historyKeys.splice(index, 1);
 		}
-		historyKeys = [id, ...historyKeys];
+		this.historyKeys = [id, ...this.historyKeys];
 	}
 
 	get bypass() {

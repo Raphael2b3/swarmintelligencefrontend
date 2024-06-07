@@ -70,10 +70,12 @@ function getEntityInstancesFromCache(
 	keys: string[],
 	entity: IEntityType
 ) {
+	console.log('getEntityInstancesFromCache', keys, entity, entityCache);
 	const out: IEntity[] = []; // init
 	for (const key in keys || []) {
 		const _entity = entityCache[entity][key];
-		out.push(_entity);
+		if (_entity)
+			out.push(_entity);
 	}
 	return out;
 }
@@ -81,11 +83,16 @@ function getEntityInstancesFromCache(
 export function getEntity(id: string, entityType: IEntityType) {
 	let stm: IEntity | IEntity[];
 	stm = getEntityInstancesFromCache([id], entityType);
-	if (stm)
+	if (stm.length > 0) {
+		console.log('getEntityFromCache', stm);
 		return stm[0];
+	}
 	stm = getEntityDB(id, entityType);
-	if (!stm) return getFallbackEntity(entityType);
+	console.log('getEntityFromDB', stm);
+	if (!stm)
+		return getFallbackEntity(entityType);
 	cacheEntities([stm]);
+
 	return stm;
 }
 

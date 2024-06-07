@@ -2,33 +2,30 @@ import { getRecommendationDB } from '$lib/database';
 import type { IEntity, IEntityType } from '$lib/interfaces';
 import { getEntity } from './entities.svelte';
 
-let recommendationsPool: Record<string, IEntityType> = {};
 
 class RecommendationManager {
 	constructor() {
 		this.refresh();
 	}
-	index = 0;
-	current_entity?: IEntity = $state();
-	refresh() {
-		recommendationsPool = getRecommendationDB();
-		console.log("pool", recommendationsPool)
-		const id = Object.keys(recommendationsPool)[0];
-		console.log("id", id, id === "1")
-		this.current_entity = getEntity(id, recommendationsPool[id]);
-	}
+	recommendationsPool: Record<string, IEntityType> = $state({});
+	index = $state(0);
+
+	keys = $derived(Object.keys(this.recommendationsPool));
+	id = $derived(this.keys[this.index % this.keys.length]);
+	current_entity?: IEntity = $derived(getEntity(this.id, this.recommendationsPool[this.id]));
+
 	get current() {
-		console.log("acessing")
 		return this.current_entity;
 	}
+	refresh() {
+		this.recommendationsPool = getRecommendationDB();
+		this.index = 0;
+	}
 	getNext() {
-		console.log(recommendationsPool)
-		const id = recommendationsPool[(this.index + 1) % Object.keys(recommendationsPool).length];
-		this.current_entity = getEntity(id, recommendationsPool[id]);
+		this.index++;
 	}
 	getPrevious() {
-		const id = recommendationsPool[(this.index - 1) % Object.keys(recommendationsPool).length];
-		this.current_entity = getEntity(id, recommendationsPool[id]);
+		this.index--;
 	}
 }
 export const recommendationManager = new RecommendationManager();
