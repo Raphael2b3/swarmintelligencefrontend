@@ -692,7 +692,7 @@ export function findConnectiveForDB(
 }
 
 export function getRecommendationDB(): Record<string, IEntityType> {
-	return { id1: 'statement', id2: 'connection', id3: 'duplication' };
+	return { "1": 'statement', "2": 'connection', "3": 'duplication' };
 }
 
 export function getHistoryDB(

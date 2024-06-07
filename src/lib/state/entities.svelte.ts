@@ -79,16 +79,16 @@ function getEntityInstancesFromCache(
 }
 
 export function getEntity(id: string, entityType: IEntityType) {
-	try {
-		let stm = getEntityInstancesFromCache([id], entityType);
+	let stm: IEntity | IEntity[];
+	stm = getEntityInstancesFromCache([id], entityType);
+	if (stm)
 		return stm[0];
-	} catch (e) {
-		let stm = getEntityDB(id, entityType);
-		if (!stm) return getFallbackEntity(entityType);
-		cacheEntities([stm]);
-		return stm;
-	}
+	stm = getEntityDB(id, entityType);
+	if (!stm) return getFallbackEntity(entityType);
+	cacheEntities([stm]);
+	return stm;
 }
+
 
 export function getConnectiveFor(
 	id: string,

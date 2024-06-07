@@ -9,7 +9,6 @@
 </script>
 
 <Searchfield bind:isEmpty bind:results></Searchfield>
-{isEmpty}
 {#if isEmpty}
 	<RecommendationView />
 {:else}

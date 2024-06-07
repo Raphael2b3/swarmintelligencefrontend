@@ -4,7 +4,7 @@
 	import { Search, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { SearchOutline, ChevronDownOutline, FilterOutline } from 'flowbite-svelte-icons';
 	import FilterOptions from '../views/FilterOptions.svelte';
-	import { getEntity, searchEntites } from '$lib/state/entities.svelte';
+	import { searchEntites } from '$lib/state/entities.svelte';
 
 	let { isEmpty = $bindable(), results = $bindable() }: { results: IEntity[]; isEmpty: boolean } =
 		$props();
@@ -20,9 +20,10 @@
 	function search() {
 		results = searchEntites(searchTerm, filteroptions);
 	}
+	if (isEmpty) search();
 </script>
 
-<form class="flex">
+<form class="flex" onsubmit={search}>
 	<div class="relative">
 		<Button
 			onclick={() => (open = !open)}
@@ -40,11 +41,12 @@
 	</div>
 	<Search
 		bind:value={searchTerm}
+		name="q"
 		size="md"
 		class="rounded-none py-2.5"
 		placeholder="Search Mockups, Logos, Design Templates..."
 	/>
-	<Button onclick={search} class="!p-2.5 rounded-s-none">
+	<Button type="submit" class="!p-2.5 rounded-s-none">
 		<SearchOutline class="w-6 h-6" />
 	</Button>
 </form>

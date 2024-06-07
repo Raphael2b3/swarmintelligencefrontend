@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Entity from '$lib/components/models/Entity.svelte';
 	import { recommendationManager } from '$lib/state/recommendation.svelte';
-	import { Card } from 'flowbite-svelte';
+	import { Button, Card } from 'flowbite-svelte';
 </script>
 
 <Card>
 	Recommentdations
 	<div class="horizontal">
-		<button class="true-button" onclick={recommendationManager.getNext}>Next</button>
-		<button class="false-button" onclick={recommendationManager.getPrevious}>Last</button>
+		<Button onclick={recommendationManager.getNext}>Next</Button>
+		<Button onclick={recommendationManager.getPrevious}>Last</Button>
 	</div>
 	{#if recommendationManager.current}
 		<Entity entity={recommendationManager.current} />
