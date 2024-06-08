@@ -698,8 +698,8 @@ export function getRecommendationDB(): Record<string, IEntityType> {
 export function getHistoryDB(
 	skip?: number,
 	limit?: number
-) {
-	return { ids: [], types: [] };
+): { ids: string[]; types: IEntityType[] } {
+	return { ids: ["1"], types: ["statement"] };
 }
 
 export function searchForEntitiesDB(searchTerm: string, filterOptions: IFilterOptions) {

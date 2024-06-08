@@ -6,23 +6,22 @@ const PAGE_SIZE = 10;
 // history = [ [id,entityType],...]
 
 
+
+
 class HistoryManager {
-	_bypass = false;
+	#bypass = false;
 	historyKeys: string[] = $state([]);
 	entityTypes: IEntityType[] = [];
-
 	index = $state(0);
-	current_entities = $derived(this.get_current_entities());
+	start = $derived(PAGE_SIZE * this.index);
+	end = $derived(PAGE_SIZE * (this.index + 1) <= this.historyKeys.length ? PAGE_SIZE * (this.index + 1) : this.historyKeys.length);
+	current_entities = $derived(this.historyKeys.slice(this.start, this.end).map((k, index) => getEntity(k, this.entityTypes[index])));
 
 	constructor() {
+
 		this.refresh();
 	}
-	get_current_entities() {
-		let start = PAGE_SIZE * this.index;
-		if (start >= this.historyKeys.length) return [];
-		const end = PAGE_SIZE * (this.index + 1) <= this.historyKeys.length ? PAGE_SIZE * (this.index + 1) : this.historyKeys.length;
-		return this.historyKeys.slice(start, end).map((k, index) => getEntity(k, this.entityTypes[index]));
-	}
+
 
 	refresh() {
 		this.index = 0;
@@ -37,28 +36,33 @@ class HistoryManager {
 	}
 
 	getNext() {
+		if (this.index + 1 >= this.historyKeys.length) return;
 		this.index++;
 	}
 
 	getPrevious() {
+		if (this.index - 1 < 0) return;
 		this.index--;
+
 	}
 
-	watch(id: string) {
-		if (this._bypass) return;
+	watch(id: string, entityType: IEntityType) {
+		if (this.#bypass) return;
 		const index = this.historyKeys.indexOf(id, 0);
 		if (index > -1) {
 			this.historyKeys.splice(index, 1);
+			this.entityTypes.splice(index, 1);
 		}
 		this.historyKeys = [id, ...this.historyKeys];
+		this.entityTypes = [entityType, ...this.entityTypes];
 	}
 
 	get bypass() {
-		return this._bypass;
+		return this.#bypass;
 	}
 
 	set bypass(bypass: boolean) {
-		this._bypass = bypass;
+		this.#bypass = bypass;
 	}
 }
 export const historyManager = new HistoryManager();
