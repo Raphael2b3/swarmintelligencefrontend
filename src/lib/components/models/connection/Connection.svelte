@@ -3,11 +3,20 @@
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
 	import Statement from '$lib/components/models/statement/Statement.svelte';
 	import { getEntity } from '$lib/state/entities.svelte';
-	let { connection }: { connection: IConnection } = $props();
+	import { Card } from 'flowbite-svelte';
+	let {
+		connection,
+		showStatement = 'both'
+	}: { connection: IConnection; showStatement?: 'both' | 'thesis' | 'argument' } = $props();
 </script>
 
-<h2>Connection</h2>
-<Statement statement={getEntity(connection.argument, 'statement') as IStatement} />
-is a good argument {connection.isProArgument ? 'for' : 'against'} the statement
-<Progressbar value={connection.weight}></Progressbar>
-<Statement statement={getEntity(connection.argument, 'statement') as IStatement} />
+<Card class="flex items-center" color={connection.isProArgument ? 'green' : 'red'}>
+	{#if showStatement === 'thesis'}
+		<Statement statement={getEntity(connection.thesis, 'statement') as IStatement} />
+	{/if}
+	is {connection.isProArgument ? 'supported' : 'refuted'} by the following argument by
+	<Progressbar value={connection.weight}></Progressbar>
+	{#if showStatement === 'argument'}
+		<Statement statement={getEntity(connection.argument, 'statement') as IStatement} />
+	{/if}
+</Card>

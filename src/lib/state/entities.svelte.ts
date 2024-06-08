@@ -116,7 +116,8 @@ export function getConnectiveFor(
 		statementToConnective[connectiveType][id]
 	); // grab new connections
 	cacheEntities(db_entities);
-	return out;
+	out.push(...db_entities);
+	return out.slice(0, 4);
 }
 export function clearCache() {
 	console.log('clearCache');

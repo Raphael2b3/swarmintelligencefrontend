@@ -1,11 +1,42 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Entity from '$lib/components/models/Entity.svelte';
+	import Connection from '$lib/components/models/connection/Connection.svelte';
 	import Statement from '$lib/components/models/statement/Statement.svelte';
-	import { type IConnection, type IStatement } from '$lib/interfaces';
+	import { type IConnection, type IEntity, type IStatement } from '$lib/interfaces';
+	import { getEntity, getConnectiveFor } from '$lib/state/entities.svelte';
 
-	let { statement }: { statement: IStatement } = $props();
 	const { id } = $page.params;
-	let connections: IConnection[] = $state([]);
+	const statement = getEntity(id, 'statement') as IStatement;
+	let args: IEntity[] = getConnectiveFor(statement.id, 'argument');
+	let thesis: IEntity[] = getConnectiveFor(statement.id, 'argument');
 </script>
 
-<Statement {statement} showTruth={true}></Statement>
+<details class="mb-2 flex max-w-full items-center justify-center">
+	<summary>Thesis</summary>
+	<div class="flex flex-row gap-2 overflow-scroll no-scrollbar">
+		{#each thesis as thesis}
+			<Connection connection={thesis as IConnection} showStatement="thesis"></Connection>
+		{/each}
+	</div>
+</details>
+<Statement {statement} showTruth></Statement>
+Arguments
+<div class="flex flex-row gap-2 overflow-scroll no-scrollbar w-full">
+	{#each args as argument}
+		<Connection connection={argument as IConnection} showStatement="argument"></Connection>
+	{/each}
+</div>
+
+<style>
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+</style>

@@ -28,6 +28,6 @@
 	</Button>
 </Navbar>
 
-<div class="m-5">
+<div class="m-5 flex justify-center items-center flex-col">
 	{@render children()}
 </div>

@@ -23,7 +23,7 @@
 	if (isEmpty) search();
 </script>
 
-<form class="flex" onsubmit={search}>
+<form class="flex w-full" onsubmit={search}>
 	<div class="relative">
 		<Button
 			onclick={() => (open = !open)}

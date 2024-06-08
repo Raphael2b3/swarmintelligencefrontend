@@ -1,5 +1,5 @@
 import { getHistoryDB } from '$lib/database';
-import type { IEntityType } from '$lib/interfaces';
+import type { IEntity, IEntityType } from '$lib/interfaces';
 import { getEntity } from './entities.svelte';
 
 const PAGE_SIZE = 10;
@@ -9,7 +9,7 @@ const PAGE_SIZE = 10;
 
 
 class HistoryManager {
-	#bypass = false;
+	bypass = false;
 	historyKeys: string[] = $state([]);
 	entityTypes: IEntityType[] = [];
 	index = $state(0);
@@ -46,23 +46,15 @@ class HistoryManager {
 
 	}
 
-	watch(id: string, entityType: IEntityType) {
-		if (this.#bypass) return;
-		const index = this.historyKeys.indexOf(id, 0);
+	watch(entity: IEntity) {
+		if (this.bypass) return;
+		const index = this.historyKeys.indexOf(entity.id, 0);
 		if (index > -1) {
 			this.historyKeys.splice(index, 1);
 			this.entityTypes.splice(index, 1);
 		}
-		this.historyKeys = [id, ...this.historyKeys];
-		this.entityTypes = [entityType, ...this.entityTypes];
-	}
-
-	get bypass() {
-		return this.#bypass;
-	}
-
-	set bypass(bypass: boolean) {
-		this.#bypass = bypass;
+		this.historyKeys = [entity.id, ...this.historyKeys];
+		this.entityTypes = [entity.type, ...this.entityTypes];
 	}
 }
 export const historyManager = new HistoryManager();
