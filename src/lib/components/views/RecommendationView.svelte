@@ -4,14 +4,15 @@
 	import { Button, Card } from 'flowbite-svelte';
 </script>
 
-<Card>
+<Card size="xl" class="flex flex-col items-center">
 	Recommentdations
-	<div class="horizontal">
-		<Button onclick={recommendationManager.getNext}>Next</Button>
-		<Button onclick={recommendationManager.getPrevious}>Last</Button>
-	</div>
+
 	{#if recommendationManager.current}
 		<Entity entity={recommendationManager.current} />
+		<div>
+			<Button onclick={recommendationManager.getNext}>Next</Button>
+			<Button onclick={recommendationManager.getPrevious}>Last</Button>
+		</div>
 	{:else}
 		<p>No recommendations</p>
 	{/if}

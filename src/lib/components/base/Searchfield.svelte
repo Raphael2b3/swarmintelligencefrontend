@@ -9,7 +9,7 @@
 	let { isEmpty = $bindable(), results = $bindable() }: { results: IEntity[]; isEmpty: boolean } =
 		$props();
 
-	let searchTerm = $state('Ist die Erde Flach?');
+	let searchTerm = $state('');
 	let open = $state(false);
 	let filteroptions: IFilterOptions = $state({ entitytype: [] });
 

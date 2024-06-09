@@ -81,6 +81,7 @@ function getEntityInstancesFromCache(
 }
 
 export function getEntity(id: string, entityType: IEntityType) {
+	console.log('getEntity', id, entityType);
 	let stm: IEntity | IEntity[];
 	stm = getEntityInstancesFromCache([id], entityType);
 	if (stm.length > 0) {

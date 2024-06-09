@@ -530,7 +530,7 @@ const connections: IConnection[] = [
 	}
 ];
 
-const duplactons: IDuplication[] = [
+const duplictons: IDuplication[] = [
 	{
 		id: '1',
 		type: 'duplication',
@@ -666,12 +666,19 @@ export function getEntityDB(
 	entityType: IEntityType
 ) {
 	switch (entityType) {
-		case 'connection':
-			return connections[0];
-		case 'duplication':
-			return duplactons[0];
-		case 'statement':
+		case 'connection': {
+			let i = Math.floor(Math.random() * connections.length);
+			return connections[i];
+		}
+		case 'duplication': {
+
+			let i = Math.floor(Math.random() * duplictons.length);
+			return duplictons[i];
+		}
+		case 'statement': {
+			const i = Math.floor(Math.random() * statements.length);
 			return statements[0];
+		}
 	}
 }
 export function findConnectiveForDB(
@@ -688,7 +695,7 @@ export function findConnectiveForDB(
 			return connections;
 
 		case 'duplication':
-			return duplactons;
+			return duplictons;
 	}
 }
 
