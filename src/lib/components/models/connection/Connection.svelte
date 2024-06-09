@@ -11,12 +11,12 @@
 </script>
 
 <Card class="flex items-center" color={connection.isProArgument ? 'green' : 'red'}>
-	{#if showStatement === 'thesis'}
+	{#if showStatement !== 'argument'}
 		<Statement statement={getEntity(connection.thesis, 'statement') as IStatement} />
 	{/if}
 	is {connection.isProArgument ? 'supported' : 'refuted'} by the following argument by
 	<Progressbar value={connection.weight}></Progressbar>
-	{#if showStatement === 'argument'}
+	{#if showStatement !== 'thesis'}
 		<Statement statement={getEntity(connection.argument, 'statement') as IStatement} />
 	{/if}
 </Card>

@@ -80,7 +80,8 @@ function getEntityInstancesFromCache(
 	return out;
 }
 
-export function getEntity(id: string, entityType: IEntityType) {
+export function getEntity(id: string | undefined, entityType: IEntityType) {
+	if (!id) return;
 	console.log('getEntity', id, entityType);
 	let stm: IEntity | IEntity[];
 	stm = getEntityInstancesFromCache([id], entityType);

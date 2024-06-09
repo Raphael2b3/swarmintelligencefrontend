@@ -21,6 +21,7 @@ class RecommendationManager {
 		this.index = 0;
 	}
 	getNext() {
+		console.log("dfgnmnhgfdsa")
 		this.index++;
 	}
 	getPrevious() {
