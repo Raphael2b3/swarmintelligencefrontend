@@ -2,6 +2,7 @@
 	import { ELoadingState, type IEntity } from '$lib/interfaces';
 
 	import Entity from '$lib/components/models/Entity.svelte';
+	import { Button } from 'flowbite-svelte';
 	let {
 		results,
 		loadingState = ELoadingState.LOADING

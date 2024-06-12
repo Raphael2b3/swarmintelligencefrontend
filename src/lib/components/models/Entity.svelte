@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { isIConnection, isIDuplication, isIStatement, type IEntity } from '$lib/interfaces';
+	import {
+		isIConnection,
+		isIDuplication,
+		isIStatement,
+		type IEntity,
+		type IVoteValue
+	} from '$lib/interfaces';
 	import Connection from './connection/Connection.svelte';
 	import Duplication from './duplication/Duplication.svelte';
 	import Statement from './statement/Statement.svelte';

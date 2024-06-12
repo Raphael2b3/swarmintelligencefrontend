@@ -1,6 +1,7 @@
 export interface IStatement {
 	id: string;
 	type: IEntityType;
+	userVote?: 1 | -1
 	text: string;
 	lastSeasonTruth: number; // der letzten season
 	numberOfVotes: number;
@@ -70,3 +71,4 @@ export type IEntityCache = {
 
 export type IEntityType = "statement" | "connection" | "duplication";
 export type IConnectiveType = "argument" | "thesis" | "duplication";
+export type IVoteValue = 1 | -1

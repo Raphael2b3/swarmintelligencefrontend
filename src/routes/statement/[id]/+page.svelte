@@ -14,7 +14,7 @@
 
 <details class="mb-2 flex max-w-full items-center justify-center">
 	<summary>Thesis</summary>
-	<div class="flex flex-row gap-2 overflow-scroll no-scrollbar">
+	<div class="flex flex-row gap-2 overflow-scroll">
 		{#each thesis as thesis}
 			<Connection connection={thesis as IConnection} showStatement="thesis"></Connection>
 		{/each}
@@ -22,7 +22,7 @@
 </details>
 <Statement {statement} showTruth></Statement>
 Arguments
-<div class="flex flex-row gap-2 overflow-scroll no-scrollbar w-full">
+<div class="flex flex-row gap-2 overflow-scroll w-full">
 	{#each args as argument}
 		<Connection connection={argument as IConnection} showStatement="argument"></Connection>
 	{/each}

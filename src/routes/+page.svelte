@@ -3,6 +3,7 @@
 	import DiscoverView from '$lib/components/views/DiscoverView.svelte';
 	import RecommendationView from '$lib/components/views/RecommendationView.svelte';
 	import type { IEntity } from '$lib/interfaces';
+	import { Button } from 'flowbite-svelte';
 
 	let isEmpty = $state(true);
 	let results: IEntity[] = $state([]);
@@ -13,4 +14,5 @@
 	<RecommendationView />
 {:else}
 	<DiscoverView {results} />
+	<Button>Didnt find your Statement? Create it! Click</Button>
 {/if}
