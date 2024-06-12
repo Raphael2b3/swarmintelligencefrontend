@@ -6,12 +6,15 @@
 	import FilterOptions from '../views/FilterOptions.svelte';
 	import { searchEntites } from '$lib/state/entities.svelte';
 
-	let { isEmpty = $bindable(), results = $bindable() }: { results: IEntity[]; isEmpty: boolean } =
-		$props();
+	let {
+		isEmpty = $bindable(),
+		results = $bindable(),
+		filterOptions = { entitytype: [] }
+	}: { results: IEntity[]; isEmpty: boolean; filterOptions?: IFilterOptions } = $props();
 
 	let searchTerm = $state('');
 	let open = $state(false);
-	let filteroptions: IFilterOptions = $state({ entitytype: [] });
+	let filteroptions: IFilterOptions = $state(filterOptions);
 
 	$effect(() => {
 		isEmpty = searchTerm === '';

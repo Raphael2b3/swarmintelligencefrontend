@@ -9,7 +9,7 @@
 	const { id } = $page.params;
 	const statement = getEntity(id, 'statement') as IStatement;
 	let args: IEntity[] = getConnectiveFor(statement.id, 'argument');
-	let thesis: IEntity[] = getConnectiveFor(statement.id, 'argument');
+	let thesis: IEntity[] = getConnectiveFor(statement.id, 'thesis');
 </script>
 
 <details class="mb-2 flex max-w-full items-center justify-center">
