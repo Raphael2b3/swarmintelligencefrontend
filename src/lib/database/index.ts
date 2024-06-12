@@ -713,3 +713,25 @@ export function getHistoryDB(
 export function searchForEntitiesDB(searchTerm: string, filterOptions: IFilterOptions) {
 	return statements.sort(() => Math.random() - 0.5);
 }
+
+export function createDuplicationDB(statementA: string, statementB: string) {
+	return "1" // id 
+}
+
+
+export function createConnectionDB(statementThesis: string, statementArgument: string, isProArgument: boolean) {
+	return "1" // id 
+}
+
+export function createStatementDB(text: string, tags?: string[]) {
+	return "1" // id 
+}
+
+export function voteForEntityDB(id: string, entityType: IEntityType, value: number) {
+	if (entityType == 'duplication')
+		return "1" // id
+	else if (entityType == 'connection')
+		return "1" // id
+	else
+		return "1" // id 
+}

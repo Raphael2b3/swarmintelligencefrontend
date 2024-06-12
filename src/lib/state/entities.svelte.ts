@@ -1,4 +1,4 @@
-import { findConnectiveForDB, getEntityDB, searchForEntitiesDB } from '$lib/database';
+import { createConnectionDB, createDuplicationDB, createStatementDB, findConnectiveForDB, getEntityDB, searchForEntitiesDB, voteForEntityDB } from '$lib/database';
 import type {
 	IConnection,
 	IDuplication,
@@ -140,7 +140,6 @@ export function searchEntites(searchTerm: string, filterOptions: IFilterOptions,
 	return entities;
 }
 
-
 function searchEntitiesInCache(searchTerm: string, filterOptions: IFilterOptions) {
 
 	function filterStatement(statement: IStatement, searchTerm: string, filterOptions: IFilterOptions) {
@@ -213,4 +212,24 @@ function searchEntitiesInCache(searchTerm: string, filterOptions: IFilterOptions
 
 	}
 	return out;
+}
+
+export function watchEntity(entity: IStatement | IConnection | IDuplication) {
+	voteForEntityDB(entity.id, entity.type, 1);
+}
+
+export function createDuplicationFor(statementA: string, statementB: string) {
+	const id = createDuplicationDB(statementA, statementB);
+	voteForEntityDB(id, 'duplication', 1);
+}
+
+export function createConnectionFor(statementThesis: string, statementArgument: string, isProArgument: boolean, value: number) {
+	const id = createConnectionDB(statementThesis, statementArgument, isProArgument);
+	voteForEntityDB(id, 'connection', value);
+}
+
+export function createStatement(text: string, tags: string[], userVote: 1 | -1) {
+	const id = createStatementDB(text, tags);
+	voteForEntityDB(id, 'statement', userVote);
+
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Progressbar, Range } from 'flowbite-svelte';
-	let { value, disabled }: any = $props();
+	let { value = $bindable(), disabled }: any = $props();
 	let progress = $derived(value * 100);
 	let isChrome = $state(false);
 	let color: 'green' | 'red' = value > 0.5 ? 'green' : 'red';
