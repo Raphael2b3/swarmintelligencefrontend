@@ -7,6 +7,7 @@ export interface IStatement {
 	numberOfVotes: number;
 	voteRatio: number;
 	author: string;
+	stared?: boolean;
 	tags?: string[];
 }
 export function isIStatement(object: any): object is IStatement {
