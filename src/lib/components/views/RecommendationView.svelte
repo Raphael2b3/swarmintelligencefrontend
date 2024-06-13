@@ -25,7 +25,7 @@
 
 	addVoteListener(() => {
 		console.log('Vote');
-		getNext();
+		//getNext();
 	});
 </script>
 
