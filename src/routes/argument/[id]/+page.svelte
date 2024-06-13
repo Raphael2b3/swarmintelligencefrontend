@@ -1,14 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Checkbox from '$lib/components/base/Checkbox.svelte';
 	import Entity from '$lib/components/models/Entity.svelte';
-	import Connection from '$lib/components/models/connection/Connection.svelte';
 	import Statement from '$lib/components/models/statement/Statement.svelte';
-	import { ELoadingState, type IConnection, type IEntity, type IStatement } from '$lib/interfaces';
-	import { getEntity, getConnectiveFor, createConnectionFor } from '$lib/state/entities.svelte';
+	import { ELoadingState, type IEntity, type IStatement } from '$lib/interfaces';
+	import { getEntity, createConnectionFor } from '$lib/state/entities.svelte';
 	import Searchfield from '$lib/components/base/Searchfield.svelte';
-	import DiscoverView from '$lib/components/views/DiscoverView.svelte';
-	import RecommendationView from '$lib/components/views/RecommendationView.svelte';
 
 	import { goto } from '$app/navigation';
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
