@@ -12,6 +12,7 @@
 	import { Button, Label, Select } from 'flowbite-svelte';
 	import { goto } from '$app/navigation';
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
+	import NewStatement from '$lib/components/views/NewStatement.svelte';
 
 	const { id } = $page.params;
 	const statement = getEntity(id, 'statement') as IStatement;
@@ -31,13 +32,6 @@
 	};
 </script>
 
-<Searchfield
-	bind:isEmpty
-	bind:results
-	filterOptions={{
-		entitytype: ['statement']
-	}}
-></Searchfield>
 <Label>
 	What kind of Argument is this?
 	<Select class="mt-2" items={argumentTypes} bind:value={isProArgument} />
@@ -47,7 +41,14 @@ How much is this argument related to the thesis?
 <Progressbar bind:value={percentage}></Progressbar>
 <h3>Add Argument For</h3>
 <Statement {statement} showTruth></Statement>
-<hr />
+
+<Searchfield
+	bind:isEmpty
+	bind:results
+	filterOptions={{
+		entitytype: ['statement']
+	}}
+></Searchfield>
 {#each results as result}
 	<Entity entity={result} mode="preview" />
 	<Button onclick={() => addArgument(result.id)}>Add this as Argument</Button>
@@ -60,4 +61,4 @@ How much is this argument related to the thesis?
 		<p>Loading...</p>
 	{/if}
 {/each}
-<Button onclick={}>Didnt find your Statement? Create it! Click</Button>
+<NewStatement></NewStatement>

@@ -5,7 +5,7 @@
 	import Connection from '$lib/components/models/connection/Connection.svelte';
 	import Statement from '$lib/components/models/statement/Statement.svelte';
 	import { ELoadingState, type IConnection, type IEntity, type IStatement } from '$lib/interfaces';
-	import { getEntity, getConnectiveFor } from '$lib/state/entities.svelte';
+	import { getEntity, getConnectiveFor, createDuplicationFor } from '$lib/state/entities.svelte';
 	import Searchfield from '$lib/components/base/Searchfield.svelte';
 	import DiscoverView from '$lib/components/views/DiscoverView.svelte';
 	import RecommendationView from '$lib/components/views/RecommendationView.svelte';
@@ -30,11 +30,11 @@
 ></Searchfield>
 {#each results as result}
 	<Entity entity={result} mode="preview" />
-	<Button onclick={() => {
-			console.log((result as IStatement).id);
-			goto("/statement/"+statement.id)
-		}}
-		>Add this as Duplication</Button
+	<Button
+		onclick={() => {
+			createDuplicationFor(statement.id, result.id);
+			goto('/statement/' + statement.id);
+		}}>Add this as Duplication</Button
 	>
 	<hr />
 {:else}

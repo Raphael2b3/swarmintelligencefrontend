@@ -8,7 +8,8 @@ import type {
 	IStatement,
 	IStatementToConnective,
 	IEntityType,
-	IConnectiveType
+	IConnectiveType,
+	IVoteValue
 } from '$lib/interfaces';
 import { historyManager } from './history.svelte';
 
@@ -81,7 +82,7 @@ function getEntityInstancesFromCache(
 }
 
 export function getEntity(id: string | undefined, entityType: IEntityType) {
-	if (!id) return;
+	if (!id) return getFallbackEntity("statement");
 	console.log('getEntity', id, entityType);
 	let stm: IEntity | IEntity[];
 	stm = getEntityInstancesFromCache([id], entityType);
@@ -97,7 +98,6 @@ export function getEntity(id: string | undefined, entityType: IEntityType) {
 
 	return stm;
 }
-
 
 export function getConnectiveFor(
 	id: string,
@@ -228,7 +228,7 @@ export function createConnectionFor(statementThesis: string, statementArgument: 
 	voteForEntityDB(id, 'connection', value);
 }
 
-export function createStatement(text: string, tags: string[], userVote: 1 | -1) {
+export function createStatement(text: string, tags: string[], userVote: IVoteValue) {
 	const id = createStatementDB(text, tags);
 	voteForEntityDB(id, 'statement', userVote);
 

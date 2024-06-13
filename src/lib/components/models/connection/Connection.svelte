@@ -16,6 +16,11 @@
 	{/if}
 	is {connection.isProArgument ? 'supported' : 'refuted'} by the following argument by
 	<Progressbar value={connection.weight}></Progressbar>
+	<Button
+		onclick={() => {
+			vote;
+		}}>Submit</Button
+	>
 	{#if showStatement !== 'thesis'}
 		<Statement statement={getEntity(connection.argument, 'statement') as IStatement} />
 	{/if}

@@ -2,11 +2,10 @@
 	import { ELoadingState, type IEntity } from '$lib/interfaces';
 
 	import Entity from '$lib/components/models/Entity.svelte';
-	import { Button } from 'flowbite-svelte';
 	let {
-		results,
+		results = [],
 		loadingState = ELoadingState.LOADING
-	}: { results: IEntity[]; loadingState?: ELoadingState } = $props();
+	}: { results?: IEntity[]; loadingState?: ELoadingState } = $props();
 </script>
 
 {#each results as result}
