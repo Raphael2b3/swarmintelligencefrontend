@@ -22,16 +22,15 @@
 	}
 </script>
 
-a
 <div
 	title="Click to Open Statement"
-	class=" flex flex-col gap-2 p-4 m-4 rounded-lg shadow-lg dark:bg-slate-800 dark:text-white"
+	class=" m-4 flex flex-col gap-2 rounded-lg p-4 shadow-lg dark:bg-slate-800 dark:text-white"
 >
 	<div class="flex flex-row">
-		<div class="flex justify-center p-4 w-full">
+		<div class="flex w-full justify-center p-4">
 			{statement.text}
 		</div>
-		<i class="material-icons w-5 h-5 ms-5">menu</i>
+		<i class="material-icons ms-5 h-5 w-5">menu</i>
 		<select>
 			<option value="/duplication/{statement.id}">Duplication</option>
 			<option onclick={watch}>Watch</option>
@@ -51,21 +50,21 @@ a
 			<Progressbar value={statement.lastSeasonTruth} disabled></Progressbar>
 		{/if}
 	{/if}
-	<div class="flex justify-around px-4 w-full gap-3">
+	<div class="flex w-full justify-around gap-3 px-4">
 		<button color="green" onclick={() => internOnVote(1)}>True</button>
 		<div class="flex flex-col items-center gap-3">
 			<a
-				class=" rounded-md p-2 outline hover:bg-slate-700 shadow-md"
+				class=" rounded-md p-2 shadow-md outline hover:bg-slate-700"
 				href="/statement/{statement.id}">Open Details</a
 			>
 			<a href="/argument/{statement.id}" class="!p-2">
-				<i class="material-icons w-6 h-6">add_circle</i>
+				<i class="material-icons h-6 w-6">add_circle</i>
 				add Argument
 			</a>
 			{#if stared}
-				<i class="material-icons w-6 h-6">star</i>
+				<i class="material-icons h-6 w-6">star</i>
 			{:else}
-				<i class="material-icons w-6 h-6">star_border</i>
+				<i class="material-icons h-6 w-6">star_border</i>
 			{/if}
 		</div>
 		<button color="red" onclick={() => internOnVote(-1)}>False</button>
