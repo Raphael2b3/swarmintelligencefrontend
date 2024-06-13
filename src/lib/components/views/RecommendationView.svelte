@@ -4,7 +4,7 @@
 	import { getRecommendationDB } from '$lib/database';
 	import type { IEntity, IEntityType } from '$lib/interfaces';
 	import { getEntity } from '$lib/state/entities.svelte';
-
+	import { addVoteListener } from '$lib/hooks/vote.svelte';
 	let recommendationsPool: Record<string, IEntityType> = $state({});
 	let index = $state(0);
 	let keys = $derived(Object.keys(recommendationsPool));
@@ -22,6 +22,11 @@
 		index--;
 	}
 	refresh();
+
+	addVoteListener(() => {
+		console.log('Vote');
+		getNext();
+	});
 </script>
 
 <Card size="xl" class="flex flex-col items-center">

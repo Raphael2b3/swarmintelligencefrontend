@@ -1,4 +1,5 @@
 import { createConnectionDB, createDuplicationDB, createStatementDB, findConnectiveForDB, getEntityDB, searchForEntitiesDB, voteForEntityDB } from '$lib/database';
+import { triggerVoteEvent } from '$lib/hooks/vote.svelte';
 import type {
 	IConnection,
 	IDuplication,
@@ -232,4 +233,9 @@ export function createStatement(text: string, tags: string[], userVote: IVoteVal
 	const id = createStatementDB(text, tags);
 	voteForEntityDB(id, 'statement', userVote);
 
+}
+
+export function voteForEntity(id: string, entityType: IEntityType, value: number) {
+	triggerVoteEvent();
+	return voteForEntityDB(id, entityType, value);
 }

@@ -34,6 +34,7 @@ export interface IDuplication {
 	type: IEntityType;
 	statementA: string;
 	statementB: string;
+	userVote?: IVoteValue
 	numberOfVotes: number;
 	isDuplicateVotes: number;
 }

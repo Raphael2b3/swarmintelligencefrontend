@@ -9,6 +9,7 @@
 		StarOutline,
 		StarSolid
 	} from 'flowbite-svelte-icons';
+	import { voteForEntity } from '$lib/state/entities.svelte';
 	let {
 		statement,
 		showTruth = false
@@ -16,10 +17,12 @@
 		statement: IStatement;
 		showTruth?: boolean;
 	} = $props();
-	let voteValue = $state(statement.userVote);
 	let stared = $state(statement.stared);
+	let voteValue = $state(statement.userVote);
+
 	function internOnVote(n: IVoteValue) {
 		voteValue = statement.userVote = n;
+		voteForEntity(statement.id, 'statement', n);
 	}
 	function watch() {
 		stared = !stared || false;

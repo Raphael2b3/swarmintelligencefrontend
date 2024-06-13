@@ -2,8 +2,8 @@
 	import type { IConnection, IStatement } from '$lib/interfaces';
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
 	import Statement from '$lib/components/models/statement/Statement.svelte';
-	import { getEntity } from '$lib/state/entities.svelte';
-	import { Card } from 'flowbite-svelte';
+	import { getEntity, voteForEntity } from '$lib/state/entities.svelte';
+	import { Button, Card } from 'flowbite-svelte';
 	let {
 		connection,
 		showStatement = 'both'
@@ -18,7 +18,7 @@
 	<Progressbar value={connection.weight}></Progressbar>
 	<Button
 		onclick={() => {
-			vote;
+			voteForEntity(connection.id, 'connection', connection.weight);
 		}}>Submit</Button
 	>
 	{#if showStatement !== 'thesis'}
