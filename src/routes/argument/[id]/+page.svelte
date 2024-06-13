@@ -9,7 +9,7 @@
 	import Searchfield from '$lib/components/base/Searchfield.svelte';
 	import DiscoverView from '$lib/components/views/DiscoverView.svelte';
 	import RecommendationView from '$lib/components/views/RecommendationView.svelte';
-	import { Button, Label, Select } from 'flowbite-svelte';
+
 	import { goto } from '$app/navigation';
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
 	import NewStatement from '$lib/components/views/NewStatement.svelte';
@@ -32,10 +32,14 @@
 	};
 </script>
 
-<Label>
+<label>
 	What kind of Argument is this?
-	<Select class="mt-2" items={argumentTypes} bind:value={isProArgument} />
-</Label>
+	<select class="mt-2" bind:value={isProArgument}>
+		{#each argumentTypes as at}
+			<option value={at.value}>{at.name}</option>
+		{/each}
+	</select>
+</label>
 
 How much is this argument related to the thesis?
 <Progressbar bind:value={percentage}></Progressbar>
@@ -51,7 +55,7 @@ How much is this argument related to the thesis?
 ></Searchfield>
 {#each results as result}
 	<Entity entity={result} mode="preview" />
-	<Button onclick={() => addArgument(result.id)}>Add this as Argument</Button>
+	<button onclick={() => addArgument(result.id)}>Add this as Argument</button>
 	<hr />
 {:else}
 	<!-- else if content here -->

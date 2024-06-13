@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { IEntity, IFilterOptions } from '$lib/interfaces';
 
-	import { Search, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
-	import { SearchOutline, ChevronDownOutline, FilterOutline } from 'flowbite-svelte-icons';
 	import FilterOptions from '../views/FilterOptions.svelte';
 	import { searchEntites } from '$lib/state/entities.svelte';
 
@@ -28,28 +26,27 @@
 
 <form class="flex w-full" onsubmit={search}>
 	<div class="relative">
-		<Button
+		<button
 			onclick={() => (open = !open)}
 			class="rounded-e-none whitespace-nowrap border border-e-0 border-primary-700"
 		>
-			<FilterOutline class="w-5 h-5 ms-5" />
+			<i class="material-icons w-5 h-5 ms-5">filter_list</i>
 			Filter
-			<ChevronDownOutline class="w-2.5 h-2.5 ms-2.5" />
-		</Button>
-		<Dropdown {open}>
-			<DropdownItem>
+			<i class="material-icons w-2.5 h-2.5 ms-2.5">keyboard_arrow_down</i>
+		</button>
+		<select>
+			<option>
 				<FilterOptions bind:options={filteroptions} />
-			</DropdownItem>
-		</Dropdown>
+			</option>
+		</select>
 	</div>
-	<Search
+	<input
 		bind:value={searchTerm}
 		name="q"
-		size="md"
-		class="rounded-none py-2.5"
+		class="rounded-none py-2.5 w-full"
 		placeholder="Search Mockups, Logos, Design Templates..."
 	/>
-	<Button type="submit" class="!p-2.5 rounded-s-none">
-		<SearchOutline class="w-6 h-6" />
-	</Button>
+	<button type="submit" class="!p-2.5 rounded-s-none">
+		<i class="material-icons w-6 h-6">search</i>
+	</button>
 </form>

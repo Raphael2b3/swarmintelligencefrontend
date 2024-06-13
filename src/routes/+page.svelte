@@ -4,7 +4,6 @@
 	import NewStatement from '$lib/components/views/NewStatement.svelte';
 	import RecommendationView from '$lib/components/views/RecommendationView.svelte';
 	import type { IEntity } from '$lib/interfaces';
-	import { Button } from 'flowbite-svelte';
 
 	let isEmpty = $state(true);
 	let results: IEntity[] = $state([]);

@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { IFilterOptions } from '$lib/interfaces';
-	import { Card, Button, Label, Select, Input, Toggle } from 'flowbite-svelte';
-	import Checkbox from '../base/Checkbox.svelte';
 
 	let { options = $bindable() }: { options: IFilterOptions } = $props();
 
@@ -24,25 +22,42 @@
 	});
 </script>
 
-<Card>
-	<Button onclick={setDefaultOptions}>Clear All</Button>
+<div>
+	<button onclick={setDefaultOptions}>Clear All</button>
 
-	<Checkbox class="p-3" bind:checked={options.controversial}>Controversal Only</Checkbox>
-
+	<input type="checkbox" class="p-3" bind:checked={options.controversial} />Controversal Only
 	<p class="mb-4 font-semibold text-gray-900 dark:text-white">Entities</p>
 
-	<Checkbox class="p-3" bind:group={options.entitytype} value="statement">Statements</Checkbox>
-	<Checkbox class="p-3" bind:group={options.entitytype} value="connection">Connections</Checkbox>
-	<Checkbox class="p-3" bind:group={options.entitytype} value="duplication">Duplications</Checkbox>
-	<Label>
+	<input type="checkbox" class="p-3" bind:group={options.entitytype} value="statement" />Statements
+	<input
+		type="checkbox"
+		class="p-3"
+		bind:group={options.entitytype}
+		value="connection"
+	/>Connections
+	<input
+		type="checkbox"
+		class="p-3"
+		bind:group={options.entitytype}
+		value="duplication"
+	/>Duplications
+	<label>
 		Sort By Truth
-		<Select class="mt-2" items={sortdirections} bind:value={options.sortByTruth} />
-	</Label>
+		<select class="mt-2" bind:value={options.sortByTruth}>
+			{#each sortdirections as direction}
+				<option value={direction.value}>{direction.name}</option>
+			{/each}
+		</select>
+	</label>
 
-	<Label>
+	<label>
 		Sort By Votes
-		<Select class="mt-2" items={sortdirections} bind:value={options.sortByVotes} />
-	</Label>
+		<select class="mt-2" bind:value={options.sortByVotes}>
+			{#each sortdirections as direction}
+				<option value={direction.value}>{direction.name}</option>
+			{/each}
+		</select>
+	</label>
 
-	<Input type="text" id="first_name" placeholder="Tags" bind:value={options._tagstring} />
-</Card>
+	<input type="text" id="first_name" placeholder="Tags" bind:value={options._tagstring} />
+</div>

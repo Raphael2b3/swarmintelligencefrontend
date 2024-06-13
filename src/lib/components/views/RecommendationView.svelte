@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Entity from '$lib/components/models/Entity.svelte';
-	import { Button, Card } from 'flowbite-svelte';
 	import { getRecommendationDB } from '$lib/database';
 	import type { IEntity, IEntityType } from '$lib/interfaces';
 	import { getEntity } from '$lib/state/entities.svelte';
@@ -29,15 +28,15 @@
 	});
 </script>
 
-<Card size="xl" class="flex flex-col items-center">
+<div class="flex flex-col items-center">
 	Recommendations
 	<div>
-		<Button onclick={getNext}>Next</Button>
-		<Button onclick={getPrevious}>Last</Button>
+		<button onclick={getNext}>Next</button>
+		<button onclick={getPrevious}>Last</button>
 	</div>
 	{#if current_entity}
 		<Entity entity={current_entity} />
 	{:else}
 		<p>No recommendations</p>
 	{/if}
-</Card>
+</div>

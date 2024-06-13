@@ -1,33 +1,31 @@
 <script>
-	import { page } from '$app/stores';
-	import { RefreshOutline } from 'flowbite-svelte-icons';
 	import '../app.css';
-	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button } from 'flowbite-svelte';
+	import { page } from '$app/stores';
+	import '../app.css';
 	import { clearCache } from '$lib/state/entities.svelte';
 	let { children } = $props();
 	let activeUrl = $derived($page.url.pathname);
 </script>
 
-<Navbar class="px-2 sm:px-4 py-2.5 w-full z-20 top-0 start-0 border-b">
-	<NavBrand href="/">
+<nav class="start-0 top-0 z-20 w-full border-b px-2 py-2.5 sm:px-4">
+	<a href="/">
 		<img src="/images/favicon.png" class="me-3 h-6 sm:h-9" alt="Flowbite Logo" />
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
 			>Swarmintelligence</span
 		>
-	</NavBrand>
-	<NavHamburger />
-	<NavUl {activeUrl}>
-		<NavLi href="/" active={true}>Home</NavLi>
-		<NavLi href="/history">History</NavLi>
-		<NavLi href="/help">About</NavLi>
-		<NavLi href="/help">Navbar</NavLi>
-	</NavUl>
-	<Button>
+	</a>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/history">History</a></li>
+		<li><a href="/about">About</a></li>
+		<li><a href="/help">Help</a></li>
+	</ul>
+	<button onclick={clearCache}>
 		Clear Cache
-		<RefreshOutline onclick={clearCache}></RefreshOutline>
-	</Button>
-</Navbar>
+		<i class="material-icons h-6 w-6">refresh</i>
+	</button>
+</nav>
 
-<div class="m-5 flex justify-center items-center flex-col">
+<div class="m-5 flex flex-col items-center justify-center">
 	{@render children()}
 </div>

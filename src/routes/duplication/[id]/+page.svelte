@@ -9,7 +9,6 @@
 	import Searchfield from '$lib/components/base/Searchfield.svelte';
 	import DiscoverView from '$lib/components/views/DiscoverView.svelte';
 	import RecommendationView from '$lib/components/views/RecommendationView.svelte';
-	import { Button } from 'flowbite-svelte';
 	import { goto } from '$app/navigation';
 
 	const { id } = $page.params;
@@ -30,11 +29,11 @@
 ></Searchfield>
 {#each results as result}
 	<Entity entity={result} mode="preview" />
-	<Button
+	<button
 		onclick={() => {
 			createDuplicationFor(statement.id, result.id);
 			goto('/statement/' + statement.id);
-		}}>Add this as Duplication</Button
+		}}>Add this as Duplication</button
 	>
 	<hr />
 {:else}

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { IVoteValue } from '$lib/interfaces';
 	import { createStatement } from '$lib/state/entities.svelte';
-	import { Button, Input, Label, Modal, Textarea } from 'flowbite-svelte';
 
 	// create a new statement
 	let text = $state('');
@@ -15,19 +14,22 @@
 	let open = $state(false);
 </script>
 
-<Modal bind:open>
-	<Label for="textarea-id" class="mb-2">Statement</Label>
-	<Textarea id="textarea-id" rows="4" name="message" bind:value={text} />
-	<Label for="tags">Tags</Label>
-	<Input bind:value={tagstring} placeholder="Seperate Tags with Space" name="tags" id="tags" />
-	<Button color="green" outline={voteValue === -1} onclick={() => internOnVote(1)}>True</Button>
-	<Button color="red" outline={voteValue === 1} onclick={() => internOnVote(-1)}>False</Button>
-	<Button onclick={() => createStatement(text, tags, voteValue)}>Create Statement</Button>
-</Modal>
-{#if !open}
-	<Button
+{#if open}
+	<dialog>
+		<label for="textarea-id" class="mb-2">Statement</label>
+		<textarea id="textarea-id" rows="4" name="message" bind:value={text}></textarea>
+		<label for="tags">Tags</label>
+		<input bind:value={tagstring} placeholder="Seperate Tags with Space" name="tags" id="tags" />
+		<button color="green" onclick={() => internOnVote(1)}>True</button>
+		<button color="red" onclick={() => internOnVote(-1)}>False</button>
+		<form method="dialog">
+			<button onclick={() => createStatement(text, tags, voteValue)}>Create Statement</button>
+		</form>
+	</dialog>
+{:else}
+	<button
 		onclick={() => {
 			open = !open;
-		}}>Didnt find your Statement? Create it! Click</Button
+		}}>Didnt find your Statement? Create it! Click</button
 	>
 {/if}

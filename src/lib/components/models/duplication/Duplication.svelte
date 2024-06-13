@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { IDuplication, IStatement, IVoteValue } from '$lib/interfaces';
 	import { getEntity, voteForEntity } from '$lib/state/entities.svelte';
-	import { Button } from 'flowbite-svelte';
 	import Statement from '../statement/Statement.svelte';
 
 	let { duplication }: { duplication: IDuplication } = $props();
@@ -15,7 +14,7 @@
 
 <h2>Duplication</h2>
 <Statement statement={getEntity(duplication.statementA, 'statement') as IStatement} />
-<Button color="green" outline={voteValue === 1} onclick={() => internOnVote(1)}>True</Button>
-<Button color="red" outline={voteValue === -1} onclick={() => internOnVote(-1)}>False</Button>
+<button color="green" onclick={() => internOnVote(1)}>True</button>
+<button color="red" onclick={() => internOnVote(-1)}>False</button>
 
 <Statement statement={getEntity(duplication.statementB, 'statement') as IStatement} />

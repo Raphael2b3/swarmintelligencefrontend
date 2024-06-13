@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Progressbar, Range } from 'flowbite-svelte';
 	let { value = $bindable(), disabled }: any = $props();
 	let progress = $derived(value * 100);
 	let isChrome = $state(false);
@@ -12,9 +11,9 @@
 
 <div class="m-2 flex flex-col items-center">
 	{#if !disabled}
-		<Range id="range-steps" min="0" max="1" bind:value step="0.01" />
+		<input type="range" min="0" max="1" bind:value step="0.01" />
 		{Math.floor(progress)}%
 	{:else}
-		<Progressbar {progress} {color} />
+		<progress max="1" {value}>{value}</progress>
 	{/if}
 </div>
