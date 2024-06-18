@@ -12,7 +12,7 @@
 	} = $props();
 	let stared = $state(statement.stared);
 	let voteValue = $state(statement.userVote);
-
+	let open = $state(false);
 	function internOnVote(n: IVoteValue) {
 		voteValue = statement.userVote = n;
 		voteForEntity(statement.id, 'statement', n);
@@ -26,7 +26,7 @@
 	title="Click to Open Statement"
 	class=" m-4 flex flex-col gap-2 rounded-lg p-4 shadow-lg dark:bg-slate-800 dark:text-white"
 >
-	<div class="flex flex-row">
+	<div class="flex flex-row items-center">
 		<div class="flex w-full justify-center p-4">
 			{statement.text}
 		</div>

@@ -28,11 +28,10 @@
 	});
 </script>
 
-<div class="flex flex-col items-center">
-	Recommendations
-	<div>
-		<button onclick={getNext}>Next</button>
-		<button onclick={getPrevious}>Last</button>
+<div class="flex w-full flex-col items-center gap-3">
+	<div class="flex w-full gap-3">
+		<button class="h-8 flex-1 border-slate-400 shadow-lg" onclick={getPrevious}>Last</button>
+		<button class="h-8 flex-1 border-slate-400 shadow-lg" onclick={getNext}>Next</button>
 	</div>
 	{#if current_entity}
 		<Entity entity={current_entity} />

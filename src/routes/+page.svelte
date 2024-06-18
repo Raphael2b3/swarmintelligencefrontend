@@ -10,6 +10,7 @@
 </script>
 
 <Searchfield bind:isEmpty bind:results></Searchfield>
+
 {#if isEmpty}
 	<RecommendationView />
 {:else}
