@@ -3,6 +3,8 @@
 	import Progressbar from '$lib/components/base/Progressbar.svelte';
 
 	import { voteForEntity } from '$lib/state/entities.svelte';
+	import Dropdown from '$lib/components/base/Dropdown.svelte';
+	import NewArgument from '$lib/components/views/NewArgument.svelte';
 	let {
 		statement,
 		showTruth = false
@@ -22,19 +24,18 @@
 	}
 </script>
 
-<div
-	title="Click to Open Statement"
-	class=" m-4 flex flex-col gap-2 rounded-lg p-4 shadow-lg dark:bg-slate-800 dark:text-white"
->
+<div class=" m-4 flex flex-col gap-2 rounded-lg p-4 shadow-lg dark:bg-slate-800 dark:text-white">
 	<div class="flex flex-row items-center">
 		<div class="flex w-full justify-center p-4">
 			{statement.text}
 		</div>
-		<i class="material-icons ms-5 h-5 w-5">menu</i>
-		<select>
-			<option value="/duplication/{statement.id}">Duplication</option>
-			<option onclick={watch}>Watch</option>
-		</select>
+		<Dropdown title="" icon="menu">
+			<a href="/duplication/{statement.id}">Duplication</a>
+			<a
+				class=" rounded-md p-2 shadow-md outline hover:bg-slate-700"
+				href="/statement/{statement.id}">Open Details</a
+			>
+		</Dropdown>
 	</div>
 	<hr />
 	{#if showTruth}
@@ -51,22 +52,18 @@
 		{/if}
 	{/if}
 	<div class="flex w-full justify-around gap-3 px-4">
-		<button color="green" onclick={() => internOnVote(1)}>True</button>
+		<button class=" bg-green-600" onclick={() => internOnVote(1)}>True</button>
 		<div class="flex flex-col items-center gap-3">
-			<a
-				class=" rounded-md p-2 shadow-md outline hover:bg-slate-700"
-				href="/statement/{statement.id}">Open Details</a
-			>
-			<a href="/argument/{statement.id}" class="!p-2">
-				<i class="material-icons h-6 w-6">add_circle</i>
-				add Argument
-			</a>
-			{#if stared}
-				<i class="material-icons h-6 w-6">star</i>
-			{:else}
-				<i class="material-icons h-6 w-6">star_border</i>
-			{/if}
+			<NewArgument {statement} />
+			<button onclick={watch} class="flex items-center gap-1">
+				WATCH
+				{#if stared}
+					<i class="material-icons h-6 w-6">star</i>
+				{:else}
+					<i class="material-icons h-6 w-6">star_border</i>
+				{/if}
+			</button>
 		</div>
-		<button color="red" onclick={() => internOnVote(-1)}>False</button>
+		<button class="bg-red-500" onclick={() => internOnVote(-1)}>False</button>
 	</div>
 </div>

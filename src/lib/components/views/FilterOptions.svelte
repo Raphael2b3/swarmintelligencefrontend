@@ -18,13 +18,12 @@
 		{ value: 'desc', name: 'Descending' }
 	];
 
-	let open = $state(false);
 	$effect(() => {
 		options.tags = options._tagstring?.split(' ');
 	});
 </script>
 
-<Dropdown title="Filter">
+<Dropdown title="Filter" icon="filter">
 	<button class="rounded p-3 shadow-md" onclick={setDefaultOptions}>Clear All</button>
 
 	<div class="flex gap-3">
