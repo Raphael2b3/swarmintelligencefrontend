@@ -16,6 +16,20 @@
 	import PositiveButton from '$lib/components/buttons/PositiveButton.svelte';
 	import PrimaryButton from '$lib/components/buttons/PrimaryButton.svelte';
 	import SecondaryButton from '$lib/components/buttons/SecondaryButton.svelte';
+	import CheckBox from '$lib/components/form/CheckBox.svelte';
+	import DropdownSelect from '$lib/components/form/DropdownSelect.svelte';
+	import Slider from '$lib/components/form/Slider.svelte';
+	import Textfield from '$lib/components/form/Textfield.svelte';
+	import ConnectionSearchResult from '$lib/components/searchresult/ConnectionSearchResult.svelte';
+	import DuplicationSearchResult from '$lib/components/searchresult/DuplicationSearchResult.svelte';
+	import StatementSearchResult from '$lib/components/searchresult/StatementSearchResult.svelte';
+	import {
+		getEntity,
+		getFallbackConnection,
+		getFallbackDuplication,
+		getFallbackEntity,
+		getFallbackStatement
+	} from '$lib/state/entities.svelte';
 </script>
 
 <div style="display: flex; flex-direction: column;">
@@ -40,4 +54,13 @@
 	<PositiveButton title="Positive Button"></PositiveButton>
 	<PrimaryButton title="Primary Button"></PrimaryButton>
 	<SecondaryButton title="Secondary Button"></SecondaryButton>
+	-------------------- Form --------------------
+	<CheckBox title="Checkbox"></CheckBox>
+	<DropdownSelect></DropdownSelect>
+	<Slider></Slider>
+	<Textfield></Textfield>
+	-------------------- Search Result --------------------
+	<ConnectionSearchResult connection={getFallbackConnection()}></ConnectionSearchResult>
+	<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+	<StatementSearchResult statement={getFallbackStatement()}></StatementSearchResult>
 </div>

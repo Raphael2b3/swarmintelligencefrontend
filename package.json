@@ -16,7 +16,13 @@
 	},
 	"devDependencies": {
 		"@smui/button": "^8.0.0-alpha.0",
+		"@smui/card": "^8.0.0-alpha.0",
+		"@smui/checkbox": "^8.0.0-alpha.0",
+		"@smui/form-field": "^8.0.0-alpha.0",
 		"@smui/icon-button": "^8.0.0-alpha.0",
+		"@smui/select": "^8.0.0-alpha.0",
+		"@smui/slider": "^8.0.0-alpha.0",
+		"@smui/textfield": "^8.0.0-alpha.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
