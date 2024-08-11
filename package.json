@@ -9,9 +9,14 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
+		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
 	},
 	"devDependencies": {
+		"@smui/button": "^8.0.0-alpha.0",
+		"@smui/icon-button": "^8.0.0-alpha.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
@@ -23,7 +28,8 @@
 		"eslint-plugin-svelte": "^2.36.0-next.4",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
-		"svelte": "^5.0.0-next.141",
+		"smui-theme": "^8.0.0-alpha.0",
+		"svelte": "^5.0.0-next.215",
 		"svelte-check": "^3.6.0",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
