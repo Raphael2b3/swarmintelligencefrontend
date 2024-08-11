@@ -54,7 +54,6 @@
 	<div class="flex w-full justify-around gap-3 px-4">
 		<button class=" bg-green-600" onclick={() => internOnVote(1)}>True</button>
 		<div class="flex flex-col items-center gap-3">
-			<NewArgument {statement} />
 			<button onclick={watch} class="flex items-center gap-1">
 				WATCH
 				{#if stared}
