@@ -20,6 +20,7 @@
 		"@smui/checkbox": "^8.0.0-alpha.0",
 		"@smui/form-field": "^8.0.0-alpha.0",
 		"@smui/icon-button": "^8.0.0-alpha.0",
+		"@smui/ripple": "^8.0.0-alpha.0",
 		"@smui/select": "^8.0.0-alpha.0",
 		"@smui/slider": "^8.0.0-alpha.0",
 		"@smui/textfield": "^8.0.0-alpha.0",

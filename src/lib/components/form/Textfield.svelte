@@ -3,9 +3,9 @@
 	import Icon from '@smui/textfield/icon';
 	import HelperText from '@smui/textfield/helper-text';
 
-	let { valueA = '', title = 'Texfield' } = $$props;
+	let { value = '', title = 'Texfield' } = $$props;
 </script>
 
-<Textfield variant="outlined" bind:value={valueA} label={title}>
+<Textfield variant="outlined" bind:value label={title}>
 	<HelperText slot="helper">Helper Text</HelperText>
 </Textfield>
