@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { IDuplication, IStatement } from '$lib/interfaces';
-	import { getEntity } from '$lib/state/entities.svelte';
 	import Card, { Content } from '@smui/card';
-	import BorderlessButton from '../buttons/BorderlessButton.svelte';
 	import Ripple from '@smui/ripple';
 
 	let { statement }: { statement: IStatement } = $props();

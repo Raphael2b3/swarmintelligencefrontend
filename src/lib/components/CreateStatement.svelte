@@ -25,15 +25,15 @@
 </script>
 
 <Card padded>
-	<h2>Create Statement</h2>
+	<p>Create Statement</p>
 	<Textfield bind:value={text} title="Statement"></Textfield>
-	<div style="display: flex; flex-direction: column;">
+	<div style="display: flex; flex-direction: row;">
 		<NegativeButton onclick={onContraSelected} title="False" />
 		<PositiveButton onclick={onProSelected} title="True" />
 	</div>
-	<h2>Tags</h2>
+	<p>Tags</p>
 	<Textfield bind:value={tags} title="Tags"></Textfield>
-	<div style="display: flex; flex-direction: column;">
+	<div style="display: flex; flex-direction: row;">
 		<SecondaryButton onclick={onCancel} title="Cancel" />
 		<PrimaryButton onclick={onSave} title="Save" />
 	</div>

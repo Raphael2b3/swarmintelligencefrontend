@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import BackButton from '$lib/components/buttons/iconbuttons/BackButton.svelte';
 	import BurgerMenuButton from '$lib/components/buttons/iconbuttons/BurgerMenuButton.svelte';
 	import CancelButton from '$lib/components/buttons/iconbuttons/CancelButton.svelte';
@@ -16,7 +16,7 @@
 	import PositiveButton from '$lib/components/buttons/PositiveButton.svelte';
 	import PrimaryButton from '$lib/components/buttons/PrimaryButton.svelte';
 	import SecondaryButton from '$lib/components/buttons/SecondaryButton.svelte';
-	import CheckBox from '$lib/components/form/CheckBox.svelte';
+	import Checkbox from '$lib/components/form/Checkbox.svelte';
 	import DropdownSelect from '$lib/components/form/DropdownSelect.svelte';
 	import Slider from '$lib/components/form/Slider.svelte';
 	import Textfield from '$lib/components/form/Textfield.svelte';
@@ -39,11 +39,23 @@
 	import Searchbar from '$lib/components/Searchbar.svelte';
 	import ThesisSelectableStatement from '$lib/components/ThesisSelectableStatement.svelte';
 	import TabNav from '$lib/components/TabNav.svelte';
+	import type { IFilterOptions } from '$lib/interfaces';
+
+	let filterOptions: IFilterOptions = $state({
+		entitytype: ['statement'],
+		controversial: true,
+		sortByTruth: 'asc',
+		sortByVotes: 'desc',
+		tags: ['foo'],
+		_tagstring: ''
+	});
+
+	let open = $state(true);
 </script>
 
 <div style="display: flex; flex-direction: column;">
 	-------------------- Icon Buttons --------------------
-	<div>
+	<div style="display:flex; gap: 3px; flex-direction: column;">
 		<BackButton></BackButton>
 		<BurgerMenuButton></BurgerMenuButton>
 		<CancelButton></CancelButton>
@@ -58,30 +70,38 @@
 		<ShowMoreButton></ShowMoreButton>
 	</div>
 	-------------------- Buttons --------------------
-	<BorderlessButton title="Borderless Button"></BorderlessButton>
-	<NegativeButton title="Negative Button"></NegativeButton>
-	<PositiveButton title="Positive Button"></PositiveButton>
-	<PrimaryButton title="Primary Button"></PrimaryButton>
-	<SecondaryButton title="Secondary Button"></SecondaryButton>
+	<div style="display:flex; gap: 3px; flex-direction: column;">
+		<BorderlessButton title="Borderless Button"></BorderlessButton>
+		<NegativeButton title="Negative Button"></NegativeButton>
+		<PositiveButton title="Positive Button"></PositiveButton>
+		<PrimaryButton title="Primary Button"></PrimaryButton>
+		<SecondaryButton title="Secondary Button"></SecondaryButton>
+	</div>
 	-------------------- Form --------------------
-	<CheckBox title="Checkbox"></CheckBox>
-	<DropdownSelect></DropdownSelect>
-	<Slider></Slider>
-	<Textfield></Textfield>
+	<div style="display:flex; gap: 3px; flex-direction: column;">
+		<Checkbox title="Checkbox"></Checkbox>
+		<DropdownSelect></DropdownSelect>
+		<Slider></Slider>
+		<Textfield></Textfield>
+	</div>
 	-------------------- Search Result --------------------
-	<ConnectionSearchResult connection={getFallbackConnection()}></ConnectionSearchResult>
-	<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
-	<StatementSearchResult statement={getFallbackStatement()}></StatementSearchResult>
+	<div style="display:flex; gap: 3px; flex-direction: column;">
+		<ConnectionSearchResult connection={getFallbackConnection()}></ConnectionSearchResult>
+		<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+		<StatementSearchResult statement={getFallbackStatement()}></StatementSearchResult>
+	</div>
 	-------------------- Common --------------------
-	<ActionButtonList></ActionButtonList>
-	<ArgumentSelectableStatement statement={getFallbackStatement()}></ArgumentSelectableStatement>
-	<CreateStatement></CreateStatement>
-	<ExpandableFilter></ExpandableFilter>
-	<FlyOutMenu></FlyOutMenu>
-	<PopUpModal></PopUpModal>
-	<RecommendationFilter></RecommendationFilter>
-	<ScrollableRichText></ScrollableRichText>
-	<Searchbar></Searchbar>
-	<TabNav></TabNav>
-	<ThesisSelectableStatement></ThesisSelectableStatement>
+	<div style="display:flex; gap: 3px; flex-direction: column;">
+		<ActionButtonList></ActionButtonList>
+		<ArgumentSelectableStatement statement={getFallbackStatement()}></ArgumentSelectableStatement>
+		<CreateStatement></CreateStatement>
+		<ExpandableFilter bind:options={filterOptions}></ExpandableFilter>
+		<FlyOutMenu></FlyOutMenu>
+		<PopUpModal {open}>test</PopUpModal>
+		<RecommendationFilter></RecommendationFilter>
+		<ScrollableRichText></ScrollableRichText>
+		<Searchbar></Searchbar>
+		<TabNav></TabNav>
+		<ThesisSelectableStatement></ThesisSelectableStatement>
+	</div>
 </div>

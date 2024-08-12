@@ -2,10 +2,10 @@
 	import Checkbox from '@smui/checkbox';
 	import FormField from '@smui/form-field';
 
-	let { checked, title } = $$props;
+	let { checked = null, label, group } = $$props;
 </script>
 
 <FormField>
 	<Checkbox bind:checked />
-	<span slot="label">{title}</span>
+	<span slot="label">{label}</span>
 </FormField>

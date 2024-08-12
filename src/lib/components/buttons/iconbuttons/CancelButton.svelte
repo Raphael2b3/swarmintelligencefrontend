@@ -1,6 +1,6 @@
 <script lang="ts">
 	import IconButton from '@smui/icon-button';
-	let { onclick } = $$props;
+	let { onclick, style } = $$props;
 </script>
 
-<IconButton class="material-icons" {onclick}>close</IconButton>
+<IconButton class="material-icons" {style} {onclick}>close</IconButton>

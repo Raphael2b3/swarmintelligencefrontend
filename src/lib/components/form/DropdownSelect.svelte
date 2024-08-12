@@ -6,7 +6,7 @@
 
 <Select bind:value label="Select Menu">
 	{#each options as option}
-		<Option value={option}>{option}</Option>
+		<Option value={option.value}>{option.name}</Option>
 	{:else}
 		No Values
 	{/each}
