@@ -8,7 +8,7 @@
 	let args = getArgumentsFor(statementid);
 </script>
 
-<PopUpModal {open}>
+<PopUpModal {open} title="Arguments">
 	<TabNav choices={['Pros', 'Cons']} bind:selected></TabNav>
 	{#if selected === 'Pros'}
 		<p>Pros</p>

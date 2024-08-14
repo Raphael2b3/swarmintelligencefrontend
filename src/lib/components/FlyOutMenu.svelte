@@ -2,7 +2,7 @@
 	import Card from '@smui/card';
 	import CancelButton from './buttons/iconbuttons/CancelButton.svelte';
 
-	let { open } = $$props;
+	let { open = $bindable() } = $props();
 
 	function closeFlyout() {
 		open = false;
@@ -12,7 +12,7 @@
 {#if open}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="backdrop show" on:click={closeFlyout}></div>
+	<div class="backdrop show" onclick={closeFlyout}></div>
 {/if}
 
 <Card
@@ -27,6 +27,7 @@
          {open ? 'transform: translateX(0);' : ''}"
 >
 	<CancelButton
+		onclick={closeFlyout}
 		style="position: absolute;
 		top: 10px;
 		right: 10px;

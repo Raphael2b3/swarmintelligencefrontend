@@ -2,7 +2,7 @@
 	import Card from '@smui/card';
 	import CancelButton from './buttons/iconbuttons/CancelButton.svelte';
 
-	let { open } = $props();
+	let { open, title = 'Popup' } = $props();
 
 	function closeFlyout() {
 		open = false;
@@ -21,18 +21,22 @@
 		height: 60%;
 		width: 80%;
 		z-index: 10;
+		padding-left: 20px;
 		"
 	>
-		<CancelButton
-			onclick={closeFlyout}
-			style="position: absolute;
-		top: 10px;
-		right: 10px;
+		<div
+			style="red; width: 100%; display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between"
+		>
+			<CancelButton
+				onclick={closeFlyout}
+				style="
 		background: none;
 		border: none;
 		font-size: 24px;
 		cursor: pointer;"
-		></CancelButton>
+			></CancelButton>
+			<h5>{title}</h5>
+		</div>
 		<slot />
 		<!-- Slot für dynamische Inhalte -->
 	</Card>

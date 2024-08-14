@@ -2,7 +2,8 @@
 	import Textfield from '@smui/textfield';
 	import HelperText from '@smui/textfield/helper-text';
 
-	let value = '';
+	let value =
+		'Large Text Field with Helper Text and no Resizing Allowed (rows=4, cols=24) - Textfield Component from SMUI Svelte Kit Library 		 ';
 </script>
 
 <div class="margins">

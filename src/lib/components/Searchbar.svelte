@@ -18,6 +18,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		
 		"
 >
 	<Paper class="solo-paper" elevation={6}>

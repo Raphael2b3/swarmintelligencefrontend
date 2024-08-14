@@ -6,8 +6,8 @@
 <style>
 	.container {
 		position: absolute;
-		bottom: 10px;
-		right: 10px;
+		bottom: 20%;
+		right: 4%;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;

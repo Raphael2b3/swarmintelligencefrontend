@@ -52,7 +52,12 @@
 	let expanded = $state(false);
 </script>
 
-<div use:Ripple={{ surface: true, color: 'primary' }} tabindex="0" role="button">
+<div
+	use:Ripple={{ surface: true, color: 'primary' }}
+	tabindex="0"
+	role="button"
+	style="margin: 5px;"
+>
 	<Card padded variant="outlined" style="display: flex; flex-direction: row;">
 		{#if !expanded}
 			{previewtext}
