@@ -686,7 +686,6 @@ export function findConnectiveForDB(
 	entity: IConnectiveType,
 	except?: string[]
 ): IConnection[] | IDuplication[] {
-	console.log("helloooooooooo");
 	switch (entity) {
 		case 'argument':
 			return connections;

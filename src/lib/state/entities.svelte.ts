@@ -113,6 +113,17 @@ export function getEntity(id: string | undefined, entityType: IEntityType) {
 	return stm;
 }
 
+export function getArgumentsFor(id: string, useCache = true) {
+	let _arguments: IConnection[] = getConnectiveFor(id, 'argument', useCache) as IConnection[];
+	const out: { pros: IStatement[], cons: IStatement[] } = { pros: [], cons: [] };
+	for (const _argument of _arguments) {
+		const statement = getEntity(_argument.argument, 'statement') as IStatement;
+		if (_argument.isProArgument) out.pros.push(statement);
+		else out.cons.push(statement);
+	}
+	return out
+}
+
 export function getConnectiveFor(id: string, connectiveType: IConnectiveType, useCache = true) {
 	const entityType = connectiveType !== 'duplication' ? 'connection' : 'duplication';
 

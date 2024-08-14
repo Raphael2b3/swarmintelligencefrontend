@@ -38,8 +38,15 @@
 	import ScrollableRichText from '$lib/components/ScrollableRichText.svelte';
 	import Searchbar from '$lib/components/Searchbar.svelte';
 	import ThesisSelectableStatement from '$lib/components/ThesisSelectableStatement.svelte';
-	import TabNav from '$lib/components/TabNav.svelte';
 	import type { IFilterOptions } from '$lib/interfaces';
+	import Navbar from '$lib/components/Navbar.svelte';
+	import ArgumentsStatement from '$lib/components/details/ArgumentsStatement.svelte';
+	import ConnectStatement from '$lib/components/details/ConnectStatement.svelte';
+	import MoreOptionsConnection from '$lib/components/details/MoreOptionsConnection.svelte';
+	import MoreOptionsDuplication from '$lib/components/details/MoreOptionsDuplication.svelte';
+	import MoreOptionsStatement from '$lib/components/details/MoreOptionsStatement.svelte';
+	import ThesisStatement from '$lib/components/details/ThesisStatement.svelte';
+	import TabNav from '$lib/components/TabNav.svelte';
 
 	let filterOptions: IFilterOptions = $state({
 		entitytype: ['statement'],
@@ -97,11 +104,21 @@
 		<CreateStatement></CreateStatement>
 		<ExpandableFilter bind:options={filterOptions}></ExpandableFilter>
 		<FlyOutMenu></FlyOutMenu>
+		<Navbar></Navbar>
 		<PopUpModal {open}>test</PopUpModal>
 		<RecommendationFilter></RecommendationFilter>
 		<ScrollableRichText></ScrollableRichText>
 		<Searchbar></Searchbar>
 		<TabNav></TabNav>
-		<ThesisSelectableStatement></ThesisSelectableStatement>
+		<ThesisSelectableStatement statement={getFallbackStatement()}></ThesisSelectableStatement>
+	</div>
+	-------------------- Details --------------------
+	<div style="display:flex; gap: 3px; flex-direction: column;">
+		<ArgumentsStatement open={true}></ArgumentsStatement>
+		<ConnectStatement></ConnectStatement>
+		<MoreOptionsConnection></MoreOptionsConnection>
+		<MoreOptionsDuplication></MoreOptionsDuplication>
+		<MoreOptionsStatement></MoreOptionsStatement>
+		<ThesisStatement></ThesisStatement>
 	</div>
 </div>
