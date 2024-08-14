@@ -17,7 +17,8 @@
 	style="
 		display: flex;
 		justify-content: center;
-		align-items: center;"
+		align-items: center;
+		"
 >
 	<Paper class="solo-paper" elevation={6}>
 		<Icon class="material-icons">search</Icon>
@@ -32,6 +33,7 @@
 	* :global(.solo-paper) {
 		display: flex;
 		align-items: center;
+		flex-direction: row;
 		flex-grow: 1;
 		max-width: 600px;
 		margin: 0 12px;

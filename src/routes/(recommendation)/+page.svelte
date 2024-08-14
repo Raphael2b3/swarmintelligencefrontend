@@ -47,6 +47,7 @@
 	import MoreOptionsStatement from '$lib/components/details/MoreOptionsStatement.svelte';
 	import ThesisStatement from '$lib/components/details/ThesisStatement.svelte';
 	import TabNav from '$lib/components/TabNav.svelte';
+	import StatementSearchResultOnlyText from '$lib/components/searchresult/StatementSearchResultOnlyText.svelte';
 
 	let filterOptions: IFilterOptions = $state({
 		entitytype: ['statement'],
@@ -96,6 +97,8 @@
 		<ConnectionSearchResult connection={getFallbackConnection()}></ConnectionSearchResult>
 		<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
 		<StatementSearchResult statement={getFallbackStatement()}></StatementSearchResult>
+		<StatementSearchResultOnlyText statement={getFallbackStatement()}
+		></StatementSearchResultOnlyText>
 	</div>
 	-------------------- Common --------------------
 	<div style="display:flex; gap: 3px; flex-direction: column;">
@@ -114,11 +117,11 @@
 	</div>
 	-------------------- Details --------------------
 	<div style="display:flex; gap: 3px; flex-direction: column;">
-		<ArgumentsStatement open={true}></ArgumentsStatement>
+		<ArgumentsStatement open={true} statementid="1"></ArgumentsStatement>
 		<ConnectStatement></ConnectStatement>
 		<MoreOptionsConnection></MoreOptionsConnection>
 		<MoreOptionsDuplication></MoreOptionsDuplication>
 		<MoreOptionsStatement></MoreOptionsStatement>
-		<ThesisStatement></ThesisStatement>
+		<ThesisStatement open={true} statementid="1"></ThesisStatement>
 	</div>
 </div>

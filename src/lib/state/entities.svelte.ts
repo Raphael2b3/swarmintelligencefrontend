@@ -124,6 +124,17 @@ export function getArgumentsFor(id: string, useCache = true) {
 	return out
 }
 
+export function getThesisFor(id: string, useCache = true) {
+	let _thesis: IConnection[] = getConnectiveFor(id, 'thesis', useCache) as IConnection[];
+	const out: { pros: IStatement[], cons: IStatement[] } = { pros: [], cons: [] };
+	for (const _argument of _thesis) {
+		const statement = getEntity(_argument.thesis, 'statement') as IStatement;
+		if (_argument.isProArgument) out.pros.push(statement);
+		else out.cons.push(statement);
+	}
+	return out
+}
+
 export function getConnectiveFor(id: string, connectiveType: IConnectiveType, useCache = true) {
 	const entityType = connectiveType !== 'duplication' ? 'connection' : 'duplication';
 

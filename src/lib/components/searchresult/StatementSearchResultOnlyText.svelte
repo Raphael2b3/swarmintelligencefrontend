@@ -8,8 +8,7 @@
 </script>
 
 <div use:Ripple={{ surface: true, color: 'primary' }} tabindex="0" role="button">
-	<Card padded style="display: flex; flex-direction: row;">
+	<Card padded>
 		<Card variant="outlined" padded>{statement.text}</Card>
-		<ConnectButton></ConnectButton>
 	</Card>
 </div>
