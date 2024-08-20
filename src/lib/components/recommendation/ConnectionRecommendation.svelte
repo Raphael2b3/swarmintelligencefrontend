@@ -1,23 +1,32 @@
-<script>
+<script lang="ts">
+	import type { IConnection } from '$lib/interfaces';
 	import ActionButtonList from '../ActionButtonList.svelte';
-	import ConnectButton from '../buttons/iconbuttons/ConnectButton.svelte';
 	import FavouriteButton from '../buttons/iconbuttons/FavouriteButton.svelte';
-	import OpenDetailsButton from '../buttons/iconbuttons/OpenDetailsButton.svelte';
 	import ShareButton from '../buttons/iconbuttons/ShareButton.svelte';
-	import ShowMoreButton from '../buttons/iconbuttons/ShowMoreButton.svelte';
-	import NegativeButton from '../buttons/NegativeButton.svelte';
-	import PositiveButton from '../buttons/PositiveButton.svelte';
 	import Slider from '../form/Slider.svelte';
 	import ScrollableRichText from '../ScrollableRichText.svelte';
+
+	let { connection }: { connection: IConnection } = $props();
+	let value = $state(0.5);
+	let value_indicator = $derived('' + value * 100 + '%');
+	const arg_type_str = connection.isProArgument ? 'Pro' : 'Contra';
 </script>
 
-<h4>Thesis</h4>
+<h5>Thesis</h5>
 <ScrollableRichText></ScrollableRichText>
-
-<h4>Argument</h4>
+<h5>{arg_type_str} Argument</h5>
 <ScrollableRichText></ScrollableRichText>
 <ActionButtonList>
 	<FavouriteButton></FavouriteButton>
 	<ShareButton></ShareButton>
 </ActionButtonList>
-<Slider></Slider>
+This is Actually a good {arg_type_str} Argument
+
+<div style="width:100%;  display: flex; align-items: center;">
+	bad
+	<div style="flex:1 ; display:flex; flex-direction: column; align-items: center;">
+		{value_indicator}
+		<Slider bind:value></Slider>
+	</div>
+	good
+</div>

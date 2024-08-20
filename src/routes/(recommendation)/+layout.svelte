@@ -7,10 +7,8 @@
 	}
 </script>
 
-<div style="display:flex height: 100vh; width:100vi; background-color: red;">
+<div style="height: 100vh; display:flex; flex-direction: column;">
 	<Navbar {onMenuClick} onSearch={() => {}}></Navbar>
 	<FlyOutMenu bind:open={openedflyout}></FlyOutMenu>
-	<div style="flex-grow: 1; background-color: blue;">
-		<slot />
-	</div>
+	<slot />
 </div>

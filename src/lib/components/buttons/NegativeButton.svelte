@@ -3,6 +3,6 @@
 	let { onclick, title } = $$props;
 </script>
 
-<Button class="negative-button" variant="raised" {onclick}>
+<Button class="negative-button" style="flex:1" variant="raised" {onclick}>
 	<Label>{title}</Label>
 </Button>

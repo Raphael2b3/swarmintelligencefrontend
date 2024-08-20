@@ -4,7 +4,7 @@
 	import Fab from '@smui/fab';
 	import { Icon } from '@smui/common';
 
-	let value = '';
+	let value = $state('');
 
 	function doSearch(event: Event) {
 		alert('Search for ' + value);
@@ -47,10 +47,10 @@
 	}
 	* :global(.solo-input) {
 		flex-grow: 1;
-		color: var(--mdc-theme-on-surface, #000);
+		color: var(--mdc-theme-on-surface, #ffffff);
 	}
 	* :global(.solo-input::placeholder) {
-		color: var(--mdc-theme-on-surface, #000);
+		color: var(--mdc-theme-on-surface, #ffffff);
 		opacity: 0.6;
 	}
 	* :global(.solo-fab) {

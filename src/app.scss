@@ -71,6 +71,8 @@ strong {
 	}
 
 	@include button.ripple-states(color-palette.$green-600);
+	flex: 1;
+	height: 6vh;
 }
 
 .negative-button {
@@ -87,4 +89,6 @@ strong {
 	}
 
 	@include button.ripple-states(color-palette.$red-600);
+	flex: 1;
+	height: 6vh;
 }

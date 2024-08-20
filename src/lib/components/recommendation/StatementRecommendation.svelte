@@ -18,7 +18,7 @@
 	<ConnectButton></ConnectButton>
 	<OpenDetailsButton></OpenDetailsButton>
 </ActionButtonList>
-<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex: 1; align-items: center; flex-direction: row; gap: 1%;">
 	<NegativeButton title="False"></NegativeButton>
 	<PositiveButton title="True"></PositiveButton>
 </div>
