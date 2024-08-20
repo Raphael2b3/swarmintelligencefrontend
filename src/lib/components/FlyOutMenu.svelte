@@ -19,9 +19,12 @@
 	style="position: fixed;
 		top: 0;
 		left: 0;
+		padding-left: 30px;
 		height: 100%;
 		width: 300px;
 		z-index: 10;
+		display: flex;
+		align-items: left;
 		transform: translateX(-100%);
 		transition: transform 0.3s ease;
          {open ? 'transform: translateX(0);' : ''}"
@@ -36,6 +39,7 @@
 		font-size: 24px;
 		cursor: pointer;"
 	></CancelButton>
+	<h5>Menu</h5>
 	<slot></slot>
 	<!-- Slot für dynamische Inhalte -->
 </Card>
