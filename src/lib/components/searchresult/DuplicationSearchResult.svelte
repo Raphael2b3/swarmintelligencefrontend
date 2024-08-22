@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { IDuplication, IStatement } from '$lib/interfaces';
-	import { getEntity } from '$lib/state/entities.svelte';
+	import { getEntity, getFallbackDuplication } from '$lib/state/entities.svelte';
 	import Card, { Content } from '@smui/card';
 	import Ripple from '@smui/ripple';
 
-	let { duplication }: { duplication: IDuplication } = $props();
+	let { duplication=getFallbackDuplication() }: { duplication: IDuplication } = $props();
 
 	let a = getEntity(duplication.statementA, 'statement') as IStatement;
 	let b = getEntity(duplication.statementB, 'statement') as IStatement;

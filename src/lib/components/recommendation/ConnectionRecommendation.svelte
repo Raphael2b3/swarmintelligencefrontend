@@ -1,12 +1,13 @@
 <script lang="ts">
 	import type { IConnection } from '$lib/interfaces';
+	import { getFallbackConnection } from '$lib/state/entities.svelte';
 	import ActionButtonList from '../ActionButtonList.svelte';
 	import FavouriteButton from '../buttons/iconbuttons/FavouriteButton.svelte';
 	import ShareButton from '../buttons/iconbuttons/ShareButton.svelte';
 	import Slider from '../form/Slider.svelte';
 	import ScrollableRichText from '../ScrollableRichText.svelte';
 
-	let { connection }: { connection: IConnection } = $props();
+	let { connection=getFallbackConnection() }: { connection: IConnection } = $props();
 	let value = $state(0.5);
 	let value_indicator = $derived((value * 100).toFixed(2) + '%');
 	const arg_type_str = connection.isProArgument ? 'Pro' : 'Contra';

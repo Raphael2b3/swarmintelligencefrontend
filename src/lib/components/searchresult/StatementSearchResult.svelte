@@ -3,8 +3,9 @@
 	import Card, { Content } from '@smui/card';
 	import Ripple from '@smui/ripple';
 	import ConnectButton from '../buttons/iconbuttons/ConnectButton.svelte';
+	import { getFallbackStatement } from '$lib/state/entities.svelte';
 
-	let { statement }: { statement: IStatement } = $props();
+	let { statement=getFallbackStatement() }: { statement: IStatement } = $props();
 </script>
 
 <div use:Ripple={{ surface: true, color: 'primary' }} tabindex="0" role="button">

@@ -8,6 +8,7 @@
 	import DropdownSelect from './form/DropdownSelect.svelte';
 	import Textfield from './form/Textfield.svelte';
 	import CheckboxGroup from './form/CheckboxGroup.svelte';
+	import BorderlessButton from './buttons/BorderlessButton.svelte';
 	let { options = $bindable() }: { options: IFilterOptions } = $props();
 
 	function setDefaultOptions() {
@@ -52,12 +53,7 @@
 	let expanded = $state(false);
 </script>
 
-<div
-	use:Ripple={{ surface: true, color: 'primary' }}
-	tabindex="0"
-	role="button"
-	style="margin: 5px;"
->
+<BorderlessButton onclick={()=> expanded=!expanded}>
 	<Card padded variant="outlined" style="display: flex; flex-direction: row;">
 		{#if !expanded}
 			{previewtext}
@@ -92,4 +88,4 @@
 		{/if}
 		<ExpandButton bind:expanded></ExpandButton>
 	</Card>
-</div>
+</BorderlessButton>

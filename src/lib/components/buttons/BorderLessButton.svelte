@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Button from '@smui/button';
-	let { onclick } = $$props;
+	let { onclick, href } = $$props;
 </script>
 
-<Button {onclick}>
+<Button {onclick} {href}>
 	<slot />
 </Button>

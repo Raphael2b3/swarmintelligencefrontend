@@ -4,12 +4,16 @@
 	import DuplicationRecommendation from '$lib/components/recommendation/DuplicationRecommendation.svelte';
 	import StatementRecommendation from '$lib/components/recommendation/StatementRecommendation.svelte';
 	import RecommendationFilter from '$lib/components/RecommendationFilter.svelte';
-	import { getFallbackConnection } from '$lib/state/entities.svelte';
+	import DuplicationSearchResult from '$lib/components/searchresult/DuplicationSearchResult.svelte';
+	import StatementSearchResultOnlyText from '$lib/components/searchresult/StatementSearchResultOnlyText.svelte';
+	import { getFallbackConnection, getFallbackDuplication, getFallbackStatement } from '$lib/state/entities.svelte';
+	import { getSearchmode } from '$lib/state/searchmode.svelte';
 
 	let randint: number = $state(0);
 </script>
-
+test
 <RecommendationFilter></RecommendationFilter>
+test
 <BorderlessButton
 	onclick={() => {
 		randint = (randint + 1) % 3;
@@ -18,6 +22,7 @@
 <div
 	style="flex:1; display:flex; flex-direction: column; justify-content: space-around;; margin-right:4%; margin-left: 4%; margin-bottom: 4%;"
 >
+{#if !getSearchmode()}
 	{#if randint === 0}
 		<StatementRecommendation></StatementRecommendation>
 	{:else if randint === 1}
@@ -25,4 +30,12 @@
 	{:else}
 		<DuplicationRecommendation></DuplicationRecommendation>
 	{/if}
+{:else}
+	{#each [0,0,0,0,0] as element }
+		<StatementSearchResultOnlyText statement={getFallbackStatement()}></StatementSearchResultOnlyText>
+		<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+		<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+	
+		{/each}
+{/if}
 </div>
