@@ -35,10 +35,12 @@
 		{/if}
 	{:else}
 		{#each [0, 0, 0, 0, 0] as element}
-			<StatementSearchResultOnlyText statement={getFallbackStatement()}
-			></StatementSearchResultOnlyText>
-			<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
-			<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+			<div style="display: flex; gap:10px; flex-direction: column;">
+				<StatementSearchResultOnlyText statement={getFallbackStatement()}
+				></StatementSearchResultOnlyText>
+				<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+				<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+			</div>
 		{/each}
 	{/if}
 </div>
