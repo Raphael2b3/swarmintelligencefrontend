@@ -11,10 +11,11 @@
 <div style="height: 100vh; display:flex; flex-direction: column;">
 	<Navbar {onMenuClick} onSearch={() => {}}></Navbar>
 	<FlyOutMenu bind:open={openedflyout}>
-		<BorderlessButton>Login</BorderlessButton>
-		<BorderlessButton>Register</BorderlessButton>
-		<BorderlessButton>Settings</BorderlessButton>
-		<BorderlessButton>About</BorderlessButton>
+		<BorderlessButton href="/login">Login</BorderlessButton>
+		<BorderlessButton href="/register">Register</BorderlessButton>
+		<BorderlessButton href="/logout">Logout</BorderlessButton>
+		<BorderlessButton href="/settings">Settings</BorderlessButton>
+		<BorderlessButton href="/about">About</BorderlessButton>
 	</FlyOutMenu>
 	<slot />
 </div>

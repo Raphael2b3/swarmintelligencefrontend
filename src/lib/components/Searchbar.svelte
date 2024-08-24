@@ -3,9 +3,12 @@
 	import Paper from '@smui/paper';
 	import Fab from '@smui/fab';
 	import { Icon } from '@smui/common';
+	import { setSearchmode } from '$lib/state/searchmode.svelte';
 
 	let value = $state('');
-
+	$effect(()=>{
+		setSearchmode(value !== '')
+	})
 	function doSearch(event: Event) {
 		alert('Search for ' + value);
 		event.preventDefault();

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { IConnection, IStatement } from '$lib/interfaces';
-	import { getEntity } from '$lib/state/entities.svelte';
+	import { getEntity, getFallbackConnection } from '$lib/state/entities.svelte';
 	import Card, { Content } from '@smui/card';
 	import Ripple from '@smui/ripple';
 
-	let { connection }: { connection: IConnection } = $props();
+	let { connection= getFallbackConnection() }: { connection: IConnection } = $props();
 	let thesis = getEntity(connection.thesis, 'statement') as IStatement;
 	let argument = getEntity(connection.argument, 'statement') as IStatement;
 </script>

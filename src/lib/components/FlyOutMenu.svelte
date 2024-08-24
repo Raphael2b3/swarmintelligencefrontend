@@ -19,7 +19,10 @@
 	style="position: fixed;
 		top: 0;
 		left: 0;
-		padding-left: 30px;
+		padding-left:10px;
+		padding-right:10px;
+		diplay:flex;
+		gap:5px;
 		height: 100%;
 		width: 300px;
 		z-index: 10;

@@ -4,7 +4,8 @@
 	import NegativeButton from './buttons/NegativeButton.svelte';
 
 	import PositiveButton from './buttons/PositiveButton.svelte';
-	let { statement }: { statement: IStatement } = $props();
+	import { getFallbackStatement } from '$lib/state/entities.svelte';
+	let { statement = getFallbackStatement() }: { statement: IStatement } = $props();
 
 	function onContraSelected() {
 		console.log('Contra selected');

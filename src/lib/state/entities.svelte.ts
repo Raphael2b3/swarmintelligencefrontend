@@ -60,7 +60,7 @@ export function getFallbackDuplication() {
 export function getFallbackStatement() {
 	return {
 		id: 'fallback',
-		text: 'fallback',
+		text: 'This is a Fallback Statement because something went wrong. Try to reload. :)',
 		lastSeasonTruth: 0,
 		numberOfVotes: 0,
 		voteRatio: 0,
