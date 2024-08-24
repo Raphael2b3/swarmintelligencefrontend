@@ -53,39 +53,41 @@
 	let expanded = $state(false);
 </script>
 
-<BorderlessButton onclick={()=> expanded=!expanded}>
-	<Card padded variant="outlined" style="display: flex; flex-direction: row;">
-		{#if !expanded}
-			{previewtext}
-		{:else}
-			<div style="display:flex; gap: 3px; flex-direction: column;">
-				<ClearButton onclick={onClear} title="Clear Filter"></ClearButton>
-				<Checkbox bind:checked={options.controversial} label="Controversial Only"></Checkbox>
-				Entities
-				<CheckboxGroup
-					bind:group={options.entitytype}
-					options={[
-						{ label: 'Statement', value: 'statement' },
-						{ label: 'Duplication', value: 'duplication' },
-						{ label: 'Connection', value: 'connection' }
-					]}
-				></CheckboxGroup>
-				<div style="display: flex; flex-direction: row;">
-					<DropdownSelect
-						label="Sort by Truth"
-						bind:value={options.sortByTruth}
-						options={sortdirections}
-					></DropdownSelect>
-					<DropdownSelect
-						label="Sort by Popularity"
-						bind:value={options.sortByVotes}
-						options={sortdirections}
-					></DropdownSelect>
+{#if expanded}
+	<BorderlessButton onclick={() => (expanded = !expanded)}>
+		<Card padded variant="outlined" style="display: flex; flex-direction: row;">
+			{#if !expanded}
+				{previewtext}
+			{:else}
+				<div style="display:flex; gap: 3px; flex-direction: column;">
+					<ClearButton onclick={onClear} title="Clear Filter"></ClearButton>
+					<Checkbox bind:checked={options.controversial} label="Controversial Only"></Checkbox>
+					Entities
+					<CheckboxGroup
+						bind:group={options.entitytype}
+						options={[
+							{ label: 'Statement', value: 'statement' },
+							{ label: 'Duplication', value: 'duplication' },
+							{ label: 'Connection', value: 'connection' }
+						]}
+					></CheckboxGroup>
+					<div style="display: flex; flex-direction: row;">
+						<DropdownSelect
+							label="Sort by Truth"
+							bind:value={options.sortByTruth}
+							options={sortdirections}
+						></DropdownSelect>
+						<DropdownSelect
+							label="Sort by Popularity"
+							bind:value={options.sortByVotes}
+							options={sortdirections}
+						></DropdownSelect>
+					</div>
+					Tags
+					<Textfield bind:value={options._tagstring} label="Tags"></Textfield>
 				</div>
-				Tags
-				<Textfield bind:value={options._tagstring} label="Tags"></Textfield>
-			</div>
-		{/if}
-		<ExpandButton bind:expanded></ExpandButton>
-	</Card>
-</BorderlessButton>
+			{/if}
+			<ExpandButton bind:expanded></ExpandButton>
+		</Card>
+	</BorderlessButton>
+{/if}
