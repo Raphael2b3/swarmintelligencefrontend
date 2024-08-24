@@ -6,8 +6,8 @@
 	import NegativeButton from '../buttons/NegativeButton.svelte';
 	import PositiveButton from '../buttons/PositiveButton.svelte';
 	import ScrollableRichText from '../ScrollableRichText.svelte';
-	
-	let  {duplication= getFallbackDuplication()} = $props()
+
+	let { duplication = getFallbackDuplication() } = $props();
 </script>
 
 <h5>The Statement</h5>
@@ -19,7 +19,7 @@
 	<FavouriteButton></FavouriteButton>
 	<ShareButton></ShareButton>
 </ActionButtonList>
-<div style="display: flex; flex: 1; align-items: center; flex-direction: row; gap: 1%;">
+<div style="display: flex; flex: 1; align-items: center; flex-direction: row; gap: 1rem;">
 	<NegativeButton title="Is The Same"></NegativeButton>
 	<PositiveButton title="Is Different"></PositiveButton>
 </div>

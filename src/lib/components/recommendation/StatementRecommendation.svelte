@@ -9,7 +9,7 @@
 	import NegativeButton from '../buttons/NegativeButton.svelte';
 	import PositiveButton from '../buttons/PositiveButton.svelte';
 	import ScrollableRichText from '../ScrollableRichText.svelte';
-	let {statement=getFallbackStatement()}=$props()
+	let { statement = getFallbackStatement() } = $props();
 </script>
 
 <ScrollableRichText></ScrollableRichText>
@@ -20,7 +20,7 @@
 	<ConnectButton></ConnectButton>
 	<OpenDetailsButton></OpenDetailsButton>
 </ActionButtonList>
-<div style="display: flex; flex: 1; align-items: center; flex-direction: row; gap: 1%;">
+<div style="display: flex; flex: 1; align-items: center; flex-direction: row; gap: 1rem;">
 	<NegativeButton title="False"></NegativeButton>
 	<PositiveButton title="True"></PositiveButton>
 </div>

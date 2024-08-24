@@ -9,13 +9,15 @@
 </script>
 
 <div style="height: 100vh; display:flex; flex-direction: column;">
-	<Navbar {onMenuClick} onSearch={() => {}}></Navbar>
-	<FlyOutMenu bind:open={openedflyout}>
-		<BorderlessButton href="/login">Login</BorderlessButton>
-		<BorderlessButton href="/register">Register</BorderlessButton>
-		<BorderlessButton href="/logout">Logout</BorderlessButton>
-		<BorderlessButton href="/settings">Settings</BorderlessButton>
-		<BorderlessButton href="/about">About</BorderlessButton>
-	</FlyOutMenu>
+	<nav>
+		<Navbar {onMenuClick} onSearch={() => {}}></Navbar>
+		<FlyOutMenu bind:open={openedflyout}>
+			<BorderlessButton href="/login">Login</BorderlessButton>
+			<BorderlessButton href="/register">Register</BorderlessButton>
+			<BorderlessButton href="/logout">Logout</BorderlessButton>
+			<BorderlessButton href="/settings">Settings</BorderlessButton>
+			<BorderlessButton href="/about">About</BorderlessButton>
+		</FlyOutMenu>
+	</nav>
 	<slot />
 </div>

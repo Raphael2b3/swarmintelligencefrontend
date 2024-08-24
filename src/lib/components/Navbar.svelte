@@ -5,7 +5,7 @@
 	let { onMenuClick, onSearch } = $props();
 </script>
 
-<Card style="width: 100%; flex-direction: row; display: flex; padding: 5px;">
+<Card style="width: 100%; flex-direction: row; display: flex; padding: 5px; ">
 	<BurgerMenuButton onclick={onMenuClick}></BurgerMenuButton>
 	<div style="width:100%">
 		<Searchbar></Searchbar>

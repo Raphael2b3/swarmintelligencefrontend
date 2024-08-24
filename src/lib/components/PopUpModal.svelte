@@ -16,12 +16,12 @@
 
 	<Card
 		style="position: fixed;
-		top: 10%;
-        left: 10%;
+		top: 9rem;
+        left: 9rem;
 		height: 60%;
 		width: 80%;
 		z-index: 10;
-		padding-left: 20px;
+		padding-left: 2rem;
 		"
 	>
 		<div
@@ -32,7 +32,7 @@
 				style="
 		background: none;
 		border: none;
-		font-size: 24px;
+		font-size: 2rem;
 		cursor: pointer;"
 			></CancelButton>
 			<h5>{title}</h5>

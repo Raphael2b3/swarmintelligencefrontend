@@ -4,6 +4,7 @@
 	import DuplicationRecommendation from '$lib/components/recommendation/DuplicationRecommendation.svelte';
 	import StatementRecommendation from '$lib/components/recommendation/StatementRecommendation.svelte';
 	import RecommendationFilter from '$lib/components/RecommendationFilter.svelte';
+	import ConnectionSearchResult from '$lib/components/searchresult/ConnectionSearchResult.svelte';
 	import DuplicationSearchResult from '$lib/components/searchresult/DuplicationSearchResult.svelte';
 	import StatementSearchResultOnlyText from '$lib/components/searchresult/StatementSearchResultOnlyText.svelte';
 	import {
@@ -23,24 +24,30 @@
 	}}>Refresh</BorderlessButton
 >
 <div
-	style="flex:1; display:flex; flex-direction: column; justify-content: space-around;; margin-right:4%; margin-left: 4%; margin-bottom: 4%;"
+	style="flex:1; display:flex; flex-direction: column; justify-content: space-around;  height:0;"
 >
 	{#if !getSearchmode()}
-		{#if randint === 0}
-			<StatementRecommendation></StatementRecommendation>
-		{:else if randint === 1}
-			<ConnectionRecommendation connection={getFallbackConnection()}></ConnectionRecommendation>
-		{:else}
-			<DuplicationRecommendation></DuplicationRecommendation>
-		{/if}
+		<div
+			style="flex:1; display:flex; flex-direction: column; justify-content: space-around;  padding-right:3rem; padding-left: 3rem; padding-bottom: 3rem;"
+		>
+			{#if randint === 0}
+				<StatementRecommendation></StatementRecommendation>
+			{:else if randint === 1}
+				<ConnectionRecommendation connection={getFallbackConnection()}></ConnectionRecommendation>
+			{:else}
+				<DuplicationRecommendation></DuplicationRecommendation>
+			{/if}
+		</div>
 	{:else}
-		{#each [0, 0, 0, 0, 0] as element}
-			<div style="display: flex; gap:10px; flex-direction: column;">
-				<StatementSearchResultOnlyText statement={getFallbackStatement()}
-				></StatementSearchResultOnlyText>
-				<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
-				<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+		<div style="overflow-y: scroll; padding-right:3rem; padding-left: 3rem; padding-bottom: 3rem;">
+			<div style="display:flex; flex-direction: column; gap: 1rem;">
+				{#each [0, 0, 0, 0, 0] as element}
+					<StatementSearchResultOnlyText statement={getFallbackStatement()}
+					></StatementSearchResultOnlyText>
+					<ConnectionSearchResult connection={getFallbackConnection()}></ConnectionSearchResult>
+					<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
+				{/each}
 			</div>
-		{/each}
+		</div>
 	{/if}
 </div>

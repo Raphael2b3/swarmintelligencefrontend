@@ -7,7 +7,7 @@
 	import Slider from '../form/Slider.svelte';
 	import ScrollableRichText from '../ScrollableRichText.svelte';
 
-	let { connection=getFallbackConnection() }: { connection: IConnection } = $props();
+	let { connection = getFallbackConnection() }: { connection: IConnection } = $props();
 	let value = $state(0.5);
 	let value_indicator = $derived((value * 100).toFixed(2) + '%');
 	const arg_type_str = connection.isProArgument ? 'Pro' : 'Contra';
@@ -28,7 +28,7 @@ This is Actually a good {arg_type_str} Argument
 >
 	{value_indicator}
 
-	<div style="width:100%;  display: flex; align-items: center;">
+	<div style="width:100%; display: flex; align-items: center;">
 		bad
 
 		<Slider bind:value></Slider>

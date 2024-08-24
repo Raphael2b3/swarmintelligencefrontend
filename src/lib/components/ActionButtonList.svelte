@@ -2,51 +2,23 @@
 	import ExpandButton from './buttons/iconbuttons/ExpandButton.svelte';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	let expanded = $state(false);
-	$effect(() => {
-		console.log(expanded);
-	});
 
-	function accordion(node: any, isOpen: boolean) {
-		let initialHeight = node.offsetHeight;
-		node.style.height = isOpen ? 'auto' : 0;
-		node.style.overflow = 'hidden';
-		return {
-			update(isOpen) {
-				let animation = node.animate(
-					[
-						{
-							height: initialHeight + 'px',
-							overflow: 'hidden'
-						},
-						{
-							height: 0,
-							overflow: 'hidden'
-						}
-					],
-					{ duration: 200, fill: 'both' }
-				);
-				animation.pause();
-				if (!isOpen) {
-					animation.play();
-				} else {
-					animation.reverse();
-				}
-			}
-		};
-	}
+	import { accordion } from '$lib/animations/accordion';
+	let expanded = $state(false);
 </script>
 
 <div class="container">
 	<div
 		use:accordion={expanded}
-		style="display: flex; 
-		gap: 10px; flex-direction: column;"
+		style=" 
+				display: flex; 
+				flex-direction: column; 
+				overflow: hidden;"
 	>
 		<slot></slot>
 	</div>
-	<ExpandButton bind:expanded></ExpandButton>
 
+	<ExpandButton bind:expanded></ExpandButton>
 	<!-- Slot für dynamische Inhalte -->
 
 	<!-- Slot für dynamische Inhalte -->
@@ -57,10 +29,9 @@
 		position: absolute;
 		/* background-color: rgba(148, 148, 148, 0.269); */
 		background-color: rgba(180, 180, 180, 0.304);
-		border-radius: 10000px;
-		height: calc-size(auto);
-		bottom: 20%;
-		right: 4%;
+		border-radius: 10000rem;
+		bottom: 15rem;
+		right: 3rem;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end; /* Abstand zwischen den Items */
