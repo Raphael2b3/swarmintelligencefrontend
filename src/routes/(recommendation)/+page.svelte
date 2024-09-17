@@ -47,6 +47,9 @@
 					<ConnectionSearchResult connection={getFallbackConnection()}></ConnectionSearchResult>
 					<DuplicationSearchResult duplication={getFallbackDuplication()}></DuplicationSearchResult>
 				{/each}
+				<BorderlessButton onclick={() => console.log('')}
+					>Didnt find what you wanted? Create it
+				</BorderlessButton>
 			</div>
 		</div>
 	{/if}
