@@ -25,6 +25,7 @@ export interface IConnection {
 	isTrueVotes: number;
 	creator: string;
 }
+
 export function isIConnection(object: any): object is IConnection {
 	return object.type == 'connection';
 }
