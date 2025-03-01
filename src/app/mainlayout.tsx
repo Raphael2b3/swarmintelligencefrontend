@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import SideNav from "./components/layout/SideNav/SideNav";
 import Topbar from "./components/layout/Topbar/Topbar";
+import "./globals.scss";
 
 export default function Mainlayout({
   children,

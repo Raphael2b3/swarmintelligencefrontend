@@ -1,7 +1,7 @@
 .topbar {
   display: flex;
-  //justify-content: space-between;
-  justify-content: center;
+  justify-content: space-between;
+  // justify-content: center;
   align-items: center;
   height: 60px;
   padding: 0 20px;
@@ -11,13 +11,29 @@
   position: relative;
 }
 
+.menuButton {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  padding: 8px;
+  border-radius: 8px;
+  &:hover {
+    background-color: var(--sidebar__item-highlight);
+  }
+}
+
 .dropdownMenu {
   background-color: var(--sidebar-background);
   border-radius: 16px;
   padding: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  min-width: 350px;
+  min-width: 300px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+
+  margin-right: 10px;
 }
 
 .dropdownItem {
@@ -25,7 +41,7 @@
   align-items: center;
   gap: 10px;
   padding: 16px 12px;
-  font-size: var(--font-size-md);
+  font-size: $font-size-md;
   cursor: pointer;
   transition: background-color 0.2s;
   border-radius: 8px;
@@ -53,6 +69,7 @@
   height: 45px;
   border-radius: 100%;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .AvatarImage {
@@ -60,4 +77,20 @@
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
+}
+
+.searchField {
+  height: 35px;
+  width: 400px;
+  border-radius: 8px;
+  margin-right: 10px;
+
+  @include respond-to("tablet") {
+    // background-color: red;
+  }
+
+  @include respond-to("mobile") {
+    //width: 200px;
+    // background-color: blue;
+  }
 }

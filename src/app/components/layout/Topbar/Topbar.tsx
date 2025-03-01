@@ -4,7 +4,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { LogOut, Settings, User, Search, Menu } from "lucide-react";
 import styles from "./Topbar.module.scss";
-import SideNavStyles from "../SideNav/SideNav.module.scss";
 import { Button, TextField } from "@radix-ui/themes";
 
 interface ITopbar {
@@ -15,27 +14,22 @@ interface ITopbar {
 export default function Topbar({ isOpen, setIsOpen }: ITopbar) {
   return (
     <header className={styles.topbar}>
-      <div
+      <Button
+        onClick={setIsOpen}
+        className={styles.menuButton}
         style={{
-          display: "flex",
-          justifyItems: "center",
-          justifyContent: "center",
-          width: "90%",
+          opacity: !isOpen ? 1 : 0,
+          pointerEvents: !isOpen ? "auto" : "none",
         }}>
-        {!isOpen && (
-          <Button onClick={setIsOpen} className={SideNavStyles.menuButton}>
-            <Menu size={24}></Menu>
-          </Button>
-        )}
+        <Menu size={24}></Menu>
+      </Button>
 
-        <TextField.Root
-          style={{ height: 35, minWidth: 250, borderRadius: 8, marginRight: 10 }}
-          placeholder="Search for statements">
-          <TextField.Slot>
-            <Search size={20} />
-          </TextField.Slot>
-        </TextField.Root>
-      </div>
+      <TextField.Root className={styles.searchField} placeholder="Search for statements">
+        <TextField.Slot>
+          <Search size={20} />
+        </TextField.Slot>
+      </TextField.Root>
+
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <Avatar className={styles.AvatarRoot}>
