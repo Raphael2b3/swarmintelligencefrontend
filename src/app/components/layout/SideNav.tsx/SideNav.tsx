@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@radix-ui/themes";
-import { Menu, X, HomeIcon, Settings } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import styles from "./SideNav.module.scss"; // Import CSS Module
 import { ROUTES } from "@/app/constants";
@@ -23,8 +23,9 @@ export default function SideNav({ enableOverlay }: ISideNav) {
       </Button>
 
       <motion.div
-        initial={{ x: "-100%" }}
-        animate={{ x: isOpen ? "0%" : "-100%" }}
+        // animate={{ x: isOpen ? "0%" : "-100%" }}
+        initial={{ width: 0, padding: 0 }}
+        animate={{ width: isOpen ? "250px" : "0px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={styles.sidebar}>
         <nav className={styles.navLinks}>
