@@ -4,7 +4,7 @@
   // justify-content: center;
   align-items: center;
   height: 60px;
-  padding: 0 20px;
+  padding: 0 10px;
   background-color: var(--bg-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.024);
   color: var(--text-color);
@@ -17,7 +17,6 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 999;
   padding: 8px;
   border-radius: 8px;
   &:hover {
