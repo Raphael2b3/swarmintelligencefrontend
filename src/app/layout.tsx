@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import "@radix-ui/themes/styles.css";
-import SideNav from "./components/layout/SideNav.tsx/SideNav";
-import Topbar from "./components/layout/Topbar.tsx/Topbar";
+import { Theme } from "@radix-ui/themes";
+import Mainlayout from "./mainlayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="content-wrapper">
-          <SideNav></SideNav>
-          <div className="main-layout">
-            <Topbar />
-            <main className="main-content">{children}</main>
-          </div>
-        </div>
+        <Theme appearance="dark">
+          <Mainlayout>{children}</Mainlayout>
+        </Theme>
       </body>
     </html>
   );

@@ -2,12 +2,40 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { LogOut, Settings, User } from "lucide-react";
+import { LogOut, Settings, User, Search, Menu } from "lucide-react";
 import styles from "./Topbar.module.scss";
+import SideNavStyles from "../SideNav/SideNav.module.scss";
+import { Button, TextField } from "@radix-ui/themes";
 
-export default function Topbar() {
+interface ITopbar {
+  isOpen: boolean;
+  setIsOpen: () => void;
+}
+
+export default function Topbar({ isOpen, setIsOpen }: ITopbar) {
   return (
     <header className={styles.topbar}>
+      <div
+        style={{
+          display: "flex",
+          justifyItems: "center",
+          justifyContent: "center",
+          width: "90%",
+        }}>
+        {!isOpen && (
+          <Button onClick={setIsOpen} className={SideNavStyles.menuButton}>
+            <Menu size={24}></Menu>
+          </Button>
+        )}
+
+        <TextField.Root
+          style={{ height: 35, minWidth: 250, borderRadius: 8, marginRight: 10 }}
+          placeholder="Search for statements">
+          <TextField.Slot>
+            <Search size={20} />
+          </TextField.Slot>
+        </TextField.Root>
+      </div>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <Avatar className={styles.AvatarRoot}>
