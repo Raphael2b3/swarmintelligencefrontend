@@ -1,5 +1,4 @@
-// import Image from "next/image";
-// import styles from "./page.module.css";
+//import styles from "./page.module.scss";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 
